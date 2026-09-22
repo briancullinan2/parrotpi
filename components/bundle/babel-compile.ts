@@ -60,6 +60,9 @@ export function collectDependencies(rawCode: string, baseRoute: string, dependen
 			if(moduleName === 'ace-builds')
 			{
 				newDependency = '/ace/ace-noconflict.js';
+			} else if(moduleName === 'd3')
+			{
+				newDependency = '/components/status/d3.min.js';
 			} else if(moduleName === './tree.js' && baseRoute)
 			{
 				newDependency = path.resolve(baseRoute.substring(0, baseRoute.lastIndexOf('/')), moduleName);
@@ -480,6 +483,12 @@ export function transpileTypescriptWidget(rawCode: string, baseRoute: string): a
 								globalExpression = t.memberExpression(
 									t.identifier('window'),
 									t.identifier('Tree')
+								);
+							} else if(moduleName === 'd3')
+							{
+								globalExpression = t.memberExpression(
+									t.identifier('window'),
+									t.identifier('d3')
 								);
 							} else if(moduleName === './bundle.js')
 							{

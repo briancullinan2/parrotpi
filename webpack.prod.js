@@ -30,7 +30,7 @@ module.exports = {
 		extensions: ['.ts', '.js', '.css'],
 	},
 	module: {
-		noParse: [/[\\/]node_modules[\\/]@babel[\\/]standalone[\\/]/],
+		noParse: [/[\\/]node_modules[\\/]@babel[\\/]standalone[\\/]/, /\.min\./],
 		rules: [
 			{
 				test: /rosetta\/binary/,
@@ -89,6 +89,14 @@ module.exports = {
 				{
 					from: path.resolve(__dirname, 'node_modules/@babel/standalone/babel.min.js'),
 					to: path.resolve(__dirname, 'babel.min.js'),
+				},
+			],
+		}),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: path.resolve(__dirname, 'node_modules/d3/dist/d3.min.js'),
+					to: path.resolve(__dirname, 'd3.min.js'),
 				},
 			],
 		}),

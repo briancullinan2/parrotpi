@@ -6,7 +6,7 @@ import type { IPerformanceSample, IProcessInfo, IStatusDataPayload } from './gen
 import type { LuminoLayoutWindow } from '../bundle/lumino.d';
 import type { GlobalToolbarsWindow } from '../bundle/menu.d';
 
-// Rely on global cheap D3 import
+import 'd3';
 declare const d3: typeof import('d3');
 
 const widgetSelf: LuminoLayoutWindow & GlobalToolbarsWindow & { StatusWidget?: typeof StatusWidget; } = self as unknown as any;
