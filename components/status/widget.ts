@@ -1,7 +1,6 @@
 import { Widget } from '@lumino/widgets';
 import { Message } from '@lumino/messaging';
 
-import type { MenuModules } from '../bundle/menu-manager';
 import type { LuminoLayoutWindow } from '../bundle/lumino.d';
 import type { IStatusDataPayload } from './generate';
 import type { GlobalToolbarsWindow } from '../bundle/menu.d';
@@ -15,7 +14,7 @@ export class StatusWidget extends Widget
 {
 	public static instance: StatusWidget | null = null;
 
-	private _endpoint: string;
+	private _endpoint: string = '/components/status/status-data.json';
 	private _abortController: AbortController | null = null;
 	private _historyMetrics: Array<{ time: Date; cpu: number; mem: number; }> = [];
 
@@ -29,7 +28,7 @@ export class StatusWidget extends Widget
 	private _eventsLogEl!: HTMLElement;
 	private _osBadgeEl!: HTMLElement;
 
-	constructor(endpoint: string = '/api/status/stream')
+	constructor(endpoint?: string)
 	{
 		super();
 		this.addClass('lm-StatusWidget');
@@ -48,7 +47,10 @@ export class StatusWidget extends Widget
 		this.title.iconClass = 'fa fa-dashboard';
 		this.title.closable = true;
 
-		this._endpoint = endpoint;
+		if(endpoint && endpoint !== 'Status')
+		{
+			this._endpoint = endpoint;
+		}
 		this._buildUI();
 	}
 

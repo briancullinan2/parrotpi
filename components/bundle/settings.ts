@@ -131,9 +131,9 @@ export class Settings
 				let raw: any = localStorage.getItem(config.key);
 				let finalValue: any = raw;
 
-				if(raw === null)
+				if(raw === null || raw === 'null' || raw === 'NULL')
 				{
-					raw = config.default;
+					raw = finalValue = config.default;
 				}
 
 				if(config.type === 'boolean')

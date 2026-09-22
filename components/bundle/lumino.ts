@@ -287,7 +287,7 @@ const LOCAL_SETTINGS: Record<string, Record<string, SettingConfig>> = {
 	core: {
 		workspaceDefault: {
 			key: 'workspace_default',
-			default: 'editor',
+			default: 'status',
 			description: 'Specifies the default active panel or system layout view presented to users upon launching the application interface.'
 		},
 		environmentVersion: {
