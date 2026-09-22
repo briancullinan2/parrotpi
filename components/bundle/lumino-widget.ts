@@ -6,6 +6,7 @@ import type { AceEditorWidget } from '../editor/widget';
 import type { TerminalWidget } from '../terminal/widget';
 import { historyToolbar } from './menu-history';
 import { MODULE_REGISTRY, TERMINAL_REGISTRY } from './menu';
+import { SHORT_NAME } from './global';
 
 export const WIDESCREEN = 1200;
 export const MOBILEMODE = 600;
@@ -74,13 +75,13 @@ export function updateHashFromWidget(shownWidget: Widget)
 	{
 		const filterId = (shownWidget as TerminalWidget).filterId;
 		const terminal = TERMINAL_REGISTRY.find(t => t.id === filterId);
-		const title = (terminal?.label ?? 'Terminal') + ' · Q3IDE';
+		const title = `${(terminal?.label ?? 'Terminal')} · ${SHORT_NAME}`;
 		document.title = title;
 		history.pushState({ location: '/#' + filterId, title: title }, title, '#' + filterId);
 	} else if(OUTLINE_WIDGET_TYPES.includes(widgetTypeName))
 	{
 		const widgetKey = Object.keys(MODULE_REGISTRY).find(key => MODULE_REGISTRY[key].className === widgetTypeName);
-		const title = widgetKey + ' · Q3IDE';
+		const title = `${widgetKey} · ${SHORT_NAME}`;
 		document.title = title;
 		history.pushState({ location: '/#' + widgetKey, title: title }, title, '#' + widgetKey);
 	}

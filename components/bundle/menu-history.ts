@@ -5,6 +5,7 @@ import type { AceEditorWidget } from "../editor/widget";
 import type { GlobalToolbarsWindow } from "./menu.d";
 import type { LuminoLayoutWindow } from "./lumino.d";
 import type { GithubWindow } from "./github.d";
+import { SHORT_NAME } from "./global";
 
 export type NavPoint = {
 	fileId: string;
@@ -147,8 +148,8 @@ export class HistoryToolbar extends Widget
 		}
 
 		const dynamicTitle = targetLine
-			? `${fileName} : ${targetLine} · Q3IDE`
-			: `${fileName} · Q3IDE`;
+			? `${fileName} : ${targetLine} · ${SHORT_NAME}`
+			: `${fileName} · ${SHORT_NAME}`;
 
 		document.title = dynamicTitle;
 

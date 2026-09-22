@@ -81,6 +81,8 @@ export interface BuildWindow
 	COMPILE_ARCH?: string;
 	GAME_PLATFORM?: string;
 	GAME_ARCH?: string;
+	LONG_NAME?: string;
+	SHORT_NAME?: string;
 }
 
 

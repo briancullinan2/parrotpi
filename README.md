@@ -1,7 +1,7 @@
 
 # Parrot Pi
 
-This is a modular, portable cyberdeck environment built for the Raspberry Pi 5 running Parrot OS. Designed for edge telemetry, signal monitoring, spatial analysis, and hardware diagnostic tasks, ARGUS presents a Lumino/JupyterLab-style web workspace with dynamic widget panels powered by a unified TypeScript `MODULE_REGISTRY`.
+This is a modular, portable cyberdeck environment built for the Raspberry Pi 5 running Parrot OS. Designed for edge telemetry, signal monitoring, spatial analysis, and hardware diagnostic tasks, a Lumino/JupyterLab-style web workspace with dynamic widget panels powered by a unified TypeScript `MODULE_REGISTRY`.
 
 ---
 

@@ -56,6 +56,11 @@ export const path = {
 	}
 };
 
+export const LONG_NAME = 'Parrot Pi';
+export const SHORT_NAME = '🦜';
+buildSelf.LONG_NAME = LONG_NAME;
+buildSelf.SHORT_NAME = SHORT_NAME;
+
 const COMPILE_PLATFORM = 'wasm';
 const COMPILE_ARCH = 'js';
 
