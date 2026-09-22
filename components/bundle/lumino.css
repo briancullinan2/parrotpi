@@ -149,9 +149,24 @@ html {
 }
 
 
-[class^="bx"]::before, [class*=" bx"]::before, .bx::before, #tabs a:empty::before, #toolbar a:empty::before {
-    text-shadow: 1px 2px 3px rgb(from var(--ace-gutter-bg) r g b / 100%);
-    color: var(--ace-foreground);
-    font-family: boxicons !important;
+[class^="bx"]::before,
+[class*=" bx"]::before,
+.bx::before,
+#tabs a:empty::before,
+#toolbar a:empty::before {
+	text-shadow: 1px 2px 3px rgb(from var(--ace-gutter-bg) r g b / 100%);
+	color: var(--ace-foreground);
+	font-family: boxicons !important;
 }
 
+.lm-DataGrid-viewport {
+	height: 100%;
+	width: 100%;
+}
+
+.lm-DataGrid-viewport>canvas {
+	height: 100% !important;
+	width: 100% !important;
+	min-height: 0;
+	min-width: 0;
+}

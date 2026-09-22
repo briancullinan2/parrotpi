@@ -190,6 +190,7 @@ export class StatusDataGenerator
 		}
 	}
 
+
 	private static async fetchMetrics(os: OSPlatform): Promise<IPerformanceMetrics>
 	{
 		if(os === 'win32')
@@ -199,20 +200,25 @@ export class StatusDataGenerator
 				this.runCmd('wmic OS get FreePhysicalMemory,TotalVisibleMemorySize /value')
 			]);
 
-			const cpuVal = parseInt(cpuRaw.split('=')[1] || '0', 10);
+			const cpuMatch = cpuRaw.match(/LoadPercentage=(\d+)/i);
+			let cpuVal = cpuMatch ? parseInt(cpuMatch[1], 10) : 0;
 
-			// Correct KB to MB conversion
-			const freeKb = parseInt(memRaw.match(/FreePhysicalMemory=(\d+)/)?.[1] || '0', 10);
-			const totalKb = parseInt(memRaw.match(/TotalVisibleMemorySize=(\d+)/)?.[1] || '1', 10);
+			// Clean carriage returns and extract memory KB
+			const cleanMemRaw = memRaw.replace(/\r/g, '');
+			const freeMatch = cleanMemRaw.match(/FreePhysicalMemory=(\d+)/i);
+			const totalMatch = cleanMemRaw.match(/TotalVisibleMemorySize=(\d+)/i);
 
-			const freeMb = freeKb / 1024;
-			const totalMb = totalKb / 1024;
-			const usedMb = Math.max(0, totalMb - freeMb);
+			const freeKb = freeMatch ? parseInt(freeMatch[1], 10) : 0;
+			const totalKb = totalMatch ? parseInt(totalMatch[1], 10) : 16777216; // 16GB fallback
+
+			const totalMb = Math.round(totalKb / 1024);
+			const freeMb = Math.round(freeKb / 1024);
+			const usedMb = Math.max(1024, totalMb - freeMb);
 
 			return {
-				cpuUsagePct: Math.min(100, Math.max(0, cpuVal)),
-				memUsedMB: Math.round(usedMb),
-				memTotalMB: Math.round(totalMb),
+				cpuUsagePct: cpuVal,
+				memUsedMB: usedMb,
+				memTotalMB: totalMb,
 				diskReadKbps: Math.floor(Math.random() * 400) + 20,
 				diskWriteKbps: Math.floor(Math.random() * 200) + 10,
 				netRxKbps: Math.floor(Math.random() * 800) + 50,
@@ -251,6 +257,8 @@ export class StatusDataGenerator
 			};
 		}
 	}
+
+
 
 	private static async fetchProcesses(os: OSPlatform): Promise<IProcessInfo[]>
 	{

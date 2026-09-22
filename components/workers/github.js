@@ -2,7 +2,7 @@
 
 // @ts-check
 
-/** @type {import('../filelist/widget').GithubWorkerWindow & import('../bundle/local').LocalWindow} */
+/** @type {import('../filelist/widget.d').GithubWorkerWindow & import('../bundle/local.d').LocalWindow} */
 const githubSelf = /** @type {any} */ (self);
 
 if(!githubSelf.trees)
@@ -394,7 +394,7 @@ async function loadGitHubTreeNew(repoOwner, repoName, branch, initialPath = '')
  * @param {string} repo
  * @param {string} branch
  * @param {string[]} filePaths
- * @param {Record<string, import('../bundle/local').FileRecord | null | undefined>} targetCache
+ * @param {Record<string, import('../bundle/local.d').FileRecord | null | undefined>} targetCache
  * @returns
  */
 async function hydrateFileMTimes(owner, repo, branch, filePaths, targetCache)
@@ -763,7 +763,7 @@ githubSelf.cacheFileInternal = cacheFileInternal;
  * @param {string} repo
  * @param {string} [branch='master']
  * @param {string | null} [database=null]
- * @param {undefined | null | import('../bundle/github').ProgressFunction} [onProgress]
+ * @param {undefined | null | import('../bundle/github.d').ProgressFunction} [onProgress]
  * @returns {Promise<string | undefined | null>}
  */
 async function downloadRepoZip(owner, repo, branch = 'master', database = null, onProgress = null)
@@ -919,7 +919,7 @@ async function downloadRepoZip(owner, repo, branch = 'master', database = null, 
  * @param {string} repo
  * @param {string} [branch='master']
  * @param {string | null} [database=null]
- * @param {undefined | null | import('../bundle/github').ProgressFunction} [onProgress]
+ * @param {undefined | null | import('../bundle/github.d').ProgressFunction} [onProgress]
  * @returns {Promise<number>} Returns the total count of files downloaded and mounted.
  */
 async function downloadRepoNew(owner, repo, branch = 'master', database = null, onProgress = null)

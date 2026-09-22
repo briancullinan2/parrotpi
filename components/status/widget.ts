@@ -1,4 +1,4 @@
-import { Widget } from '@lumino/widgets';
+import { Widget, Panel } from '@lumino/widgets';
 import { Message } from '@lumino/messaging';
 import { DataGrid, DataModel } from '@lumino/datagrid';
 
@@ -31,7 +31,7 @@ export class ProcessGridModel extends DataModel
 
 	public columnCount(region: DataModel.ColumnRegion): number
 	{
-		return region === 'row-header' ? 6 : 0;
+		return region === 'body' ? 6 : 0;
 	}
 
 	public data(region: DataModel.CellRegion, row: number, column: number): any
@@ -79,8 +79,10 @@ export class StatusWidget extends Widget
 	private _uptimeEl!: HTMLElement;
 
 	// Lumino Grids & Interactive Containers
+	private _summaryBarEl!: HTMLDivElement;
 	private _processGrid!: DataGrid;
 	private _processGridModel!: ProcessGridModel;
+	private _gridPanel!: Panel;
 	private _servicesTableBody!: HTMLElement;
 	private _usersContainerEl!: HTMLElement;
 	private _startupContainerEl!: HTMLElement;
@@ -110,7 +112,6 @@ export class StatusWidget extends Widget
 			this.title.label = title ?? endpoint;
 			this._endpoint = endpoint;
 		}
-		//this._buildUI();
 	}
 
 	public static getInstance(endpoint?: string): StatusWidget
@@ -167,6 +168,10 @@ export class StatusWidget extends Widget
 	{
 		super.onResize(msg);
 		this._renderD3Sparklines();
+		if(this._processGrid)
+		{
+			this._processGrid.update();
+		}
 	}
 
 	public async startStreamingFetch(): Promise<void>
@@ -196,16 +201,12 @@ export class StatusWidget extends Widget
 				if(done) break;
 
 				buffer += decoder.decode(value, { stream: true });
-
-				// Strip leading array bracket if stream opens with '[' or '[\n'
 				buffer = buffer.replace(/^\s*\[\s*/, '');
 
 				let boundary: number;
-				// Search for end of a complete root JSON object block
 				while((boundary = this._findJsonObjectEnd(buffer)) !== -1)
 				{
 					const jsonStr = buffer.slice(0, boundary + 1).trim();
-					// Advance buffer past this object and any trailing comma or array whitespace
 					buffer = buffer.slice(boundary + 1).replace(/^\s*,\s*/, '');
 
 					if(jsonStr)
@@ -230,9 +231,6 @@ export class StatusWidget extends Widget
 		}
 	}
 
-	/**
-	 * Helper method to scan raw buffer for matching closing curly brace '}' of a top-level JSON object.
-	 */
 	private _findJsonObjectEnd(str: string): number
 	{
 		let depth = 0;
@@ -274,7 +272,7 @@ export class StatusWidget extends Widget
 				depth--;
 				if(startFound && depth === 0)
 				{
-					return i; // Index of matching closing brace
+					return i;
 				}
 			}
 		}
@@ -290,8 +288,54 @@ export class StatusWidget extends Widget
 		}
 	}
 
+
+	private _createAccordionSection(title: string, contentEl: HTMLElement, expanded: boolean): HTMLElement
+	{
+		const wrapper = document.createElement('div');
+		wrapper.style.marginBottom = '6px';
+		wrapper.style.border = '1px solid #333';
+		wrapper.style.borderRadius = '3px';
+
+		const header = document.createElement('div');
+		header.style.padding = '6px 10px';
+		header.style.backgroundColor = '#2d2d2d';
+		header.style.cursor = 'pointer';
+		header.style.fontWeight = 'bold';
+		header.style.fontSize = '12px';
+		header.style.display = 'flex';
+		header.style.justifyContent = 'space-between';
+		header.style.userSelect = 'none';
+		header.textContent = `${expanded ? '▼' : '►'} ${title}`;
+
+		contentEl.style.display = expanded ? 'block' : 'none';
+		contentEl.style.padding = '8px';
+		contentEl.style.backgroundColor = '#181818';
+
+		header.addEventListener('click', () =>
+		{
+			const isVisible = contentEl.style.display === 'block';
+			contentEl.style.display = isVisible ? 'none' : 'block';
+			header.textContent = `${!isVisible ? '▼' : '►'} ${title}`;
+
+			if(!isVisible && this._processGrid)
+			{
+				requestAnimationFrame(() =>
+				{
+					this._processGrid.fit();
+					this._processGrid.update();
+				});
+			}
+		});
+
+		wrapper.appendChild(header);
+		wrapper.appendChild(contentEl);
+		return wrapper;
+	}
+
 	private _buildUI(): void
 	{
+		this.node.replaceChildren();
+
 		// Top System Status Banner
 		const header = document.createElement('div');
 		header.style.display = 'flex';
@@ -345,11 +389,29 @@ export class StatusWidget extends Widget
 		this._d3SvgEl.style.height = '100%';
 		perfContent.appendChild(this._d3SvgEl);
 
-		// Panel 2: Lumino Process DataGrid
-		const procContent = document.createElement('div');
-		procContent.style.height = '240px';
-		procContent.style.width = '100%';
-		procContent.style.position = 'relative';
+		// Panel 2: Active Processes Section
+		const procContainerWrapper = document.createElement('div');
+		procContainerWrapper.style.display = 'flex';
+		procContainerWrapper.style.flexDirection = 'column';
+		procContainerWrapper.style.height = '320px';
+		procContainerWrapper.style.width = '100%';
+
+		this._summaryBarEl = document.createElement('div');
+		this._summaryBarEl.style.display = 'grid';
+		this._summaryBarEl.style.gridTemplateColumns = 'repeat(auto-fit, minmax(130px, 1fr))';
+		this._summaryBarEl.style.gap = '8px';
+		this._summaryBarEl.style.marginBottom = '8px';
+		this._summaryBarEl.style.padding = '8px';
+		this._summaryBarEl.style.backgroundColor = '#141414';
+		this._summaryBarEl.style.border = '1px solid #282828';
+		this._summaryBarEl.style.borderRadius = '3px';
+		this._summaryBarEl.style.fontSize = '11px';
+
+		const gridHost = document.createElement('div');
+		gridHost.style.flex = '1';
+		gridHost.style.position = 'relative';
+		gridHost.style.minHeight = '260px';
+		gridHost.style.width = '100%';
 
 		this._processGridModel = new ProcessGridModel();
 		this._processGrid = new DataGrid({
@@ -360,21 +422,22 @@ export class StatusWidget extends Widget
 				headerBackgroundColor: '#252526',
 				headerGridLineColor: '#3c3c3c',
 				gridLineColor: '#2d2d2d',
-				//labelColor: '#cccccc',
 				selectionFillColor: 'rgba(0, 122, 204, 0.2)'
+			},
+			defaultSizes: {
+				rowHeight: 24,
+				columnWidth: 120,
+				rowHeaderWidth: 0,
+				columnHeaderHeight: 28
 			}
 		});
 		this._processGrid.dataModel = this._processGridModel;
-		this._processGrid.node.style.position = 'absolute';
-		this._processGrid.node.style.top = '0';
-		this._processGrid.node.style.left = '0';
-		this._processGrid.node.style.width = '100%';
-		this._processGrid.node.style.height = '100%';
 
-		// Append the DataGrid node directly to the wrapper node
-		procContent.appendChild(this._processGrid.node);
+		gridHost.appendChild(this._processGrid.node);
+		procContainerWrapper.appendChild(this._summaryBarEl);
+		procContainerWrapper.appendChild(gridHost);
 
-		// Panel 3: Services Table with Control Actions
+		// Panel 3: Services Table
 		const svcContent = document.createElement('div');
 		svcContent.style.maxHeight = '220px';
 		svcContent.style.overflowY = 'auto';
@@ -401,8 +464,6 @@ export class StatusWidget extends Widget
 		this._usersContainerEl = document.createElement('div');
 		userGrid.appendChild(this._usersContainerEl);
 
-
-		// Panel 4: Users & Startup Management
 		const mgmtGrid = document.createElement('div');
 		mgmtGrid.style.display = 'grid';
 		mgmtGrid.style.gridTemplateColumns = '1fr 1fr';
@@ -411,7 +472,6 @@ export class StatusWidget extends Widget
 		this._startupContainerEl = document.createElement('div');
 		mgmtGrid.appendChild(this._startupContainerEl);
 
-		// Panel 5: Event / dmesg Log Stream
 		this._eventsLogEl = document.createElement('div');
 		this._eventsLogEl.style.maxHeight = '160px';
 		this._eventsLogEl.style.overflowY = 'auto';
@@ -423,7 +483,7 @@ export class StatusWidget extends Widget
 
 		// Mount Accordion Sections
 		this._accordionContainer.appendChild(this._createAccordionSection('Performance Metrics (Sustained 30s Window)', perfContent, true));
-		this._accordionContainer.appendChild(this._createAccordionSection('Active Processes (Task Manager View)', procContent, true));
+		this._accordionContainer.appendChild(this._createAccordionSection('Active Processes (Task Manager View)', procContainerWrapper, true));
 		this._accordionContainer.appendChild(this._createAccordionSection('System Services', svcContent, false));
 		this._accordionContainer.appendChild(this._createAccordionSection('User Accounts', userGrid, false));
 		this._accordionContainer.appendChild(this._createAccordionSection('Startup Applications', mgmtGrid, false));
@@ -431,44 +491,12 @@ export class StatusWidget extends Widget
 
 		this.node.appendChild(header);
 		this.node.appendChild(this._accordionContainer);
-	}
 
-	private _createAccordionSection(title: string, contentEl: HTMLElement, expanded: boolean): HTMLElement
-	{
-		const wrapper = document.createElement('div');
-		wrapper.style.marginBottom = '6px';
-		wrapper.style.border = '1px solid #333';
-		wrapper.style.borderRadius = '3px';
-
-		const header = document.createElement('div');
-		header.style.padding = '6px 10px';
-		header.style.backgroundColor = '#2d2d2d';
-		header.style.cursor = 'pointer';
-		header.style.fontWeight = 'bold';
-		header.style.fontSize = '12px';
-		header.style.display = 'flex';
-		header.style.justifyContent = 'space-between';
-		header.style.userSelect = 'none';
-		header.textContent = `${expanded ? '▼' : '►'} ${title}`;
-
-		contentEl.style.display = expanded ? 'block' : 'none';
-		contentEl.style.padding = '8px';
-		contentEl.style.backgroundColor = '#181818';
-
-		header.addEventListener('click', () =>
+		// Attach Lumino DataGrid Widget to trigger layout lifecycle messages
+		if(!this._processGrid.isAttached)
 		{
-			const isVisible = contentEl.style.display === 'block';
-			contentEl.style.display = isVisible ? 'none' : 'block';
-			header.textContent = `${!isVisible ? '▼' : '►'} ${title}`;
-			if(!isVisible && contentEl.contains(this._processGrid.node))
-			{
-				this._processGrid.update();
-			}
-		});
-
-		wrapper.appendChild(header);
-		wrapper.appendChild(contentEl);
-		return wrapper;
+			//Widget.attach(this._processGrid, gridHost);
+		}
 	}
 
 	private _updateUI(data: IStatusDataPayload): void
@@ -478,36 +506,79 @@ export class StatusWidget extends Widget
 		this._osBadgeEl.textContent = `OS: ${data.os.toUpperCase()}`;
 		this._uptimeEl.textContent = `Last update: ${new Date(data.timestamp).toLocaleTimeString()}`;
 
-		// Calculate memory percentage safely
 		const memTotal = data.metrics.memTotalMB || 1;
 		const memUsed = data.metrics.memUsedMB || 0;
 		const memPct = Math.min(100, Math.max(0, (memUsed / memTotal) * 100));
 
-		// Maintain 30-second sliding time window
-		const now = new Date(data.timestamp).getTime();
-		const sample: IPerformanceSample = {
-			time: now,
-			cpu: data.metrics.cpuUsagePct,
-			memPct: memPct,
-			diskReadKbps: data.metrics.diskReadKbps || 0,
-			diskWriteKbps: data.metrics.diskWriteKbps || 0,
-			netRxKbps: data.metrics.netRxKbps || 0,
-			netTxKbps: data.metrics.netTxKbps || 0
-		};
+		// Hydrate samples from server payload
+		if(Array.isArray(data.samples) && data.samples.length > 0)
+		{
+			this._historyMetrics = data.samples.map((s: IPerformanceSample) => ({
+				...s,
+				time: typeof s.time === 'number' ? s.time : new Date(s.time).getTime()
+			}));
+		} else
+		{
+			const sample: IPerformanceSample = {
+				time: data.timestamp,
+				cpu: data.metrics.cpuUsagePct,
+				memPct: memPct,
+				diskReadKbps: data.metrics.diskReadKbps || 0,
+				diskWriteKbps: data.metrics.diskWriteKbps || 0,
+				netRxKbps: data.metrics.netRxKbps || 0,
+				netTxKbps: data.metrics.netTxKbps || 0
+			};
+			this._historyMetrics.push(sample);
+			const windowStart = data.timestamp - 30000;
+			this._historyMetrics = this._historyMetrics.filter(m => m.time >= windowStart);
+		}
 
-		this._historyMetrics.push(sample);
-		const thirtySecsAgo = Date.now() - 30000;
-		this._historyMetrics = this._historyMetrics.filter(m => m.time >= thirtySecsAgo);
 		this._renderD3Sparklines();
 
-		// Update Lumino Process Grid Data
+		// Summary Bar Update
+		if(this._summaryBarEl)
+		{
+			this._summaryBarEl.innerHTML = `
+    <div><span style="color:#888;">CPU:</span> <strong style="color:#4ec9b0;">${data.metrics.cpuUsagePct}%</strong></div>
+    <div><span style="color:#888;">MEM:</span> <strong style="color:#569cd6;">${Math.round(memUsed)} / ${Math.round(memTotal)} MB (${Math.round(memPct)}%)</strong></div>
+    <div><span style="color:#888;">DISK R/W:</span> <strong>${data.metrics.diskReadKbps || 0} / ${data.metrics.diskWriteKbps || 0} KB/s</strong></div>
+    <div><span style="color:#888;">NET RX/TX:</span> <strong>${data.metrics.netRxKbps || 0} / ${data.metrics.netTxKbps || 0} KB/s</strong></div>
+    <div><span style="color:#888;">PROCS:</span> <strong>${data.processes ? data.processes.length : 0} running</strong></div>
+  `;
+		}
+
+		// Lumino DataGrid Viewport & Canvas Layout Sync
 		if(Array.isArray(data.processes) && data.processes.length > 0)
 		{
 			this._processGridModel.updateData(data.processes);
-			this._processGrid.update();
+
+			if(this._processGrid)
+			{
+				const host = this._processGrid.node.parentElement;
+				if(host && host.clientWidth > 0 && host.clientHeight > 0)
+				{
+					// Force container pixel bounds to match parent wrapper
+					this._processGrid.node.style.width = `${host.clientWidth}px`;
+					this._processGrid.node.style.height = `${host.clientHeight}px`;
+
+					// Auto-stretch process columns to fill grid width
+					const colWidth = Math.max(90, Math.floor((host.clientWidth - 20) / 6));
+					for(let c = 0; c < 6; c++)
+					{
+						this._processGrid.resizeColumn('body', c, colWidth);
+					}
+				}
+
+				// Trigger Lumino's internal message loop to redraw the canvas
+				this._processGrid.update();
+				if((this._processGrid as any).viewport)
+				{
+					(this._processGrid as any).viewport.update();
+				}
+			}
 		}
 
-		// Render Services Table with Administrative Controls
+		// Render Services Table
 		if(Array.isArray(data.services))
 		{
 			this._servicesTableBody.replaceChildren();
@@ -543,14 +614,8 @@ export class StatusWidget extends Widget
 			}
 		}
 
-		// Parse Multi-line Windows User Output into Structured Management List
+		// Render Users
 		this._usersContainerEl.replaceChildren();
-		//const userHeader = document.createElement('h4');
-		//userHeader.style.margin = '0 0 6px 0';
-		//userHeader.style.color = '#007acc';
-		//userHeader.textContent = 'Active Users & Sessions';
-		//this._usersContainerEl.appendChild(userHeader);
-
 		if(Array.isArray(data.users))
 		{
 			for(const line of data.users)
@@ -581,14 +646,8 @@ export class StatusWidget extends Widget
 			}
 		}
 
-		// Render Startup Applications Control
+		// Render Startup Applications
 		this._startupContainerEl.replaceChildren();
-		const startupHeader = document.createElement('h4');
-		startupHeader.style.margin = '0 0 6px 0';
-		startupHeader.style.color = '#007acc';
-		startupHeader.textContent = 'Startup Applications';
-		this._startupContainerEl.appendChild(startupHeader);
-
 		if(Array.isArray(data.startupApps))
 		{
 			for(const app of data.startupApps)
@@ -618,7 +677,7 @@ export class StatusWidget extends Widget
 			}
 		}
 
-		// Render Event / dmesg Logs
+		// Render Events
 		if(Array.isArray(data.events))
 		{
 			this._eventsLogEl.replaceChildren();
@@ -632,6 +691,7 @@ export class StatusWidget extends Widget
 		}
 	}
 
+
 	private _sendAdminCommand(target: 'service' | 'user' | 'startup' | 'process', name: string, action: string): void
 	{
 		fetch('/api/status/admin', {
@@ -641,9 +701,6 @@ export class StatusWidget extends Widget
 		}).catch(err => console.error('[StatusWidget] Admin command failed:', err));
 	}
 
-	/**
-	 * Renders fully typed idempotent sliding-window D3 sparklines.
-	 */
 	private _renderD3Sparklines(): void
 	{
 		if(typeof d3 === 'undefined' || !this._d3SvgEl || this._historyMetrics.length === 0) return;
@@ -651,15 +708,23 @@ export class StatusWidget extends Widget
 		const svg = d3.select(this._d3SvgEl);
 		svg.selectAll('*').remove();
 
-		const width = this._d3SvgEl.clientWidth || 400;
+		const width = this._d3SvgEl.clientWidth || 600;
 		const height = this._d3SvgEl.clientHeight || 120;
 		const margin = { top: 10, right: 10, bottom: 20, left: 30 };
 
-		const now = new Date();
-		const thirtySecsAgo = new Date(now.getTime() - 30000);
+		// Dynamic domain bounds derived directly from sample dataset
+		const timeExtent = d3.extent(this._historyMetrics, (d: IPerformanceSample) => new Date(d.time)) as [Date, Date];
+
+		// Fallback domain if extent returns single point
+		if(!timeExtent[0] || !timeExtent[1] || timeExtent[0].getTime() === timeExtent[1].getTime())
+		{
+			const now = new Date();
+			timeExtent[0] = new Date(now.getTime() - 30000);
+			timeExtent[1] = now;
+		}
 
 		const x = d3.scaleTime()
-			.domain([thirtySecsAgo, now])
+			.domain(timeExtent)
 			.range([margin.left, width - margin.right]);
 
 		const y = d3.scaleLinear()
@@ -667,12 +732,12 @@ export class StatusWidget extends Widget
 			.range([height - margin.bottom, margin.top]);
 
 		const lineCpu = d3.line<IPerformanceSample>()
-			.x((d: IPerformanceSample) => x(d.time))
+			.x((d: IPerformanceSample) => x(new Date(d.time)))
 			.y((d: IPerformanceSample) => y(d.cpu))
 			.curve(d3.curveMonotoneX);
 
 		const lineMem = d3.line<IPerformanceSample>()
-			.x((d: IPerformanceSample) => x(d.time))
+			.x((d: IPerformanceSample) => x(new Date(d.time)))
 			.y((d: IPerformanceSample) => y(d.memPct))
 			.curve(d3.curveMonotoneX);
 
