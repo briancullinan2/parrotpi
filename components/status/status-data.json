@@ -1,0 +1,615 @@
+{
+  "timestamp": 1790110773657,
+  "os": "win32",
+  "metrics": {
+    "cpuUsagePct": 0,
+    "memUsedMB": 0,
+    "memTotalMB": 0,
+    "diskReadKbps": 76,
+    "diskWriteKbps": 47,
+    "netRxKbps": 604,
+    "netTxKbps": 91
+  },
+  "samples": [
+    {
+      "time": 1790110745654,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 164,
+      "diskWriteKbps": 86,
+      "netRxKbps": 595,
+      "netTxKbps": 259
+    },
+    {
+      "time": 1790110747095,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 323,
+      "diskWriteKbps": 162,
+      "netRxKbps": 580,
+      "netTxKbps": 163
+    },
+    {
+      "time": 1790110748127,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 399,
+      "diskWriteKbps": 74,
+      "netRxKbps": 156,
+      "netTxKbps": 290
+    },
+    {
+      "time": 1790110749167,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 399,
+      "diskWriteKbps": 18,
+      "netRxKbps": 480,
+      "netTxKbps": 127
+    },
+    {
+      "time": 1790110750545,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 72,
+      "diskWriteKbps": 66,
+      "netRxKbps": 80,
+      "netTxKbps": 288
+    },
+    {
+      "time": 1790110751583,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 54,
+      "diskWriteKbps": 25,
+      "netRxKbps": 843,
+      "netTxKbps": 207
+    },
+    {
+      "time": 1790110752622,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 155,
+      "diskWriteKbps": 28,
+      "netRxKbps": 658,
+      "netTxKbps": 62
+    },
+    {
+      "time": 1790110754000,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 267,
+      "diskWriteKbps": 164,
+      "netRxKbps": 544,
+      "netTxKbps": 279
+    },
+    {
+      "time": 1790110755034,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 33,
+      "diskWriteKbps": 98,
+      "netRxKbps": 521,
+      "netTxKbps": 174
+    },
+    {
+      "time": 1790110756069,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 72,
+      "diskWriteKbps": 35,
+      "netRxKbps": 372,
+      "netTxKbps": 65
+    },
+    {
+      "time": 1790110757467,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 260,
+      "diskWriteKbps": 114,
+      "netRxKbps": 359,
+      "netTxKbps": 81
+    },
+    {
+      "time": 1790110758504,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 354,
+      "diskWriteKbps": 58,
+      "netRxKbps": 627,
+      "netTxKbps": 46
+    },
+    {
+      "time": 1790110759530,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 89,
+      "diskWriteKbps": 84,
+      "netRxKbps": 842,
+      "netTxKbps": 201
+    },
+    {
+      "time": 1790110760905,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 362,
+      "diskWriteKbps": 15,
+      "netRxKbps": 249,
+      "netTxKbps": 236
+    },
+    {
+      "time": 1790110761930,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 357,
+      "diskWriteKbps": 83,
+      "netRxKbps": 219,
+      "netTxKbps": 87
+    },
+    {
+      "time": 1790110762968,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 353,
+      "diskWriteKbps": 16,
+      "netRxKbps": 424,
+      "netTxKbps": 108
+    },
+    {
+      "time": 1790110764361,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 163,
+      "diskWriteKbps": 48,
+      "netRxKbps": 125,
+      "netTxKbps": 58
+    },
+    {
+      "time": 1790110765385,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 216,
+      "diskWriteKbps": 56,
+      "netRxKbps": 456,
+      "netTxKbps": 48
+    },
+    {
+      "time": 1790110766411,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 283,
+      "diskWriteKbps": 97,
+      "netRxKbps": 94,
+      "netTxKbps": 57
+    },
+    {
+      "time": 1790110767788,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 101,
+      "diskWriteKbps": 146,
+      "netRxKbps": 379,
+      "netTxKbps": 119
+    },
+    {
+      "time": 1790110768815,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 386,
+      "diskWriteKbps": 179,
+      "netRxKbps": 211,
+      "netTxKbps": 114
+    },
+    {
+      "time": 1790110769839,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 177,
+      "diskWriteKbps": 147,
+      "netRxKbps": 486,
+      "netTxKbps": 217
+    },
+    {
+      "time": 1790110771228,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 382,
+      "diskWriteKbps": 90,
+      "netRxKbps": 572,
+      "netTxKbps": 140
+    },
+    {
+      "time": 1790110772253,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 56,
+      "diskWriteKbps": 130,
+      "netRxKbps": 816,
+      "netTxKbps": 295
+    },
+    {
+      "time": 1790110773277,
+      "cpu": 0,
+      "memPct": 0,
+      "diskReadKbps": 76,
+      "diskWriteKbps": 47,
+      "netRxKbps": 604,
+      "netTxKbps": 91
+    }
+  ],
+  "processes": [
+    {
+      "pid": 6316,
+      "name": "chrome",
+      "cpu": 215.9,
+      "memoryMB": 769,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 18796,
+      "name": "Code",
+      "cpu": 454.9,
+      "memoryMB": 689,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 16576,
+      "name": "Code",
+      "cpu": 1430.8,
+      "memoryMB": 669,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 13344,
+      "name": "chrome",
+      "cpu": 2153.2,
+      "memoryMB": 641,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4768,
+      "name": "Fork",
+      "cpu": 126.4,
+      "memoryMB": 388,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 2620,
+      "name": "MsMpEng",
+      "cpu": 0,
+      "memoryMB": 362,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 8528,
+      "name": "chrome",
+      "cpu": 3953.9,
+      "memoryMB": 360,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 8072,
+      "name": "Code",
+      "cpu": 250.5,
+      "memoryMB": 329,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 14728,
+      "name": "Discord",
+      "cpu": 2554,
+      "memoryMB": 300,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 8968,
+      "name": "chrome",
+      "cpu": 19.7,
+      "memoryMB": 290,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 16592,
+      "name": "Code",
+      "cpu": 22.5,
+      "memoryMB": 271,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4756,
+      "name": "chrome",
+      "cpu": 451.5,
+      "memoryMB": 251,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 12320,
+      "name": "chrome",
+      "cpu": 1007.8,
+      "memoryMB": 248,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 5568,
+      "name": "steamwebhelper",
+      "cpu": 90.9,
+      "memoryMB": 229,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 9032,
+      "name": "explorer",
+      "cpu": 336.2,
+      "memoryMB": 222,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 576,
+      "name": "node",
+      "cpu": 3,
+      "memoryMB": 195,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 8404,
+      "name": "Taskmgr",
+      "cpu": 453.2,
+      "memoryMB": 194,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 860,
+      "name": "node",
+      "cpu": 287.7,
+      "memoryMB": 192,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 16280,
+      "name": "EpicGamesLauncher",
+      "cpu": 2373.8,
+      "memoryMB": 188,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 11020,
+      "name": "LaunchBox",
+      "cpu": 2123.1,
+      "memoryMB": 184,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 2180,
+      "name": "Code",
+      "cpu": 300,
+      "memoryMB": 179,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 2988,
+      "name": "explorer",
+      "cpu": 128.8,
+      "memoryMB": 174,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 12788,
+      "name": "node",
+      "cpu": 245.8,
+      "memoryMB": 161,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 3752,
+      "name": "node",
+      "cpu": 252,
+      "memoryMB": 160,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 13140,
+      "name": "chrome",
+      "cpu": 5.8,
+      "memoryMB": 157,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15904,
+      "name": "chrome",
+      "cpu": 1.9,
+      "memoryMB": 156,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 17396,
+      "name": "chrome",
+      "cpu": 7.5,
+      "memoryMB": 152,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4452,
+      "name": "agy",
+      "cpu": 3083.3,
+      "memoryMB": 146,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 5716,
+      "name": "node",
+      "cpu": 242.9,
+      "memoryMB": 142,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 1600,
+      "name": "dwm",
+      "cpu": 0,
+      "memoryMB": 131,
+      "user": "SYSTEM"
+    }
+  ],
+  "services": [
+    {
+      "name": "AarSvc_96b08",
+      "status": "stopped"
+    },
+    {
+      "name": "AcrylicDNSProxySvc",
+      "status": "running"
+    },
+    {
+      "name": "ADPSvc",
+      "status": "stopped"
+    },
+    {
+      "name": "ALG",
+      "status": "stopped"
+    },
+    {
+      "name": "AppIDSvc",
+      "status": "stopped"
+    },
+    {
+      "name": "Appinfo",
+      "status": "running"
+    },
+    {
+      "name": "AppMgmt",
+      "status": "stopped"
+    },
+    {
+      "name": "AppReadiness",
+      "status": "stopped"
+    },
+    {
+      "name": "AppVClient",
+      "status": "stopped"
+    },
+    {
+      "name": "AppXSvc",
+      "status": "running"
+    },
+    {
+      "name": "ApxSvc",
+      "status": "stopped"
+    },
+    {
+      "name": "AssignedAccessManagerSvc",
+      "status": "stopped"
+    },
+    {
+      "name": "AudioEndpointBuilder",
+      "status": "running"
+    },
+    {
+      "name": "Audiosrv",
+      "status": "running"
+    },
+    {
+      "name": "autotimesvc",
+      "status": "stopped"
+    },
+    {
+      "name": "AxInstSV",
+      "status": "stopped"
+    },
+    {
+      "name": "BcastDVRUserService_96b08",
+      "status": "stopped"
+    },
+    {
+      "name": "BDESVC",
+      "status": "stopped"
+    },
+    {
+      "name": "BFE",
+      "status": "running"
+    },
+    {
+      "name": "BITS",
+      "status": "stopped"
+    },
+    {
+      "name": "BluetoothUserService_96b08",
+      "status": "running"
+    },
+    {
+      "name": "BrokerInfrastructure",
+      "status": "running"
+    },
+    {
+      "name": "BTAGService",
+      "status": "running"
+    },
+    {
+      "name": "BthAvctpSvc",
+      "status": "running"
+    },
+    {
+      "name": "bthserv",
+      "status": "running"
+    },
+    {
+      "name": "camsvc",
+      "status": "running"
+    },
+    {
+      "name": "CaptureService_96b08",
+      "status": "stopped"
+    },
+    {
+      "name": "cbdhsvc_96b08",
+      "status": "running"
+    },
+    {
+      "name": "CDPSvc",
+      "status": "running"
+    },
+    {
+      "name": "CDPUserSvc_96b08",
+      "status": "running"
+    }
+  ],
+  "users": [
+    "USERNAME              SESSIONNAME        ID  STATE   IDLE TIME  LOGON TIME",
+    ">megam                 console             1  Active      none   9/15/2026 3:15 AM",
+    "User accounts for \\\\GUEST",
+    "-------------------------------------------------------------------------------",
+    "Administrator            CodexSandboxOffline      CodexSandboxOnline",
+    "DefaultAccount           DevToolsUser             Guest",
+    "megam                    WDAGUtilityAccount",
+    "The command completed successfully."
+  ],
+  "startupApps": [
+    "chrome.exe - Shortcut",
+    "Ollama",
+    "OneDrive",
+    "Steam",
+    "electron.app.Twinkle Tray",
+    "Discord",
+    "RobloxPlayerBeta",
+    "MicrosoftEdgeAutoLaunch_2189033AB1FF2FCF578DBD0A39ABF953",
+    "JellyfinTray",
+    "EpicGamesLauncher",
+    "Docker Desktop",
+    "SecurityHealth"
+  ],
+  "events": [
+    "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start.",
+    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628894760501269). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628894760501269). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628903350435853). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628903350435853). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628903350435852). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628903350435852). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628924825272342). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628924825272342). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628924825272341). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628924825272341). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628911940370451). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628911940370451). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628903350435851). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628903350435851). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19"
+  ]
+}

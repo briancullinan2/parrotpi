@@ -46,7 +46,7 @@ export interface ComponentRoute
 export const MODULE_REGISTRY: Record<string, ComponentRoute> = {
 	'collapse': { label: 'Collapse', iconClass: 'bx bx-arrow-in-left-square-half' },
 	'editor': { label: 'Code Editor', url: './components/editor/widget.ts', className: 'AceEditorWidget', iconClass: 'bx bx-code' },
-	'status': { label: 'Status', url: './components/status/widget.ts', className: 'StatusWidget', iconClass: 'bx bx-chip' },
+	'status': { label: 'System Status', url: './components/status/widget.ts', className: 'StatusWidget', iconClass: 'bx bx-chip' },
 	'gps': { label: 'GPS Location', url: './components/gps/widget.ts', className: 'GPSWidget', iconClass: 'bx bx-location' },
 	'wifi': { label: 'Wifi Status', url: './components/wifi/widget.ts', className: 'WifiWidget', iconClass: 'bx bx-wifi' },
 	'camera': { label: 'Camera', url: './components/camera/widget.ts', className: 'CameraWidget', iconClass: 'bx bx-camera' },

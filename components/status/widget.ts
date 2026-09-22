@@ -1,14 +1,68 @@
 import { Widget } from '@lumino/widgets';
 import { Message } from '@lumino/messaging';
+import { DataGrid, DataModel } from '@lumino/datagrid';
 
+import type { IPerformanceSample, IProcessInfo, IStatusDataPayload } from './generate';
 import type { LuminoLayoutWindow } from '../bundle/lumino.d';
-import type { IStatusDataPayload } from './generate';
 import type { GlobalToolbarsWindow } from '../bundle/menu.d';
 
-// Rely on cheap external global D3 import as used in your existing bundle
+// Rely on global cheap D3 import
 declare const d3: typeof import('d3');
 
 const widgetSelf: LuminoLayoutWindow & GlobalToolbarsWindow & { StatusWidget?: typeof StatusWidget; } = self as unknown as any;
+
+/**
+ * Lumino DataGrid Model for High-Performance Process Rendering
+ */
+export class ProcessGridModel extends DataModel
+{
+	private _data: IProcessInfo[] = [];
+
+	public updateData(data: IProcessInfo[]): void
+	{
+		this._data = data;
+		this.emitChanged({ type: 'model-reset' });
+	}
+
+	public rowCount(region: DataModel.RowRegion): number
+	{
+		return region === 'body' ? this._data.length : 1;
+	}
+
+	public columnCount(region: DataModel.ColumnRegion): number
+	{
+		return region === 'row-header' ? 6 : 0;
+	}
+
+	public data(region: DataModel.CellRegion, row: number, column: number): any
+	{
+		if(region === 'column-header')
+		{
+			return ['PID', 'Process Name', 'CPU %', 'Memory (MB)', 'User', 'Actions'][column];
+		}
+		if(region === 'body')
+		{
+			const item = this._data[row];
+			if(!item) return '';
+			switch(column)
+			{
+				case 0: return item.pid;
+				case 1: return item.name;
+				case 2: return `${item.cpu}%`;
+				case 3: return `${item.memoryMB} MB`;
+				case 4: return item.user;
+				case 5: return `KILL ${item.pid}`;
+				default: return '';
+			}
+		}
+		return undefined;
+	}
+
+	public getRawItem(row: number): IProcessInfo | undefined
+	{
+		return this._data[row];
+	}
+}
 
 export class StatusWidget extends Widget
 {
@@ -16,19 +70,23 @@ export class StatusWidget extends Widget
 
 	private _endpoint: string = '/components/status/status-data.json';
 	private _abortController: AbortController | null = null;
-	private _historyMetrics: Array<{ time: Date; cpu: number; mem: number; }> = [];
+	private _historyMetrics: IPerformanceSample[] = [];
 
-	// Layout Accordion Containers
+	// DOM Elements
 	private _accordionContainer!: HTMLElement;
 	private _d3SvgEl!: SVGSVGElement;
-	private _processesTableBody!: HTMLElement;
-	private _servicesListEl!: HTMLElement;
-	private _usersListEl!: HTMLElement;
-	private _startupListEl!: HTMLElement;
-	private _eventsLogEl!: HTMLElement;
 	private _osBadgeEl!: HTMLElement;
+	private _uptimeEl!: HTMLElement;
 
-	constructor(endpoint?: string)
+	// Lumino Grids & Interactive Containers
+	private _processGrid!: DataGrid;
+	private _processGridModel!: ProcessGridModel;
+	private _servicesTableBody!: HTMLElement;
+	private _usersContainerEl!: HTMLElement;
+	private _startupContainerEl!: HTMLElement;
+	private _eventsLogEl!: HTMLElement;
+
+	constructor(title?: string, endpoint?: string)
 	{
 		super();
 		this.addClass('lm-StatusWidget');
@@ -40,28 +98,26 @@ export class StatusWidget extends Widget
 		this.node.style.height = '100%';
 		this.node.style.width = '100%';
 		this.node.style.backgroundColor = '#1e1e1e';
-		this.node.style.color = '#d4d4d4';
+		this.node.style.color = '#cccccc';
 		this.node.style.fontFamily = 'Consolas, "Courier New", monospace';
 
-		this.title.label = 'System Task Manager';
-		this.title.iconClass = 'fa fa-dashboard';
+		this.title.label = 'System Status';
+		this.title.iconClass = 'fa fa-server';
 		this.title.closable = true;
 
-		if(endpoint && endpoint !== 'Status')
+		if(endpoint && endpoint !== 'System Status')
 		{
+			this.title.label = title ?? endpoint;
 			this._endpoint = endpoint;
 		}
-		this._buildUI();
+		//this._buildUI();
 	}
 
-	/**
-	 * Singleton Manager to enforce only one Instance open inside the Lumino Dock.
-	 */
 	public static getInstance(endpoint?: string): StatusWidget
 	{
 		if(!StatusWidget.instance || StatusWidget.instance.isDisposed)
 		{
-			StatusWidget.instance = new StatusWidget(endpoint);
+			StatusWidget.instance = new StatusWidget(endpoint, endpoint);
 		}
 		return StatusWidget.instance;
 	}
@@ -82,7 +138,7 @@ export class StatusWidget extends Widget
 		{
 			widgetSelf.LayoutAdjuster?.addOptimalWidgetLayout(widgetSelf.mainDock, widget, {
 				type: 'editor',
-				projectId: widget.constructor.name
+				projectId: 'StatusWidget'
 			});
 		}
 	}
@@ -90,6 +146,7 @@ export class StatusWidget extends Widget
 	protected onAfterAttach(msg: Message): void
 	{
 		super.onAfterAttach(msg);
+		this._buildUI();
 		this.startStreamingFetch();
 	}
 
@@ -112,9 +169,6 @@ export class StatusWidget extends Widget
 		this._renderD3Sparklines();
 	}
 
-	/**
-	 * Reads http chunked streams incrementally without connection timeouts.
-	 */
 	public async startStreamingFetch(): Promise<void>
 	{
 		this.stopStreamingFetch();
@@ -124,7 +178,7 @@ export class StatusWidget extends Widget
 		{
 			const response = await fetch(this._endpoint, {
 				signal: this._abortController.signal,
-				headers: { 'Accept': 'application/x-ndjson, application/json' }
+				headers: { 'Accept': 'application/x-ndjson, application/json, text/plain' }
 			});
 
 			if(!response.body)
@@ -142,19 +196,28 @@ export class StatusWidget extends Widget
 				if(done) break;
 
 				buffer += decoder.decode(value, { stream: true });
-				const lines = buffer.split('\n');
-				buffer = lines.pop() || ''; // Keep partial line chunk
 
-				for(const line of lines)
+				// Strip leading array bracket if stream opens with '[' or '[\n'
+				buffer = buffer.replace(/^\s*\[\s*/, '');
+
+				let boundary: number;
+				// Search for end of a complete root JSON object block
+				while((boundary = this._findJsonObjectEnd(buffer)) !== -1)
 				{
-					if(!line.trim()) continue;
-					try
+					const jsonStr = buffer.slice(0, boundary + 1).trim();
+					// Advance buffer past this object and any trailing comma or array whitespace
+					buffer = buffer.slice(boundary + 1).replace(/^\s*,\s*/, '');
+
+					if(jsonStr)
 					{
-						const payload: IStatusDataPayload = JSON.parse(line);
-						this._updateUI(payload);
-					} catch
-					{
-						// Partial JSON guard
+						try
+						{
+							const payload: IStatusDataPayload = JSON.parse(jsonStr);
+							this._updateUI(payload);
+						} catch(e)
+						{
+							console.warn('[StatusWidget] Parse error on chunk:', e);
+						}
 					}
 				}
 			}
@@ -162,9 +225,60 @@ export class StatusWidget extends Widget
 		{
 			if(err.name !== 'AbortError')
 			{
-				console.warn('[StatusWidget] Fetch stream disconnected:', err);
+				console.warn('[StatusWidget] Stream reconnecting/fallback...', err);
 			}
 		}
+	}
+
+	/**
+	 * Helper method to scan raw buffer for matching closing curly brace '}' of a top-level JSON object.
+	 */
+	private _findJsonObjectEnd(str: string): number
+	{
+		let depth = 0;
+		let inString = false;
+		let escaped = false;
+		let startFound = false;
+
+		for(let i = 0; i < str.length; i++)
+		{
+			const char = str[i];
+
+			if(inString)
+			{
+				if(escaped)
+				{
+					escaped = false;
+				} else if(char === '\\')
+				{
+					escaped = true;
+				} else if(char === '"')
+				{
+					inString = false;
+				}
+				continue;
+			}
+
+			if(char === '"')
+			{
+				inString = true;
+				continue;
+			}
+
+			if(char === '{')
+			{
+				depth++;
+				startFound = true;
+			} else if(char === '}')
+			{
+				depth--;
+				if(startFound && depth === 0)
+				{
+					return i; // Index of matching closing brace
+				}
+			}
+		}
+		return -1;
 	}
 
 	public stopStreamingFetch(): void
@@ -178,7 +292,7 @@ export class StatusWidget extends Widget
 
 	private _buildUI(): void
 	{
-		// Header Toolbar
+		// Top System Status Banner
 		const header = document.createElement('div');
 		header.style.display = 'flex';
 		header.style.justifyContent = 'space-between';
@@ -189,26 +303,40 @@ export class StatusWidget extends Widget
 
 		const titleEl = document.createElement('span');
 		titleEl.style.fontWeight = 'bold';
-		titleEl.textContent = 'System Diagnostics & Performance';
+		titleEl.style.fontSize = '13px';
+		titleEl.textContent = 'System Diagnostics & Administrative Control';
+
+		const rightContainer = document.createElement('div');
+		rightContainer.style.display = 'flex';
+		rightContainer.style.gap = '12px';
+		rightContainer.style.alignItems = 'center';
+
+		this._uptimeEl = document.createElement('span');
+		this._uptimeEl.style.fontSize = '11px';
+		this._uptimeEl.style.color = '#888';
+		this._uptimeEl.textContent = 'Last update: Never';
 
 		this._osBadgeEl = document.createElement('span');
-		this._osBadgeEl.style.padding = '2px 6px';
+		this._osBadgeEl.style.padding = '2px 8px';
 		this._osBadgeEl.style.borderRadius = '3px';
 		this._osBadgeEl.style.fontSize = '11px';
 		this._osBadgeEl.style.backgroundColor = '#007acc';
 		this._osBadgeEl.style.color = '#ffffff';
 		this._osBadgeEl.textContent = 'OS: DETECTING...';
 
-		header.appendChild(titleEl);
-		header.appendChild(this._osBadgeEl);
+		rightContainer.appendChild(this._uptimeEl);
+		rightContainer.appendChild(this._osBadgeEl);
 
-		// Accordion Shell
+		header.appendChild(titleEl);
+		header.appendChild(rightContainer);
+
+		// Main Accordion Layout Shell
 		this._accordionContainer = document.createElement('div');
 		this._accordionContainer.style.flex = '1';
 		this._accordionContainer.style.overflowY = 'auto';
 		this._accordionContainer.style.padding = '8px';
 
-		// 1. Performance Panel (D3 Charts)
+		// Panel 1: Performance Sparklines
 		const perfContent = document.createElement('div');
 		perfContent.style.height = '140px';
 		perfContent.style.width = '100%';
@@ -217,56 +345,89 @@ export class StatusWidget extends Widget
 		this._d3SvgEl.style.height = '100%';
 		perfContent.appendChild(this._d3SvgEl);
 
-		// 2. Processes Panel
+		// Panel 2: Lumino Process DataGrid
 		const procContent = document.createElement('div');
-		procContent.style.maxHeight = '220px';
-		procContent.style.overflowY = 'auto';
-		const procTable = document.createElement('table');
-		procTable.style.width = '100%';
-		procTable.style.borderCollapse = 'collapse';
-		procTable.style.fontSize = '12px';
-		procTable.innerHTML = `
+		procContent.style.height = '240px';
+		procContent.style.width = '100%';
+		procContent.style.position = 'relative';
+
+		this._processGridModel = new ProcessGridModel();
+		this._processGrid = new DataGrid({
+			style: {
+				...DataGrid.defaultStyle,
+				voidColor: '#1e1e1e',
+				backgroundColor: '#181818',
+				headerBackgroundColor: '#252526',
+				headerGridLineColor: '#3c3c3c',
+				gridLineColor: '#2d2d2d',
+				//labelColor: '#cccccc',
+				selectionFillColor: 'rgba(0, 122, 204, 0.2)'
+			}
+		});
+		this._processGrid.dataModel = this._processGridModel;
+		this._processGrid.node.style.position = 'absolute';
+		this._processGrid.node.style.top = '0';
+		this._processGrid.node.style.left = '0';
+		this._processGrid.node.style.width = '100%';
+		this._processGrid.node.style.height = '100%';
+
+		// Append the DataGrid node directly to the wrapper node
+		procContent.appendChild(this._processGrid.node);
+
+		// Panel 3: Services Table with Control Actions
+		const svcContent = document.createElement('div');
+		svcContent.style.maxHeight = '220px';
+		svcContent.style.overflowY = 'auto';
+		const svcTable = document.createElement('table');
+		svcTable.style.width = '100%';
+		svcTable.style.borderCollapse = 'collapse';
+		svcTable.style.fontSize = '12px';
+		svcTable.innerHTML = `
       <thead>
-        <tr style="text-align:left; border-bottom:1px solid #444;">
-          <th>PID</th><th>Name</th><th>CPU %</th><th>Mem (MB)</th><th>User</th>
+        <tr style="text-align:left; border-bottom:1px solid #444; color:#007acc;">
+          <th>Service Name</th><th>Status</th><th>Control Actions</th>
         </tr>
       </thead>
     `;
-		this._processesTableBody = document.createElement('tbody');
-		procTable.appendChild(this._processesTableBody);
-		procContent.appendChild(procTable);
+		this._servicesTableBody = document.createElement('tbody');
+		svcTable.appendChild(this._servicesTableBody);
+		svcContent.appendChild(svcTable);
 
-		// 3. Grid Row Panel (Services & Users / Startup)
-		const gridContent = document.createElement('div');
-		gridContent.style.display = 'grid';
-		gridContent.style.gridTemplateColumns = '1fr 1fr';
-		gridContent.style.gap = '8px';
+		const userGrid = document.createElement('div');
+		userGrid.style.display = 'grid';
+		userGrid.style.gridTemplateColumns = '1fr 1fr';
+		userGrid.style.gap = '12px';
 
-		this._servicesListEl = document.createElement('div');
-		this._servicesListEl.style.maxHeight = '150px';
-		this._servicesListEl.style.overflowY = 'auto';
+		this._usersContainerEl = document.createElement('div');
+		userGrid.appendChild(this._usersContainerEl);
 
-		const subRight = document.createElement('div');
-		this._usersListEl = document.createElement('div');
-		this._startupListEl = document.createElement('div');
-		subRight.appendChild(this._usersListEl);
-		subRight.appendChild(this._startupListEl);
 
-		gridContent.appendChild(this._servicesListEl);
-		gridContent.appendChild(subRight);
+		// Panel 4: Users & Startup Management
+		const mgmtGrid = document.createElement('div');
+		mgmtGrid.style.display = 'grid';
+		mgmtGrid.style.gridTemplateColumns = '1fr 1fr';
+		mgmtGrid.style.gap = '12px';
 
-		// 4. App Events & dmesg Panel
+		this._startupContainerEl = document.createElement('div');
+		mgmtGrid.appendChild(this._startupContainerEl);
+
+		// Panel 5: Event / dmesg Log Stream
 		this._eventsLogEl = document.createElement('div');
-		this._eventsLogEl.style.maxHeight = '150px';
+		this._eventsLogEl.style.maxHeight = '160px';
 		this._eventsLogEl.style.overflowY = 'auto';
 		this._eventsLogEl.style.fontSize = '11px';
 		this._eventsLogEl.style.color = '#ce9178';
+		this._eventsLogEl.style.backgroundColor = '#141414';
+		this._eventsLogEl.style.padding = '8px';
+		this._eventsLogEl.style.border = '1px solid #282828';
 
-		// Mount Sections into Accordion
-		this._accordionContainer.appendChild(this._createAccordionSection('Performance Metrics (Sustained Window)', perfContent, true));
-		this._accordionContainer.appendChild(this._createAccordionSection('Active Processes', procContent, true));
-		this._accordionContainer.appendChild(this._createAccordionSection('Services, Users & Startup Apps', gridContent, false));
-		this._accordionContainer.appendChild(this._createAccordionSection('App History / dmesg Events', this._eventsLogEl, false));
+		// Mount Accordion Sections
+		this._accordionContainer.appendChild(this._createAccordionSection('Performance Metrics (Sustained 30s Window)', perfContent, true));
+		this._accordionContainer.appendChild(this._createAccordionSection('Active Processes (Task Manager View)', procContent, true));
+		this._accordionContainer.appendChild(this._createAccordionSection('System Services', svcContent, false));
+		this._accordionContainer.appendChild(this._createAccordionSection('User Accounts', userGrid, false));
+		this._accordionContainer.appendChild(this._createAccordionSection('Startup Applications', mgmtGrid, false));
+		this._accordionContainer.appendChild(this._createAccordionSection('App History / System Log (dmesg & EventLog)', this._eventsLogEl, false));
 
 		this.node.appendChild(header);
 		this.node.appendChild(this._accordionContainer);
@@ -287,6 +448,7 @@ export class StatusWidget extends Widget
 		header.style.fontSize = '12px';
 		header.style.display = 'flex';
 		header.style.justifyContent = 'space-between';
+		header.style.userSelect = 'none';
 		header.textContent = `${expanded ? '▼' : '►'} ${title}`;
 
 		contentEl.style.display = expanded ? 'block' : 'none';
@@ -298,6 +460,10 @@ export class StatusWidget extends Widget
 			const isVisible = contentEl.style.display === 'block';
 			contentEl.style.display = isVisible ? 'none' : 'block';
 			header.textContent = `${!isVisible ? '▼' : '►'} ${title}`;
+			if(!isVisible && contentEl.contains(this._processGrid.node))
+			{
+				this._processGrid.update();
+			}
 		});
 
 		wrapper.appendChild(header);
@@ -307,60 +473,176 @@ export class StatusWidget extends Widget
 
 	private _updateUI(data: IStatusDataPayload): void
 	{
-		this._osBadgeEl.textContent = `OS: ${data.os.toUpperCase()}`;
+		if(!data || !data.metrics) return;
 
-		// Maintain 30-second idempotent sliding time window for D3
-		const now = new Date(data.timestamp);
-		this._historyMetrics.push({
+		this._osBadgeEl.textContent = `OS: ${data.os.toUpperCase()}`;
+		this._uptimeEl.textContent = `Last update: ${new Date(data.timestamp).toLocaleTimeString()}`;
+
+		// Calculate memory percentage safely
+		const memTotal = data.metrics.memTotalMB || 1;
+		const memUsed = data.metrics.memUsedMB || 0;
+		const memPct = Math.min(100, Math.max(0, (memUsed / memTotal) * 100));
+
+		// Maintain 30-second sliding time window
+		const now = new Date(data.timestamp).getTime();
+		const sample: IPerformanceSample = {
 			time: now,
 			cpu: data.metrics.cpuUsagePct,
-			mem: (data.metrics.memUsedMB / data.metrics.memTotalMB) * 100
-		});
+			memPct: memPct,
+			diskReadKbps: data.metrics.diskReadKbps || 0,
+			diskWriteKbps: data.metrics.diskWriteKbps || 0,
+			netRxKbps: data.metrics.netRxKbps || 0,
+			netTxKbps: data.metrics.netTxKbps || 0
+		};
 
-		const thirtySecsAgo = new Date(now.getTime() - 30000);
+		this._historyMetrics.push(sample);
+		const thirtySecsAgo = Date.now() - 30000;
 		this._historyMetrics = this._historyMetrics.filter(m => m.time >= thirtySecsAgo);
 		this._renderD3Sparklines();
 
-		// Render Processes
-		this._processesTableBody.replaceChildren();
-		for(const p of data.processes)
+		// Update Lumino Process Grid Data
+		if(Array.isArray(data.processes) && data.processes.length > 0)
 		{
-			const tr = document.createElement('tr');
-			tr.style.borderBottom = '1px solid #2a2a2a';
-			tr.innerHTML = `<td>${p.pid}</td><td>${p.name}</td><td>${p.cpu}%</td><td>${p.memoryMB} MB</td><td>${p.user}</td>`;
-			this._processesTableBody.appendChild(tr);
+			this._processGridModel.updateData(data.processes);
+			this._processGrid.update();
 		}
 
-		// Render Services
-		this._servicesListEl.replaceChildren();
-		const svcHeader = document.createElement('strong');
-		svcHeader.textContent = 'Services:';
-		this._servicesListEl.appendChild(svcHeader);
-		for(const s of data.services)
+		// Render Services Table with Administrative Controls
+		if(Array.isArray(data.services))
 		{
-			const div = document.createElement('div');
-			div.style.fontSize = '11px';
-			div.style.color = s.status === 'running' ? '#6a9955' : '#f44747';
-			div.textContent = `• [${s.status}] ${s.name}`;
-			this._servicesListEl.appendChild(div);
+			this._servicesTableBody.replaceChildren();
+			for(const s of data.services)
+			{
+				const tr = document.createElement('tr');
+				tr.style.borderBottom = '1px solid #2a2a2a';
+
+				const nameTd = document.createElement('td');
+				nameTd.textContent = s.name;
+
+				const statusTd = document.createElement('td');
+				statusTd.style.color = s.status === 'running' ? '#6a9955' : '#f44747';
+				statusTd.textContent = s.status.toUpperCase();
+
+				const actionTd = document.createElement('td');
+				const btn = document.createElement('button');
+				btn.style.fontSize = '10px';
+				btn.style.padding = '2px 6px';
+				btn.style.cursor = 'pointer';
+				btn.style.backgroundColor = s.status === 'running' ? '#841919' : '#1e5e27';
+				btn.style.color = '#fff';
+				btn.style.border = 'none';
+				btn.style.borderRadius = '2px';
+				btn.textContent = s.status === 'running' ? 'STOP' : 'START';
+				btn.onclick = () => this._sendAdminCommand('service', s.name, s.status === 'running' ? 'stop' : 'start');
+
+				actionTd.appendChild(btn);
+				tr.appendChild(nameTd);
+				tr.appendChild(statusTd);
+				tr.appendChild(actionTd);
+				this._servicesTableBody.appendChild(tr);
+			}
 		}
 
-		// Render Users & Startup
-		this._usersListEl.innerHTML = `<strong>Users:</strong> ${data.users.join(', ')}`;
-		this._startupListEl.innerHTML = `<strong style="margin-top:4px; display:block;">Startup Apps:</strong> ${data.startupApps.slice(0, 5).join(', ')}`;
+		// Parse Multi-line Windows User Output into Structured Management List
+		this._usersContainerEl.replaceChildren();
+		//const userHeader = document.createElement('h4');
+		//userHeader.style.margin = '0 0 6px 0';
+		//userHeader.style.color = '#007acc';
+		//userHeader.textContent = 'Active Users & Sessions';
+		//this._usersContainerEl.appendChild(userHeader);
 
-		// Render Events Log
-		this._eventsLogEl.replaceChildren();
-		for(const ev of data.events)
+		if(Array.isArray(data.users))
 		{
-			const div = document.createElement('div');
-			div.textContent = `> ${ev}`;
-			this._eventsLogEl.appendChild(div);
+			for(const line of data.users)
+			{
+				if(!line || line.includes('----------------') || line.includes('The command completed')) continue;
+				const uDiv = document.createElement('div');
+				uDiv.style.fontSize = '11px';
+				uDiv.style.padding = '2px 0';
+				uDiv.style.display = 'flex';
+				uDiv.style.justifyContent = 'space-between';
+
+				const textSpan = document.createElement('span');
+				textSpan.textContent = line;
+
+				const delBtn = document.createElement('button');
+				delBtn.textContent = 'REMOVE';
+				delBtn.style.fontSize = '9px';
+				delBtn.style.padding = '1px 4px';
+				delBtn.style.cursor = 'pointer';
+				delBtn.style.backgroundColor = '#5a1d1d';
+				delBtn.style.color = '#fff';
+				delBtn.style.border = 'none';
+				delBtn.onclick = () => this._sendAdminCommand('user', line.trim().split(/\s+/)[0], 'delete');
+
+				uDiv.appendChild(textSpan);
+				uDiv.appendChild(delBtn);
+				this._usersContainerEl.appendChild(uDiv);
+			}
+		}
+
+		// Render Startup Applications Control
+		this._startupContainerEl.replaceChildren();
+		const startupHeader = document.createElement('h4');
+		startupHeader.style.margin = '0 0 6px 0';
+		startupHeader.style.color = '#007acc';
+		startupHeader.textContent = 'Startup Applications';
+		this._startupContainerEl.appendChild(startupHeader);
+
+		if(Array.isArray(data.startupApps))
+		{
+			for(const app of data.startupApps)
+			{
+				const appDiv = document.createElement('div');
+				appDiv.style.fontSize = '11px';
+				appDiv.style.padding = '2px 0';
+				appDiv.style.display = 'flex';
+				appDiv.style.justifyContent = 'space-between';
+
+				const nameSpan = document.createElement('span');
+				nameSpan.textContent = `• ${app}`;
+
+				const toggleBtn = document.createElement('button');
+				toggleBtn.textContent = 'DISABLE';
+				toggleBtn.style.fontSize = '9px';
+				toggleBtn.style.padding = '1px 4px';
+				toggleBtn.style.cursor = 'pointer';
+				toggleBtn.style.backgroundColor = '#3a3a3a';
+				toggleBtn.style.color = '#fff';
+				toggleBtn.style.border = 'none';
+				toggleBtn.onclick = () => this._sendAdminCommand('startup', app, 'disable');
+
+				appDiv.appendChild(nameSpan);
+				appDiv.appendChild(toggleBtn);
+				this._startupContainerEl.appendChild(appDiv);
+			}
+		}
+
+		// Render Event / dmesg Logs
+		if(Array.isArray(data.events))
+		{
+			this._eventsLogEl.replaceChildren();
+			for(const ev of data.events)
+			{
+				const logEntry = document.createElement('div');
+				logEntry.style.marginBottom = '3px';
+				logEntry.textContent = `> ${ev}`;
+				this._eventsLogEl.appendChild(logEntry);
+			}
 		}
 	}
 
+	private _sendAdminCommand(target: 'service' | 'user' | 'startup' | 'process', name: string, action: string): void
+	{
+		fetch('/api/status/admin', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ target, name, action })
+		}).catch(err => console.error('[StatusWidget] Admin command failed:', err));
+	}
+
 	/**
-	 * Renders idempotent sliding-window D3 sparklines.
+	 * Renders fully typed idempotent sliding-window D3 sparklines.
 	 */
 	private _renderD3Sparklines(): void
 	{
@@ -384,17 +666,17 @@ export class StatusWidget extends Widget
 			.domain([0, 100])
 			.range([height - margin.bottom, margin.top]);
 
-		const lineCpu = d3.line<{ time: Date; cpu: number; }>()
-			.x(d => x(d.time))
-			.y(d => y(d.cpu))
+		const lineCpu = d3.line<IPerformanceSample>()
+			.x((d: IPerformanceSample) => x(d.time))
+			.y((d: IPerformanceSample) => y(d.cpu))
 			.curve(d3.curveMonotoneX);
 
-		const lineMem = d3.line<{ time: Date; mem: number; }>()
-			.x(d => x(d.time))
-			.y(d => y(d.mem))
+		const lineMem = d3.line<IPerformanceSample>()
+			.x((d: IPerformanceSample) => x(d.time))
+			.y((d: IPerformanceSample) => y(d.memPct))
 			.curve(d3.curveMonotoneX);
 
-		// Grid Axes
+		// Render Axes
 		svg.append('g')
 			.attr('transform', `translate(0,${height - margin.bottom})`)
 			.call(d3.axisBottom(x).ticks(5))
@@ -405,7 +687,7 @@ export class StatusWidget extends Widget
 			.call(d3.axisLeft(y).ticks(4))
 			.attr('color', '#666');
 
-		// CPU Line (Green)
+		// CPU Line (Teal)
 		svg.append('path')
 			.datum(this._historyMetrics)
 			.attr('fill', 'none')
