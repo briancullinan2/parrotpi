@@ -1,0 +1,508 @@
+/* Global Styles */
+body {
+	font-size: var(--default-size);
+	line-height: var(--global-height);
+	animation: waveMovement 18s ease infinite;
+
+}
+
+
+#toolbar>ul>li>ul {
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	width: max-content;
+	border-left: 2px solid var(--ace-selection-bg);
+	border-right: 2px solid var(--ace-selection-bg);
+	margin: 0 10px;
+	padding: 0 10px;
+}
+
+#editor .ace_marker-layer .ace_active_block_scope_highlight {
+	background-color: rgb(from var(--ace-selection-bg, rgba(39, 95, 255, 0.3)) r g b / 05%) !important;
+	border-left: 3px solid rgb(from var(--ace-selection-bg, rgba(39, 95, 255, 0.3)) r g b / 60%) !important;
+	border-radius: 2px 0 0 2px;
+	position: absolute;
+}
+
+
+/*
+.ace_gutter-cell .ace_fold-widget {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 16px !important;
+    height: 16px !important;
+    cursor: pointer !important;
+}
+
+.ace_fold-widget.ace_start:before {
+    content: "▼" !important;
+    font-size: 10px;
+    color: rgb(from var(--ace-selection-bg, #234A97) r g b / 60%);
+}
+
+.ace_fold-widget.ace_start.ace_open:before {
+    content: "▼" !important;
+}
+
+.ace_fold-widget.ace_start.ace_closed:before {
+    content: "▶" !important;
+    color: rgb(from var(--ace-selection-bg, #234A97) r g b / 90%) !important;
+}
+
+.ace_gutter-layer .ace_gutter-cell span.ace_fold-widget {
+    display: inline-block !important;
+    visibility: visible !important;
+    width: 12px !important;
+    height: 12px !important;
+    margin-left: 4px !important;
+    cursor: pointer !important;
+}
+
+.ace_gutter-layer .ace_gutter-cell span.ace_fold-widget.ace_open:before {
+    content: "▼" !important;
+    font-size: 9px !important;
+    position: relative;
+    top: -1px;
+    color: rgb(from var(--ace-selection-bg, #234A97) r g b / 50%) !important;
+}
+
+.ace_gutter-layer .ace_gutter-cell span.ace_fold-widget.ace_closed:before {
+    content: "▶" !important;
+    font-size: 9px !important;
+    position: relative;
+    top: -1px;
+    color: rgb(from var(--ace-selection-bg, #234A97) r g b / 90%) !important;
+}
+
+*/
+
+#github,
+#assetlist,
+#gamelist,
+#database,
+#searchlist,
+#filelist {
+	/*background-color: var(--ace-gutter-bg);*/
+	background-color: transparent;
+	/* Darker than editor */
+	color: var(--ace-foreground);
+}
+
+.treejs-node__open>.treejs-label {
+	color: var(--ace-green);
+	/* Use the Monokai green for active folder */
+}
+
+/* Style your custom data-extension icons from earlier */
+.treejs-node[data-extension="c"]>.treejs-label::before {
+	color: var(--ace-blue);
+}
+
+
+/*
+#terminal .xterm .xterm-scrollable-element>.scrollbar.vertical {
+    height: 100%;
+    top: 40px !important;
+}
+*/
+
+.ace_editor {
+	/*background-color: transparent !important;*/
+	background-color: rgb(from var(--ace-bg) r g b / 90%);
+}
+
+/* Ensure the outer wrapper container doesn't hard-clip the sub-components */
+#editor-container,
+.ace_editor {
+	overflow: visible !important;
+}
+
+
+/* Ensure the horizontal scrollbar wrapper is never pushed outside the viewport */
+.ace_editor .ace_scrollbar-h {
+	bottom: 0 !important;
+	height: 15px !important;
+	/* Forces your layout track height constraint explicitly */
+	z-index: 5 !important;
+	/* Keeps it layered safely on top of background blocks */
+	background: transparent !important;
+}
+
+/* Push the text layer canvas up slightly so text never hides underneath the scrollbar */
+.ace_editor .ace_scroller {
+	bottom: 11px !important;
+	/* Must match the height of your scrollbar exactly */
+}
+
+/* --- Pin Vertical Scrollbar Only --- */
+.ace_editor .ace_scrollbar-v {
+	display: block !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+}
+
+/* Force the vertical tracking layer to always calculate a scrollable space */
+.ace_editor .ace_scrollbar-v .ace_scrollbar-inner {
+	min-height: 100.1% !important;
+	/* Continuous scroll buffer */
+}
+
+/* --- Completely Release Horizontal Scrollbar to Engine Control --- */
+.ace_editor .ace_scrollbar-h {
+	/* Let Ace determine display block/none properties dynamically */
+}
+
+.ace_editor .ace_scrollbar-h .ace_scrollbar-inner {
+	/* No minimal overrides here—prevents horizontal layout calculation loops */
+}
+
+/* --- Global Scrollbar Maintenance Styles --- */
+.ace_editor .ace_scrollbar-fade {
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+
+/* Strip away the automated fading layout routine entirely */
+.ace_editor .ace_scrollbar-fade {
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+
+#statusbar {
+	background-color: var(--ace-gutter-bg);
+	color: var(--ace-foreground);
+	max-height: var(--global-height);
+}
+
+
+#main-body:not(:has(#github.not-hidden)):not(:has(#filelist.not-hidden)):not(:has(#gamelist.not-hidden)):not(:has(#assetlist.not-hidden)):not(:has(#database.not-hidden)) a[href="#collapse"]::before {
+	content: "\f16e";
+}
+
+#main-body:not(:has(#github.not-hidden)):not(:has(#filelist.not-hidden)):not(:has(#gamelist.not-hidden)):not(:has(#assetlist.not-hidden)):not(:has(#database.not-hidden)) a[href="#collapse"]::after {
+	content: "Expand";
+}
+
+#toolbar {
+	color: var(--ace-foreground);
+}
+
+#paint [class*="menu"] button:empty:hover,
+[class*="menu"] button:empty:hover,
+#terminals a:active,
+#terminals a.active,
+#terminals a:hover,
+#list-wrapper ul.toolbar a:hover,
+#list-wrapper ul.toolbar a:active,
+#tabs a.active,
+#toolbar a.active,
+#tabs a:active,
+#toolbar a:active,
+#tabs a:hover,
+#toolbar a:hover {
+	background: rgb(from var(--ace-selection-bg) r g b / 50%);
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+}
+
+
+#terminals a.active,
+#tabs a.active,
+#toolbar a.active {
+	background-color: var(--ace-blue);
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+#paint [class*="menu"] button:empty:hover:active,
+[class*="menu"] button:empty:hover:active,
+#terminals a:hover:active,
+#list-wrapper ul.toolbar a:hover:active,
+#tabs a:hover:active,
+#toolbar a:hover:active,
+#terminals a:active,
+#tabs a:active,
+#toolbar a:active {
+	background-color: var(--ace-bg);
+	border-color: 2px solid var(--ace-blue);
+}
+
+
+
+#terminals a.active,
+#terminals a:active {
+	border-color: transparent;
+	border-top-color: #333;
+}
+
+#list-wrapper ul.toolbar a:active,
+#tabs a.active,
+#toolbar a.active,
+#tabs a:active,
+#toolbar a:active {
+	border-color: transparent;
+	border-left-color: #333;
+}
+
+#terminals a {
+	font-size: var(--default-size);
+}
+
+
+/* Use the pseudo-element to extract the text and style the bubble */
+/*
+#global-tooltip::before {
+    background: #222;
+    color: green;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+*/
+
+.pk_ftr .pk_btn span,
+.pk_tb .pk_btn span,
+.pk_mt_head button span,
+.pk_mt_track button span,
+.pk_mt_knob span,
+.tooltip,
+.ace_doc-tooltip,
+.ace_tooltip,
+.minipaint-tooltip,
+#global-tooltip {
+	background: var(--ace-gutter-bg) !important;
+	/* Use your Monokai variables! */
+	color: var(--ace-foreground);
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+	font-family:
+		/* 1. MacOS/iOS: The gold standard for modern screens */
+		"SF Mono",
+		/* 2. MacOS Legacy: Still looks great */
+		"Menlo",
+		/* 3. Windows 10/11: Built specifically for coding */
+		"Cascadia Code",
+		/* 4. Windows Legacy: The classic VS look */
+		"Consolas",
+		/* 5. Linux: Clean and highly readable */
+		"Liberation Mono",
+		/* 6. General Linux: Wide support */
+		"DejaVu Sans Mono",
+		/* 7. The Final Safety Net */
+		monospace;
+	line-height: var(--global-height);
+	font-size: var(--default-size);
+	z-index: 1000;
+	filter: none;
+}
+
+
+
+#github .treejs .treejs-switcher:before,
+#assetlist .treejs .treejs-switcher:before,
+#gamelist .treejs .treejs-switcher:before,
+#database .treejs .treejs-switcher:before,
+#searchlist .treejs .treejs-switcher:before,
+#filelist .treejs .treejs-switcher:before {
+	border-top-color: var(--ace-foreground);
+}
+
+
+.modal-content {
+	background: rgb(from var(--ace-gutter-bg) r g b / 80%);
+	color: var(--ace-foreground);
+	border: 2px solid var(--ace-gutter-bg);
+	box-shadow: 0 10px 30px rgb(from var(--ace-bg) r g b / 80%);
+}
+
+.modal-content h3 {
+	color: var(--ace-foreground);
+	border-bottom: 2px solid var(--ace-gutter-bg);
+}
+
+.modal-content p {
+	color: var(--ace-foreground);
+}
+
+.main_menu>ul.menu_dropdown>li>a[aria-haspopup="true"]::after {
+	color: var(--ace-foreground);
+}
+
+
+
+@keyframes universalLineFlash {
+	0% {
+		background-color: var(--ace-gutter-bg);
+		box-shadow: inset 0 0 0 2000px transparent;
+		filter: hue-rotate(0deg) saturate(1) brightness(1);
+	}
+
+	10% {
+		/* Distorts the theme's native color into an intense, glowing contrast peak */
+		background-color: var(--ace-yellow) !important;
+		box-shadow: inset 0 0 0 2000px rgba(241, 196, 15, 0.45) !important;
+		filter: hue-rotate(180deg) saturate(3) brightness(1.4);
+	}
+
+	100% {
+		/* Smoothly fades back to the exact default theme appearance */
+		background-color: var(--ace-gutter-bg);
+		filter: hue-rotate(0deg) saturate(1) brightness(1);
+		box-shadow: inset 0 0 0 2000px transparent;
+	}
+}
+
+/* Apply globally to ALL themes across your editor instance */
+/*#editor.ace_editor .ace_marker-layer {
+    background-color: white;
+    z-index: 1;
+    animation: universalLineFlash 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}*/
+
+[class*="line-"] #editor.ace_editor .ace_marker-layer .ace_active-line {
+	animation: universalLineFlash 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/*
+
+@keyframes globalYellowFlash {
+    0% {
+        box-shadow: inset 0 0 0 2000px transparent;
+    }
+
+    10% {
+        box-shadow: inset 0 0 0 2000px rgba(241, 196, 15, 0.45) !important;
+    }
+
+    100% {
+        box-shadow: inset 0 0 0 2000px transparent;
+    }
+}
+
+.ace_editor .ace_active-line,
+.ace_editor .ace_gutter-active-line {
+    animation: globalYellowFlash 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+*/
+
+[class*="line-"] #editor .ace_gutter .ace_gutter-active-line {
+
+	animation: windowGutterLineFlash 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+
+}
+
+@keyframes windowGutterLineFlash {
+
+	0% {
+		background-color: var(--ace-gutter-bg);
+	}
+
+
+
+	10% {
+		background-color: var(--ace-yellow) !important;
+	}
+
+	100% {
+		background-color: var(--ace-gutter-bg);
+	}
+}
+
+.pk_av {
+	background: var(--ace-bg);
+}
+
+.pk_tbc {
+	background: var(--ace-gutter-bg);
+}
+
+.pk_tb {
+	background: transparent;
+	height: calc(var(--global-height) * 2);
+}
+
+.pk_selection,
+.pk_ctns,
+.pk_transport {
+	background: transparent;
+}
+
+.pk_selection .pk_dat {
+	background: transparent;
+}
+
+.pk_tb .pk_btn {
+	border-radius: 0;
+}
+
+.pk_tb .pk_btn:not(.pk_act) {
+	border: 2px solid transparent;
+	color: var(--ace-foreground);
+	text-shadow: 1px 2px 3px rgb(from var(--ace-gutter-bg) r g b / 100%);
+	cursor: pointer;
+}
+
+.pk_tb .pk_btn:not(.pk_act):hover {
+	background: rgb(from var(--ace-selection-bg) r g b / 50%);
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+	box-shadow: none;
+	color: var(--ace-foreground);
+}
+
+
+.pk_tb .pk_btn:not(.pk_act):active,
+.pk_tb .pk_btn:not(.pk_act):focus,
+.pk_tb .pk_btn:not(.pk_act):active:focus {
+	border-color: var(--ace-blue);
+	background: var(--ace-bg);
+	color: var(--ace-foreground);
+}
+
+
+@media only screen and (max-width: 1250px) {
+	.pk_tb .pk_btn {
+		font-size: small;
+		height: var(--global-height);
+	}
+
+	.pk_ctns,
+	.pk_transport,
+	.pk_mtbeat {
+		height: var(--global-height);
+	}
+
+	.pk_tb .pk_btn:not(.pk_act):before {
+		position: relative;
+		top: -3px;
+	}
+
+}
+
+
+.pk_selection .pk_sellist,
+.pk_tmpMsg {
+	color: var(--ace-foreground);
+	text-shadow: 1px 2px 3px rgb(from var(--ace-gutter-bg) r g b / 100%);
+}
+
+.pk_total_dur,
+.pk_hover_dur {
+	top: 3px;
+}
+
+.pk_hover_dur {
+	top: var(--global-height);
+}
+
+.icon-rec:before {
+	content: "&bull;"
+}
+
+
+.pk_modal_bottom {
+	height: auto !important;
+}
+
+a {
+	color: var(--ace-blue);
+	vertical-align: middle;
+}

@@ -1,0 +1,95 @@
+.search-results-target {
+	overflow: auto;
+}
+
+.search-card {
+	background: var(--ace-bg);
+	border: 2px solid var(--ace-gutter-bg);
+	border-radius: 4px;
+	margin-bottom: 12px;
+	font-family: monospace;
+	max-width: 100%;
+}
+
+.search-card-header {
+	background: var(--ace-bg);
+	padding: 4px 16px 4px 4px;
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	/* Stretch child elements to fill full card width */
+	border-bottom: 2px solid var(--ace-gutter-bg);
+	flex-direction: row;
+	flex-wrap: wrap;
+	position: relative;
+	gap: 4px;
+	/* Optional: adds clean spacing between path and repo badge */
+}
+
+.search-card-header .bx-trash {
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: medium;
+}
+
+.search-file-path {
+	color: var(--ace-blue);
+	font-weight: bold;
+	cursor: pointer;
+
+	/* 1. Force word wrapping across slashes and long names */
+	word-break: break-all;
+	overflow-wrap: break-word;
+
+	/* 2. Enforce the hard 2-line maximum clamping boundary */
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.search-repo-badge {
+	font-size: 11px;
+	padding: 2px 4px;
+	background: var(--ace-gutter-bg);
+	color: var(--ace-foreground);
+	border-radius: 3px;
+	align-self: flex-start;
+	/* Keeps the repo badge from stretching full-width */
+}
+
+.search-card-body {
+	padding: 4px 0;
+}
+
+.search-match-row {
+	display: flex;
+	padding: 1px 4px;
+	cursor: pointer;
+	font-size: medium;
+}
+
+.search-match-row:hover {
+	background: rgb(from var(--ace-selection-bg) r g b / 30%);
+}
+
+.search-line-number {
+	color: rgb(from var(--ace-foreground) r g b / 50%);
+	width: 45px;
+	text-align: right;
+	padding-right: 8px;
+	user-select: none;
+}
+
+.search-match-text {
+	color: var(--ace-foreground);
+	white-space: pre;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.filename-match-tag {
+	color: #6a9955;
+	font-style: italic;
+}

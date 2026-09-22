@@ -1,0 +1,4 @@
+﻿node_modules
+dist/*LICENSE*
+dist/*.js
+dist/*.html

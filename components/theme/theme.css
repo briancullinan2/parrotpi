@@ -1,0 +1,1555 @@
+:root {
+	--global-height: 1.6em;
+	--default-size: 16px;
+	/* calc(var(--global-height) * 1rem); */
+}
+
+
+@keyframes waveMovement {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+body,
+.theme-monokai {
+	/* Main Backgrounds */
+	--ace-bg: #272822;
+	--ace-gutter-bg: #2F3129;
+	--ace-active-line-bg: #202020;
+	--ace-gutter-active-bg: #272727;
+
+	/* Text & UI Colors */
+	--ace-foreground: #F8F8F2;
+	--ace-cursor: #F8F8F0;
+	--ace-selection-bg: #49483E;
+	--ace-print-margin: #555651;
+	--ace-invisible: #52524d;
+	--ace-comment: #75715E;
+
+	/* Syntax Colors (The "Monokai" Brand) */
+	--ace-pink: #F92672;
+	/* Keywords, Tags, Storage */
+	--ace-purple: #AE81FF;
+	/* Constants, Numbers */
+	--ace-blue: #66D9EF;
+	--ace-blue-hue: 190deg;
+	/* Functions, Classes, Types */
+	--ace-green: #A6E22E;
+	/* Entities, Variable Names */
+	--ace-orange: #FD971F;
+	/* Parameters */
+	--ace-yellow: #E6DB74;
+	/* Strings */
+	--ace-white: #FFFFFF;
+	/* Punctuation */
+
+}
+
+.theme-pastel-on-dark {
+	--ace-bg: #2C2828;
+	--ace-gutter-bg: #353030;
+	--ace-foreground: #8F938F;
+	--ace-comment: #A6C6FF;
+	--ace-selection-bg: #DDF0FF;
+	--ace-pink: #757aD8;
+	--ace-purple: #DE8E30;
+	--ace-blue: #AEB2F8;
+	--ace-blue-hue: 237deg;
+	--ace-green: #66A968;
+}
+
+.theme-github {
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #F0F0F0;
+	--ace-foreground: #000000;
+	--ace-comment: #999988;
+	--ace-selection-bg: #ADCDEC;
+	--ace-pink: #A71D5D;
+	/* Keywords */
+	--ace-purple: #0086B3;
+	/* Constants */
+	--ace-blue: #795DA3;
+	--ace-blue-hue: 264deg;
+	/* Functions */
+	--ace-green: #183691;
+	/* Strings */
+}
+
+.theme-chrome {
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #EBEBEB;
+	--ace-foreground: #000000;
+	--ace-comment: #356066;
+	--ace-selection-bg: #BDD5FC;
+	--ace-pink: #8A2BE2;
+	--ace-purple: #0000FF;
+	--ace-blue: #1A1AA6;
+	--ace-blue-hue: 240deg;
+	--ace-green: #008000;
+}
+
+.theme-dracula {
+	--ace-bg: #282a36;
+	--ace-gutter-bg: #282a36;
+	--ace-foreground: #f8f8f2;
+	--ace-comment: #6272a4;
+	--ace-selection-bg: #44475a;
+	--ace-pink: #ff79c6;
+	/* Keywords */
+	--ace-purple: #bd93f9;
+	/* Constants */
+	--ace-blue: #8be9fd;
+	--ace-blue-hue: 191deg;
+	/* Functions */
+	--ace-green: #50fa7b;
+	/* Strings */
+}
+
+.theme-solarized-dark {
+	--ace-bg: #002b36;
+	--ace-gutter-bg: #073642;
+	--ace-foreground: #839496;
+	--ace-comment: #586e75;
+	--ace-selection-bg: #073642;
+	--ace-pink: #859900;
+	/* Mapped to Solarized Green */
+	--ace-purple: #d33682;
+	/* Mapped to Solarized Magenta */
+	--ace-blue: #268bd2;
+	--ace-blue-hue: 205deg;
+	/* Mapped to Solarized Blue */
+	--ace-green: #2aa198;
+	/* Mapped to Solarized Cyan */
+}
+
+.theme-nord-dark {
+	--ace-bg: #2e3440;
+	--ace-gutter-bg: #3b4252;
+	--ace-foreground: #d8dee9;
+	--ace-comment: #4c566a;
+	--ace-selection-bg: #434c5e;
+	--ace-pink: #81a1c1;
+	--ace-purple: #b48ead;
+	--ace-blue: #88c0d0;
+	--ace-blue-hue: 193deg;
+	--ace-green: #a3be8c;
+}
+
+#editor-container .hidden {
+	display: none;
+}
+
+
+.theme-cobalt {
+	--ace-bg: #002240;
+	--ace-gutter-bg: #011e3a;
+	--ace-foreground: #FFFFFF;
+	--ace-comment: #0088FF;
+	--ace-selection-bg: #B36539;
+	--ace-pink: #FF9D00;
+	/* Keywords (Orange-ish) */
+	--ace-purple: #FF628C;
+	/* Constants */
+	--ace-blue: #80FFBB;
+	--ace-blue-hue: 148deg;
+	/* Functions */
+	--ace-green: #3AD900;
+	/* Strings */
+}
+
+.theme-ambiance {
+	--ace-bg: #202020;
+	--ace-gutter-bg: #3D3D3D;
+	--ace-foreground: #E6E1DC;
+	--ace-comment: #555555;
+	--ace-selection-bg: #DDF0FF;
+	--ace-pink: #c26230;
+	/* Keywords */
+	--ace-purple: #D3D0C8;
+	/* Constants */
+	--ace-blue: #6d9cbe;
+	--ace-blue-hue: 205deg;
+	/* Functions */
+	--ace-green: #a5c261;
+	/* Strings */
+}
+
+.theme-gruvbox {
+	--ace-bg: #282828;
+	--ace-gutter-bg: #282828;
+	--ace-foreground: #ebdbb2;
+	--ace-comment: #928374;
+	--ace-selection-bg: #3c3836;
+	--ace-pink: #fb4934;
+	/* Keywords */
+	--ace-purple: #d3869b;
+	/* Constants */
+	--ace-blue: #83a598;
+	--ace-blue-hue: 157deg;
+	/* Functions */
+	--ace-green: #b8bb26;
+	/* Strings */
+}
+
+.theme-gob {
+	--ace-bg: #0B0B0B;
+	--ace-gutter-bg: #0B1818;
+	--ace-foreground: #00FF00;
+	--ace-comment: #00E060;
+	--ace-selection-bg: #DDF0FF;
+
+	/* High Contrast / Accent Mappings from the theme */
+	--ace-pink: #10FF98;
+	/* From .ace_storage / .ace_list */
+	--ace-purple: #10D8E8;
+	/* From .ace_keyword / .ace_meta (True Cyan/Teal) */
+	--ace-blue: #20E8B0;
+	--ace-blue-hue: 163deg;
+	/* From .ace_support */
+	--ace-green: #00F800;
+	/* From .ace_support.ace_function (Pure Vibrant Green) */
+}
+
+.theme-tomorrow-night-bright {
+	--ace-bg: #000000;
+	--ace-gutter-bg: #000000;
+	--ace-foreground: #eaeaea;
+	--ace-comment: #969896;
+	--ace-selection-bg: #424242;
+	--ace-pink: #d54e53;
+	--ace-purple: #b294bb;
+	--ace-blue: #7aa6da;
+	--ace-blue-hue: 212deg;
+	--ace-green: #b9ca4a;
+}
+
+.theme-tomorrow-night-eighties {
+	--ace-bg: #2d2d2d;
+	--ace-gutter-bg: #2d2d2d;
+	--ace-foreground: #cccccc;
+	--ace-comment: #999999;
+	--ace-selection-bg: #515151;
+	--ace-pink: #f2777a;
+	--ace-purple: #cc99cc;
+	--ace-blue: #6699cc;
+	--ace-blue-hue: 210deg;
+	--ace-green: #99cc99;
+}
+
+.theme-vibrant-ink {
+	--ace-bg: #000000;
+	--ace-gutter-bg: #1a1a1a;
+	--ace-foreground: #FFFFFF;
+	--ace-comment: #9933CC;
+	--ace-selection-bg: #354932;
+	--ace-pink: #FF6600;
+	--ace-purple: #339999;
+	--ace-blue: #FFCC00;
+	--ace-blue-hue: 48deg;
+	--ace-green: #66FF00;
+}
+
+.theme-mono-industrial {
+	--ace-bg: #222324;
+	--ace-gutter-bg: #222324;
+	--ace-foreground: #FFFFFF;
+	--ace-comment: #666C70;
+	--ace-selection-bg: #49483E;
+	--ace-pink: #A39E9B;
+	/* Very Muted */
+	--ace-purple: #E9883A;
+	--ace-blue: #A8B222;
+	--ace-blue-hue: 64deg;
+	--ace-green: #C23B23;
+}
+
+.theme-tomorrow {
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #F6F6F6;
+	--ace-foreground: #4D4D4C;
+	--ace-comment: #8E908C;
+	--ace-selection-bg: #D6D6D6;
+	--ace-pink: #C82829;
+	/* Keywords */
+	--ace-purple: #8959A8;
+	/* Constants */
+	--ace-blue: #4271AE;
+	--ace-blue-hue: 214deg;
+	/* Functions */
+	--ace-green: #718C00;
+	/* Strings */
+}
+
+.theme-solarized-light {
+	--ace-bg: #FDF6E3;
+	--ace-gutter-bg: #EEE8D5;
+	--ace-foreground: #657B83;
+	--ace-comment: #93A1A1;
+	--ace-selection-bg: #EEE8D5;
+	--ace-pink: #CB4B16;
+	/* Orange/Red mix */
+	--ace-purple: #D33682;
+	/* Magenta */
+	--ace-blue: #268BD2;
+	--ace-blue-hue: 205deg;
+	/* Blue */
+	--ace-green: #859900;
+	/* Green */
+}
+
+.theme-xcode {
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #FFFFFF;
+	--ace-foreground: #000000;
+	--ace-comment: #008040;
+	--ace-selection-bg: #A5CDFF;
+	--ace-pink: #C800A4;
+	--ace-purple: #3B0080;
+	--ace-blue: #703DAA;
+	--ace-blue-hue: 268deg;
+	--ace-green: #D12F1B;
+}
+
+.theme-tomorrow-night-blue {
+	--ace-bg: #002451;
+	--ace-gutter-bg: #002451;
+	--ace-foreground: #FFFFFF;
+	--ace-comment: #7285B7;
+	--ace-selection-bg: #003F8E;
+	--ace-pink: #FF9DA4;
+	--ace-purple: #EBBBFF;
+	--ace-blue: #BBDAFF;
+	--ace-blue-hue: 213deg;
+	--ace-green: #D1F1A9;
+}
+
+.theme-terminal {
+	--ace-bg: #000000;
+	--ace-gutter-bg: #1A1A1A;
+	--ace-foreground: #D2D2D2;
+	--ace-comment: #707070;
+	--ace-selection-bg: #444444;
+	--ace-pink: #A0A0FF;
+	--ace-purple: #FFA0A0;
+	--ace-blue: #A0FFA0;
+	--ace-blue-hue: 120deg;
+	--ace-green: #FFFFA0;
+}
+
+.theme-idle-fingers {
+	--ace-bg: #323232;
+	--ace-gutter-bg: #323232;
+	--ace-foreground: #FFFFFF;
+	--ace-comment: #BC9458;
+	--ace-selection-bg: #49483E;
+	--ace-pink: #CC7833;
+	--ace-purple: #6C99BB;
+	--ace-blue: #DA4939;
+	--ace-blue-hue: 6deg;
+	--ace-green: #A5C261;
+}
+
+.theme-one-dark {
+	--ace-bg: #282c34;
+	--ace-gutter-bg: #21252b;
+	--ace-foreground: #abb2bf;
+	--ace-comment: #5c6370;
+	--ace-selection-bg: #3E4451;
+	--ace-pink: #c678dd;
+	/* mapped from purple/magenta */
+	--ace-purple: #d19a66;
+	/* mapped from orange/alt-accent */
+	--ace-blue: #61afef;
+	--ace-blue-hue: 207deg;
+	--ace-green: #98c379;
+}
+
+.theme-tomorrow-night {
+	--ace-bg: #1d1f21;
+	--ace-gutter-bg: #151718;
+	--ace-foreground: #c5c8c6;
+	--ace-comment: #969896;
+	--ace-selection-bg: #373B41;
+	--ace-pink: #b294bb;
+	/* mapped from purple */
+	--ace-purple: #de935f;
+	/* mapped from orange */
+	--ace-blue: #81a2be;
+	--ace-blue-hue: 208deg;
+	--ace-green: #b5bd68;
+}
+
+.theme-clouds {
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #F0F0F0;
+	--ace-foreground: #000000;
+	--ace-comment: #008000;
+	--ace-selection-bg: #D4D4D4;
+	--ace-pink: #AF00DB;
+	--ace-purple: #0000FF;
+	--ace-blue: #795DA3;
+	--ace-blue-hue: 264deg;
+	--ace-green: #09885A;
+}
+
+.theme-clouds-midnight {
+	--ace-bg: #222222;
+	--ace-gutter-bg: #333333;
+	--ace-foreground: #FFFFFF;
+	--ace-comment: #608B4E;
+	--ace-selection-bg: #3A3D41;
+	--ace-pink: #C586C0;
+	--ace-purple: #B5CEA8;
+	--ace-blue: #569CD6;
+	--ace-blue-hue: 207deg;
+	--ace-green: #CE9178;
+}
+
+.theme-kuroir {
+	--ace-bg: #E8E9E8;
+	--ace-gutter-bg: #D6D6D6;
+	--ace-foreground: #363636;
+	--ace-comment: #949494;
+	--ace-selection-bg: #F5C2C1;
+	--ace-pink: #D03620;
+	--ace-purple: #23575C;
+	--ace-blue: #23575C;
+	--ace-blue-hue: 185deg;
+	--ace-green: #3D7A49;
+}
+
+.theme-merbivore-soft {
+	--ace-bg: #1C1C1C;
+	--ace-gutter-bg: #262626;
+	--ace-foreground: #E6E1DC;
+	--ace-comment: #AD2EA4;
+	--ace-selection-bg: #454545;
+	--ace-pink: #FC6F09;
+	--ace-purple: #B3E43B;
+	--ace-blue: #6D9CBE;
+	--ace-blue-hue: 205deg;
+	--ace-green: #8D9906;
+}
+
+.theme-twilight {
+	--ace-bg: #141414;
+	--ace-gutter-bg: #232323;
+	--ace-foreground: #F8F8F8;
+	--ace-comment: #5F5A60;
+	--ace-selection-bg: #DDF0FF;
+	--ace-pink: #CDA869;
+	--ace-purple: #CF6A4C;
+	--ace-blue: #9B703F;
+	--ace-blue-hue: 32deg;
+	--ace-green: #8F9D6A;
+}
+
+.theme-kr-theme {
+	--ace-bg: #0B0A09;
+	--ace-gutter-bg: #141411;
+	--ace-foreground: #FCFFE1;
+	--ace-comment: #706D5B;
+	--ace-selection-bg: #7A7A7A;
+	--ace-pink: #949C8B;
+	--ace-purple: #3399CC;
+	--ace-blue: #869A95;
+	--ace-blue-hue: 165deg;
+	--ace-green: #AD9361;
+}
+
+.theme-sqlserver {
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #F0F0F0;
+	--ace-foreground: #000000;
+	--ace-comment: #008080;
+	--ace-selection-bg: #3399FF;
+	--ace-pink: #0000FF;
+	--ace-purple: #808080;
+	--ace-blue: #FF00FF;
+	--ace-blue-hue: 300deg;
+	--ace-green: #FF0000;
+}
+
+.theme-textmate {
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #F0F0F0;
+	--ace-foreground: #000000;
+	--ace-comment: #008000;
+	--ace-selection-bg: #B5D5FF;
+	--ace-pink: #0000FF;
+	/* Keywords */
+	--ace-purple: #0000FF;
+	/* Constants (Shared with pink in old TM) */
+	--ace-blue: #0000A2;
+	--ace-blue-hue: 240deg;
+	/* Functions */
+	--ace-green: #008000;
+	/* Strings */
+}
+
+.theme-iplastic {
+	--ace-bg: #EEEEEE;
+	--ace-gutter-bg: #E0E0E0;
+	--ace-foreground: #000000;
+	--ace-comment: #0066FF;
+	--ace-selection-bg: #BAD6FD;
+	--ace-pink: #0000FF;
+	--ace-purple: #008000;
+	--ace-blue: #FF8000;
+	--ace-blue-hue: 30deg;
+	--ace-green: #009900;
+}
+
+.theme-eclipse {
+	/* Main Editor Backgrounds & Text */
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #F0F0F0;
+	/* Slightly softer classic grey gutter */
+	--ace-foreground: #000000;
+
+	/* Comments - Classic Eclipse Dark Green */
+	--ace-comment: #3F7F5F;
+
+	/* Selection - That perfect light blue highlight */
+	--ace-selection-bg: #B2D7FF;
+
+	/* Keywords - The iconic Eclipse Purple/Magenta */
+	--ace-pink: #7F0055;
+	--ace-purple: #7F0055;
+	/* Often mapped similarly for keywords */
+
+	/* The Missing Blues */
+	--ace-blue: #0000C0;
+	/* Classic deep blue for methods/numbers/types */
+	--ace-blue-hue: 240deg;
+	--ace-string: #2A00FF;
+	/* Eclipse strings are traditionally this bright blue */
+
+	/* Literal Constants / JavaDoc Tags */
+	--ace-green: #3F5FBF;
+	/* Eclipse JavaDoc links/tags blue-green */
+}
+
+.theme-dawn {
+	--ace-bg: #F9F9F9;
+	--ace-gutter-bg: #EBEBEB;
+	--ace-foreground: #080808;
+	--ace-comment: #5A525F;
+	--ace-selection-bg: #275FFF;
+	--ace-pink: #794938;
+	--ace-purple: #811F24;
+	--ace-blue: #234A97;
+	--ace-blue-hue: 220deg;
+	--ace-green: #0B6125;
+}
+
+
+
+.theme-chaos {
+	--ace-bg: #161616;
+	--ace-gutter-bg: #1B1B1B;
+	--ace-foreground: #FFFFFF;
+	--ace-comment: #999999;
+	--ace-selection-bg: #4d4d4d;
+	--ace-pink: #F92672;
+	--ace-purple: #AE81FF;
+	--ace-blue: #66D9EF;
+	--ace-blue-hue: 190deg;
+	--ace-green: #A6E22E;
+}
+
+
+.theme-merbivore {
+	--ace-bg: #161616;
+	--ace-gutter-bg: #262626;
+	--ace-foreground: #E6E1DC;
+	--ace-comment: #AD2EA4;
+	--ace-selection-bg: #454545;
+	--ace-pink: #FC6F09;
+	--ace-purple: #B3E43B;
+	--ace-blue: #6D9CBE;
+	--ace-blue-hue: 205deg;
+	--ace-green: #8D9906;
+}
+
+.theme-dreamweaver {
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #FFFFFF;
+	--ace-foreground: #000000;
+	--ace-comment: #999999;
+	--ace-selection-bg: #DAE2E8;
+	--ace-pink: #0056D5;
+	--ace-purple: #000000;
+	--ace-blue: #0056D5;
+	--ace-blue-hue: 216deg;
+	--ace-green: #008000;
+}
+
+.theme-crimson-editor {
+	--ace-bg: #FFFFFF;
+	--ace-gutter-bg: #EBEBEB;
+	--ace-foreground: #000000;
+	--ace-comment: #008000;
+	--ace-selection-bg: #3399FF;
+	--ace-pink: #0000FF;
+	--ace-purple: #FF0000;
+	--ace-blue: #0000FF;
+	--ace-blue-hue: 240deg;
+	--ace-green: #008000;
+}
+
+.theme-katzenmilch {
+	--ace-bg: #E8E8E8;
+	--ace-gutter-bg: #D3D3D3;
+	--ace-foreground: #0F0F0F;
+	--ace-comment: #404040;
+	--ace-selection-bg: #C1D1F1;
+	--ace-pink: #674917;
+	--ace-purple: #5D90CD;
+	--ace-blue: #3E7B72;
+	--ace-blue-hue: 171deg;
+	--ace-green: #D12F1B;
+}
+
+
+
+/* Ivory */
+.theme-ivory {
+	--ace-bg: #fdfdf2;
+	--ace-gutter-bg: #ffffff;
+	--ace-foreground: #1e293b;
+	--ace-comment: #64748b;
+	--ace-selection-bg: #64748B;
+	--ace-pink: #10b981;
+	--ace-purple: #fbbf24;
+	--ace-blue: #06b6d4;
+	--ace-blue-hue: 189deg;
+	--ace-green: #3f6212;
+}
+
+/* Darkslate */
+.theme-darkslate {
+	--ace-bg: #05050a;
+	--ace-gutter-bg: #0f172a;
+	--ace-foreground: #f1f5f9;
+	--ace-comment: #94a3b8;
+	--ace-selection-bg: #F1F5F9;
+	--ace-pink: #10b981;
+	--ace-purple: #fbbf24;
+	--ace-blue: #06b6d4;
+	--ace-blue-hue: 189deg;
+	--ace-green: #10b981;
+}
+
+/* Midnight Void */
+.theme-midnightvoid {
+	--ace-bg: #020617;
+	--ace-gutter-bg: #0f172a;
+	--ace-foreground: #94a3b8;
+	--ace-comment: #475569;
+	--ace-selection-bg: #38BDF8;
+	--ace-pink: #334155;
+	--ace-purple: #6366f1;
+	--ace-blue: #1e40af;
+	--ace-blue-hue: 226deg;
+	--ace-green: #334155;
+}
+
+/* Arctic Thaw */
+.theme-arcticthaw {
+	--ace-bg: #0f172a;
+	--ace-gutter-bg: #1e293b;
+	--ace-foreground: #f1f5f9;
+	--ace-comment: #94a3b8;
+	--ace-selection-bg: #FFFFFF;
+	--ace-pink: #0ea5e9;
+	--ace-purple: #ffffff;
+	--ace-blue: #7dd3fc;
+	--ace-blue-hue: 199deg;
+	--ace-green: #0ea5e9;
+}
+
+/* Abyssal Trench */
+.theme-abyssaltrench {
+	--ace-bg: #000000;
+	--ace-gutter-bg: #081121;
+	--ace-foreground: #06b6d4;
+	--ace-comment: #164e63;
+	--ace-selection-bg: #06B6D4;
+	--ace-pink: #164e63;
+	--ace-purple: #155e75;
+	--ace-blue: #083344;
+	--ace-blue-hue: 197deg;
+	--ace-green: #164e63;
+}
+
+/* Oxidized Iron */
+.theme-oxidizediron {
+	--ace-bg: #1a1a1a;
+	--ace-gutter-bg: #2d2d2d;
+	--ace-foreground: #d6d3d1;
+	--ace-comment: #78716c;
+	--ace-selection-bg: #78716C;
+	--ace-pink: #78350f;
+	--ace-purple: #451a03;
+	--ace-blue: #b45309;
+	--ace-blue-hue: 26deg;
+	--ace-green: #78350f;
+}
+
+/* Deep Sea Kelp */
+.theme-deepseakelp {
+	--ace-bg: #052e16;
+	--ace-gutter-bg: #064e3b;
+	--ace-foreground: #d1fae5;
+	--ace-comment: #10b981;
+	--ace-selection-bg: #10B981;
+	--ace-pink: #ec4899;
+	--ace-purple: #881337;
+	--ace-blue: #f43f5e;
+	--ace-blue-hue: 350deg;
+	--ace-green: #10b981;
+}
+
+/* Solar Flare */
+.theme-solarflare {
+	--ace-bg: #1c1917;
+	--ace-gutter-bg: #451a03;
+	--ace-foreground: #fffbeb;
+	--ace-comment: #fcd34d;
+	--ace-selection-bg: #FBBB24;
+	--ace-pink: #f59e0b;
+	--ace-purple: #ffffff;
+	--ace-blue: #fbbf24;
+	--ace-blue-hue: 43deg;
+	--ace-green: #f59e0b;
+}
+
+/* Monochrome Matrix */
+.theme-monochromematrix {
+	--ace-bg: #020617;
+	--ace-gutter-bg: #000000;
+	--ace-foreground: #f8fafc;
+	--ace-comment: #64748b;
+	--ace-selection-bg: #FFFFFF;
+	--ace-pink: #ffffff;
+	--ace-purple: #475569;
+	--ace-blue: #94a3b8;
+	--ace-blue-hue: 215deg;
+	--ace-green: #ffffff;
+}
+
+/* Lead Fortress */
+.theme-leadfortress {
+	--ace-bg: #0f172a;
+	--ace-gutter-bg: #1e293b;
+	--ace-foreground: #cbd5e1;
+	--ace-comment: #64748b;
+	--ace-selection-bg: #CBD5E1;
+	--ace-pink: #475569;
+	--ace-purple: #000000;
+	--ace-blue: #FFFFFF;
+	--ace-blue-hue: 0deg;
+	--ace-green: #22ff55;
+}
+
+/* Ashen Wastes */
+.theme-ashenwastes {
+	--ace-bg: #18181b;
+	--ace-gutter-bg: #27272a;
+	--ace-foreground: #f4f4f5;
+	--ace-comment: #a1a1aa;
+	--ace-selection-bg: #FFFFFF;
+	--ace-pink: #ef4444;
+	--ace-purple: #7f1d1d;
+	--ace-blue: #dc2626;
+	--ace-blue-hue: 0deg;
+	--ace-green: #ef4444;
+}
+
+/* Inverted Neon */
+.theme-invertedneon {
+	--ace-bg: #ffffff;
+	--ace-gutter-bg: #f1f5f9;
+	--ace-foreground: #0f172a;
+	--ace-comment: #64748b;
+	--ace-selection-bg: #000000;
+	--ace-pink: #000000;
+	--ace-purple: #0f172a;
+	--ace-blue: #475569;
+	--ace-blue-hue: 215deg;
+	--ace-green: #000000;
+}
+
+/* Sour Lime */
+.theme-sourlime {
+	--ace-bg: #020617;
+	--ace-gutter-bg: #064e3b;
+	--ace-foreground: #f7fee7;
+	--ace-comment: #a3e635;
+	--ace-selection-bg: #84CC16;
+	--ace-pink: #bef264;
+	--ace-purple: #365314;
+	--ace-blue: #84cc16;
+	--ace-blue-hue: 84deg;
+	--ace-green: #bef264;
+}
+
+/* Obsidian Ledger */
+.theme-obsidianledger {
+	--ace-bg: #000000;
+	--ace-gutter-bg: #171717;
+	--ace-foreground: #e5e5e5;
+	--ace-comment: #737373;
+	--ace-selection-bg: #FFFFFF;
+	--ace-pink: #404040;
+	--ace-purple: #111827;
+	--ace-blue: #525252;
+	--ace-blue-hue: 0deg;
+	--ace-green: #404040;
+}
+
+/* Daybreak */
+.theme-daybreak {
+	--ace-bg: #fff0f5;
+	--ace-gutter-bg: #ffe4e1;
+	--ace-foreground: #4a0026;
+	--ace-comment: #800080;
+	--ace-selection-bg: #FF0080;
+	--ace-pink: #ff0080;
+	--ace-purple: #800080;
+	--ace-blue: #ff8c00;
+	--ace-blue-hue: 33deg;
+	--ace-green: #ff0080;
+}
+
+/* Desert Sunset */
+.theme-desertsunset {
+	--ace-bg: #fffbf0;
+	--ace-gutter-bg: #fdf5e6;
+	--ace-foreground: #2d1b4d;
+	--ace-comment: #4b0082;
+	--ace-selection-bg: #FF4500;
+	--ace-pink: #ff4500;
+	--ace-purple: #4b0082;
+	--ace-blue: #ffd700;
+	--ace-blue-hue: 51deg;
+	--ace-green: #ff4500;
+}
+
+/* Ocean Ripple */
+.theme-oceanripple {
+	--ace-bg: #000510;
+	--ace-gutter-bg: #0a1931;
+	--ace-foreground: #f0f9ff;
+	--ace-comment: #00ffff;
+	--ace-selection-bg: #00FFFF;
+	--ace-pink: #ffffff;
+	--ace-purple: #0000ff;
+	--ace-blue: #00ffff;
+	--ace-blue-hue: 180deg;
+	--ace-green: #0000ff;
+}
+
+/* Silver Chrome */
+.theme-silverchrome {
+	--ace-bg: #f5f5f5;
+	--ace-gutter-bg: #e5e5e5;
+	--ace-foreground: #171717;
+	--ace-comment: #4d4d4d;
+	--ace-selection-bg: #7A7A7A;
+	--ace-pink: #4d4d4d;
+	--ace-purple: #000000;
+	--ace-blue: #c0c0c0;
+	--ace-blue-hue: 0deg;
+	--ace-green: #7a7a7a;
+}
+
+/* Coral Reef */
+.theme-coralreef {
+	--ace-bg: #e0fcfc;
+	--ace-gutter-bg: #f0fff0;
+	--ace-foreground: #831843;
+	--ace-comment: #be185d;
+	--ace-selection-bg: #FF1493;
+	--ace-pink: #00ced1;
+	--ace-purple: #ff7f50;
+	--ace-blue: #ff1493;
+	--ace-blue-hue: 328deg;
+	--ace-green: #ff1493;
+}
+
+/* Dusk */
+.theme-dusk {
+	--ace-bg: #020210;
+	--ace-gutter-bg: #000033;
+	--ace-foreground: #e0e7ff;
+	--ace-comment: #818cf8;
+	--ace-selection-bg: #6600CC;
+	--ace-pink: #000066;
+	--ace-purple: #1a0033;
+	--ace-blue: #6600CC;
+	--ace-blue-hue: 270deg;
+	--ace-green: #7700FF;
+}
+
+/* Rainbow Peak */
+.theme-rainbowpeak {
+	--ace-bg: #fafafa;
+	--ace-gutter-bg: #f0fdf4;
+	--ace-foreground: #171717;
+	--ace-comment: #0000ff;
+	--ace-selection-bg: #FF0000;
+	--ace-pink: #00ff00;
+	--ace-purple: #ff00ff;
+	--ace-blue: #00ffff;
+	--ace-blue-hue: 180deg;
+	--ace-green: #00ff00;
+}
+
+/* Golden Gate */
+.theme-goldengate {
+	--ace-bg: #fffdf0;
+	--ace-gutter-bg: #fefce8;
+	--ace-foreground: #422006;
+	--ace-comment: #b8860b;
+	--ace-selection-bg: #B8860B;
+	--ace-pink: #ffd700;
+	--ace-purple: #451a03;
+	--ace-blue: #b8860b;
+	--ace-blue-hue: 43deg;
+	--ace-green: #ffd700;
+}
+
+/* Emerald Forest */
+.theme-emeraldforest {
+	--ace-bg: #020502;
+	--ace-gutter-bg: #061a06;
+	--ace-foreground: #f0fdf4;
+	--ace-comment: #32cd32;
+	--ace-selection-bg: #ADFF2F;
+	--ace-pink: #32cd32;
+	--ace-purple: #adff2f;
+	--ace-blue: #008000;
+	--ace-blue-hue: 120deg;
+	--ace-green: #32cd32;
+}
+
+/* Night Vision */
+.theme-nightvision {
+	--ace-bg: #000000;
+	--ace-gutter-bg: #001100;
+	--ace-foreground: #00ff00;
+	--ace-comment: #003300;
+	--ace-selection-bg: #00FF00;
+	--ace-pink: #003300;
+	--ace-purple: #00ff00;
+	--ace-blue: #00ff00;
+	--ace-blue-hue: 120deg;
+	--ace-green: #00ff00;
+}
+
+/* Berry Blast */
+.theme-berryblast {
+	--ace-bg: #05051a;
+	--ace-gutter-bg: #0000ff;
+	--ace-foreground: #ffffff;
+	--ace-comment: #ff00ff;
+	--ace-selection-bg: #FF00FF;
+	--ace-pink: #dc143c;
+	--ace-purple: #0000ff;
+	--ace-blue: #ff00ff;
+	--ace-blue-hue: 300deg;
+	--ace-green: #dc143c;
+}
+
+/* Parchment */
+.theme-parchment {
+	--ace-bg: #fcfaf2;
+	--ace-gutter-bg: #f5f5dc;
+	--ace-foreground: #451a03;
+	--ace-comment: #8b4513;
+	--ace-selection-bg: #D2B48C;
+	--ace-pink: #8b4513;
+	--ace-purple: #f5f5dc;
+	--ace-blue: #d2b48c;
+	--ace-blue-hue: 34deg;
+	--ace-green: #d2b48c;
+}
+
+
+/* Ambiance - Espresso Dark */
+.theme-ambiance:fullscreen .animated-bg-layer,
+.theme-ambiance::backdrop,
+.theme-ambiance .animated-bg-layer {
+	background: #202020;
+	background: linear-gradient(125deg, #202020 0%, #3d2c20 100%);
+	background-size: 400% 400%;
+}
+
+/* Chaos - High Contrast Obsidian */
+.theme-chaos:fullscreen .animated-bg-layer,
+.theme-chaos::backdrop,
+.theme-chaos .animated-bg-layer {
+	background: #161616;
+	background: linear-gradient(125deg, #161616 0%, #331111 50%, #112233 100%);
+	background-size: 400% 400%;
+}
+
+/* Chrome - Clean Desktop Light */
+.theme-chrome:fullscreen .animated-bg-layer,
+.theme-chrome::backdrop,
+.theme-chrome .animated-bg-layer {
+	background: #ebebeb;
+	background: linear-gradient(125deg, #ffffff 0%, #ebebeb 100%);
+	background-size: 400% 400%;
+}
+
+/* Clouds - Soft Blue-Gray Light */
+.theme-clouds:fullscreen .animated-bg-layer,
+.theme-clouds::backdrop,
+.theme-clouds .animated-bg-layer {
+	background: #f8f8f8;
+	background: linear-gradient(125deg, #ffffff 0%, #e6ecf2 100%);
+	background-size: 400% 400%;
+}
+
+/* Clouds Midnight - Twilight Gray-Blue */
+.theme-clouds-midnight:fullscreen .animated-bg-layer,
+.theme-clouds-midnight::backdrop,
+.theme-clouds-midnight .animated-bg-layer {
+	background: #191f26;
+	background: linear-gradient(125deg, #191f26 0%, #252f3b 100%);
+	background-size: 400% 400%;
+}
+
+/* Cobalt - Intense Navy Blue */
+.theme-cobalt:fullscreen .animated-bg-layer,
+.theme-cobalt::backdrop,
+.theme-cobalt .animated-bg-layer {
+	background: #002240;
+	background: linear-gradient(125deg, #002240 0%, #003b6f 50%, #ff8000 100%);
+	background-size: 400% 400%;
+}
+
+/* Crimson Editor - Crisp Light White */
+.theme-crimson-editor:fullscreen .animated-bg-layer,
+.theme-crimson-editor::backdrop,
+.theme-crimson-editor .animated-bg-layer {
+	background: #ffffff;
+	background: linear-gradient(125deg, #ffffff 0%, #fcedf0 100%);
+	background-size: 400% 400%;
+}
+
+/* Dawn - Soft Pastel Sunrise Light */
+.theme-dawn:fullscreen .animated-bg-layer,
+.theme-dawn::backdrop,
+.theme-dawn .animated-bg-layer {
+	background: #f9f9f9;
+	background: linear-gradient(125deg, #f9f9f9 0%, #f5ebec 50%, #efe0e2 100%);
+	background-size: 400% 400%;
+}
+
+/* Dracula - Classic Cyber Vampire Dark */
+.theme-dracula:fullscreen .animated-bg-layer,
+.theme-dracula::backdrop,
+.theme-dracula .animated-bg-layer {
+	background: #282a36;
+	background: linear-gradient(125deg, #282a36 0%, #44475a 60%, #bd93f9 100%);
+	background-size: 400% 400%;
+}
+
+/* Dreamweaver - Legacy Software White */
+.theme-dreamweaver:fullscreen .animated-bg-layer,
+.theme-dreamweaver::backdrop,
+.theme-dreamweaver .animated-bg-layer {
+	background: #ffffff;
+	background: linear-gradient(125deg, #ffffff 0%, #e8f0f8 100%);
+	background-size: 400% 400%;
+}
+
+/* Eclipse - Clean Bright Palette */
+.theme-eclipse:fullscreen .animated-bg-layer,
+.theme-eclipse::backdrop,
+.theme-eclipse .animated-bg-layer {
+	background: #ffffff;
+	background: linear-gradient(125deg, #ffffff 0%, #f0f4ff 100%);
+	background-size: 400% 400%;
+}
+
+/* GitHub Legacy Light */
+.theme-github:fullscreen .animated-bg-layer,
+.theme-github::backdrop,
+.theme-github .animated-bg-layer {
+	background: #ffffff;
+	background: linear-gradient(125deg, #ffffff 0%, #f4f5f7 100%);
+	background-size: 400% 400%;
+}
+
+/* GOB - Matrix Retro Lime Dark */
+.theme-gob:fullscreen .animated-bg-layer,
+.theme-gob::backdrop,
+.theme-gob .animated-bg-layer {
+	background: #080808;
+	background: linear-gradient(125deg, #080808 0%, #051a05 100%);
+	background-size: 400% 400%;
+}
+
+/* Gruvbox - Earthy Organic Warm Dark */
+.theme-gruvbox:fullscreen .animated-bg-layer,
+.theme-gruvbox::backdrop,
+.theme-gruvbox .animated-bg-layer {
+	background: #282828;
+	background: linear-gradient(125deg, #282828 0%, #3c3836 50%, #b16286 100%);
+	background-size: 400% 400%;
+}
+
+/* Idle Fingers - Muted Industrial Charcoal */
+.theme-idle-fingers:fullscreen .animated-bg-layer,
+.theme-idle-fingers::backdrop,
+.theme-idle-fingers .animated-bg-layer {
+	background: #323232;
+	background: linear-gradient(125deg, #323232 0%, #212121 100%);
+	background-size: 400% 400%;
+}
+
+/* IPlastic - Shiny Cool Gray Light */
+.theme-iplastic:fullscreen .animated-bg-layer,
+.theme-iplastic::backdrop,
+.theme-iplastic .animated-bg-layer {
+	background: #eeeeee;
+	background: linear-gradient(125deg, #ffffff 0%, #e0e0e0 100%);
+	background-size: 400% 400%;
+}
+
+/* Katzenmilch - Matte Warm Gray Light */
+.theme-katzenmilch:fullscreen .animated-bg-layer,
+.theme-katzenmilch::backdrop,
+.theme-katzenmilch .animated-bg-layer {
+	background: #e8e8e8;
+	background: linear-gradient(125deg, #f0f0f0 0%, #e0dbdb 100%);
+	background-size: 400% 400%;
+}
+
+/* KR Theme - Rich Midnight Gold */
+.theme-kr-theme:fullscreen .animated-bg-layer,
+.theme-kr-theme::backdrop,
+.theme-kr-theme .animated-bg-layer {
+	background: #0b0a09;
+	background: linear-gradient(125deg, #0b0a09 0%, #1c1a17 100%);
+	background-size: 400% 400%;
+}
+
+/* Kuroir - Textured Warm Ivory Light */
+.theme-kuroir:fullscreen .animated-bg-layer,
+.theme-kuroir::backdrop,
+.theme-kuroir .animated-bg-layer {
+	background: #e8e9e8;
+	background: linear-gradient(125deg, #f4f5f4 0%, #dadbda 100%);
+	background-size: 400% 400%;
+}
+
+/* Merbivore - Deep Warm Lava Charcoal */
+.theme-merbivore:fullscreen .animated-bg-layer,
+.theme-merbivore::backdrop,
+.theme-merbivore .animated-bg-layer {
+	background: #161616;
+	background: linear-gradient(125deg, #161616 0%, #36221c 100%);
+	background-size: 400% 400%;
+}
+
+/* Merbivore Soft - Muted Pastel Charcoal */
+.theme-merbivore-soft:fullscreen .animated-bg-layer,
+.theme-merbivore-soft::backdrop,
+.theme-merbivore-soft .animated-bg-layer {
+	background: #1c1c1c;
+	background: linear-gradient(125deg, #1c1c1c 0%, #2c2523 100%);
+	background-size: 400% 400%;
+}
+
+/* Monokai - Classic Retro Synth Dark */
+.theme-monokai:fullscreen .animated-bg-layer,
+.theme-monokai::backdrop,
+.theme-monokai .animated-bg-layer {
+	background: #272822;
+	background: linear-gradient(125deg, #272822 0%, #3e3d32 60%, #f92672 100%);
+	background-size: 400% 400%;
+}
+
+/* Mono Industrial - Cold Tech Asphalt */
+.theme-mono-industrial:fullscreen .animated-bg-layer,
+.theme-mono-industrial::backdrop,
+.theme-mono-industrial .animated-bg-layer {
+	background: #222324;
+	background: linear-gradient(125deg, #222324 0%, #151617 100%);
+	background-size: 400% 400%;
+}
+
+/* Nord Dark - Frost Aurora Dusk */
+.theme-nord-dark:fullscreen .animated-bg-layer,
+.theme-nord-dark::backdrop,
+.theme-nord-dark .animated-bg-layer {
+	background: #2e3440;
+	background: linear-gradient(125deg, #2e3440 0%, #3b4252 50%, #81a1c1 100%);
+	background-size: 400% 400%;
+}
+
+/* One Dark - Modern Sleek Slate */
+.theme-one-dark:fullscreen .animated-bg-layer,
+.theme-one-dark::backdrop,
+.theme-one-dark .animated-bg-layer {
+	background: #282c34;
+	background: linear-gradient(125deg, #282c34 0%, #21252b 70%, #61afef 100%);
+	background-size: 400% 400%;
+}
+
+/* Pastel On Dark - Cozy Studio Soft Mix */
+.theme-pastel-on-dark:fullscreen .animated-bg-layer,
+.theme-pastel-on-dark::backdrop,
+.theme-pastel-on-dark .animated-bg-layer {
+	background: #2c2828;
+	background: linear-gradient(125deg, #2c2828 0%, #353030 50%, #757ad8 100%);
+	background-size: 400% 400%;
+}
+
+/* Solarized Dark - Mathematical Calibrated Teal */
+.theme-solarized-dark:fullscreen .animated-bg-layer,
+.theme-solarized-dark::backdrop,
+.theme-solarized-dark .animated-bg-layer {
+	background: #002b36;
+	background: linear-gradient(125deg, #002b36 0%, #073642 70%, #2aa198 100%);
+	background-size: 400% 400%;
+}
+
+/* Solarized Light - Mathematical Calibrated Cream */
+.theme-solarized-light:fullscreen .animated-bg-layer,
+.theme-solarized-light::backdrop,
+.theme-solarized-light .animated-bg-layer {
+	background: #fdf6e3;
+	background: linear-gradient(125deg, #fdf6e3 0%, #eee8d5 100%);
+	background-size: 400% 400%;
+}
+
+/* SQL Server - Corporate Registry Light */
+.theme-sqlserver:fullscreen .animated-bg-layer,
+.theme-sqlserver::backdrop,
+.theme-sqlserver .animated-bg-layer {
+	background: #ffffff;
+	background: linear-gradient(125deg, #ffffff 0%, #eef2f7 100%);
+	background-size: 400% 400%;
+}
+
+/* Terminal - Pure Command Line Dark */
+.theme-terminal:fullscreen .animated-bg-layer,
+.theme-terminal::backdrop,
+.theme-terminal .animated-bg-layer {
+	background: #000000;
+	background: linear-gradient(125deg, #000000 0%, #111111 100%);
+	background-size: 400% 400%;
+}
+
+/* Textmate - True Editorial Desktop White */
+.theme-textmate:fullscreen .animated-bg-layer,
+.theme-textmate::backdrop,
+.theme-textmate .animated-bg-layer {
+	background: #ffffff;
+	background: linear-gradient(125deg, #ffffff 0%, #f0f0f0 100%);
+	background-size: 400% 400%;
+}
+
+/* Tomorrow Light - Balanced Neutral Light */
+.theme-tomorrow:fullscreen .animated-bg-layer,
+.theme-tomorrow::backdrop,
+.theme-tomorrow .animated-bg-layer {
+	background: #ffffff;
+	background: linear-gradient(125deg, #ffffff 0%, #f4f4f4 100%);
+	background-size: 400% 400%;
+}
+
+/* Tomorrow Night - Balanced Neutral Dark */
+.theme-tomorrow-night:fullscreen .animated-bg-layer,
+.theme-tomorrow-night::backdrop,
+.theme-tomorrow-night .animated-bg-layer {
+	background: #1d1f21;
+	background: linear-gradient(125deg, #1d1f21 0%, #282a2e 100%);
+	background-size: 400% 400%;
+}
+
+/* Tomorrow Night Blue - Deep Royal Denim Dark */
+.theme-tomorrow-night-blue:fullscreen .animated-bg-layer,
+.theme-tomorrow-night-blue::backdrop,
+.theme-tomorrow-night-blue .animated-bg-layer {
+	background: #002451;
+	background: linear-gradient(125deg, #002451 0%, #001b3d 60%, #ff9da4 100%);
+	background-size: 400% 400%;
+}
+
+/* Tomorrow Night Bright - Deep Midnight Cyber Dark */
+.theme-tomorrow-night-bright:fullscreen .animated-bg-layer,
+.theme-tomorrow-night-bright::backdrop,
+.theme-tomorrow-night-bright .animated-bg-layer {
+	background: #000000;
+	background: linear-gradient(125deg, #000000 0%, #1a1a1a 50%, #e78c45 100%);
+	background-size: 400% 400%;
+}
+
+/* Tomorrow Night 80s - Retro Tech Charcoal */
+.theme-tomorrow-night-eighties:fullscreen .animated-bg-layer,
+.theme-tomorrow-night-eighties::backdrop,
+.theme-tomorrow-night-eighties .animated-bg-layer {
+	background: #2d2d2d;
+	background: linear-gradient(125deg, #2d2d2d 0%, #393939 100%);
+	background-size: 400% 400%;
+}
+
+/* Twilight - Rich Mahogany Dark */
+.theme-twilight:fullscreen .animated-bg-layer,
+.theme-twilight::backdrop,
+.theme-twilight .animated-bg-layer {
+	background: #141414;
+	background: linear-gradient(125deg, #141414 0%, #222222 60%, #f8f8f8 100%);
+	background-size: 400% 400%;
+}
+
+/* Vibrant Ink - Intense Cyberpunk High-Glow Void */
+.theme-vibrant-ink:fullscreen .animated-bg-layer,
+.theme-vibrant-ink::backdrop,
+.theme-vibrant-ink .animated-bg-layer {
+	background: #000000;
+	background: linear-gradient(125deg, #000000 0%, #120024 50%, #ff007f 100%);
+	background-size: 400% 400%;
+}
+
+/* Xcode - Cool Slate-Tinted Light */
+.theme-xcode:fullscreen .animated-bg-layer,
+.theme-xcode::backdrop,
+.theme-xcode .animated-bg-layer {
+	background: #ffffff;
+	background: linear-gradient(125deg, #ffffff 0%, #f2f5f9 100%);
+	background-size: 400% 400%;
+}
+
+.theme-midnightvoid:fullscreen .animated-bg-layer,
+.theme-midnightvoid::backdrop,
+.theme-midnightvoid .animated-bg-layer {
+	background: linear-gradient(125deg, #020617 0%, #0f172a 100%);
+	background-size: 400% 400%;
+}
+
+/* 2. Arctic Thaw */
+.theme-arcticthaw:fullscreen .animated-bg-layer,
+.theme-arcticthaw::backdrop,
+.theme-arcticthaw .animated-bg-layer {
+	background: linear-gradient(125deg, #0f172a 0%, #1e293b 50%, #7dd3fc 100%);
+	background-size: 400% 400%;
+}
+
+/* 3. Abyssal Trench */
+.theme-abyssaltrench:fullscreen .animated-bg-layer,
+.theme-abyssaltrench::backdrop,
+.theme-abyssaltrench .animated-bg-layer {
+	background: linear-gradient(125deg, #000000 0%, #081121 100%);
+	background-size: 400% 400%;
+}
+
+/* 4. Oxidized Iron */
+.theme-oxidizediron:fullscreen .animated-bg-layer,
+.theme-oxidizediron::backdrop,
+.theme-oxidizediron .animated-bg-layer {
+	background: linear-gradient(125deg, #1a1a1a 0%, #451a03 100%);
+	background-size: 400% 400%;
+}
+
+/* 5. Deep Sea Kelp */
+.theme-deepseakelp:fullscreen .animated-bg-layer,
+.theme-deepseakelp::backdrop,
+.theme-deepseakelp .animated-bg-layer {
+	background: linear-gradient(125deg, #052e16 0%, #10b981 100%);
+	background-size: 400% 400%;
+}
+
+/* 6. Solar Flare */
+.theme-solarflare:fullscreen .animated-bg-layer,
+.theme-solarflare::backdrop,
+.theme-solarflare .animated-bg-layer {
+	background: linear-gradient(125deg, #451a03 0%, #78350f 100%);
+	background-size: 400% 400%;
+}
+
+/* 7. Monochrome Matrix */
+.theme-monochromematrix:fullscreen .animated-bg-layer,
+.theme-monochromematrix::backdrop,
+.theme-monochromematrix .animated-bg-layer {
+	background: linear-gradient(125deg, #020617 0%, #000000 100%);
+	background-size: 400% 400%;
+}
+
+/* 8. Lead Fortress */
+.theme-leadfortress:fullscreen .animated-bg-layer,
+.theme-leadfortress::backdrop,
+.theme-leadfortress .animated-bg-layer {
+	background: linear-gradient(125deg, #1e293b 0%, #0f172a 100%);
+	background-size: 400% 400%;
+}
+
+/* 9. Ashen Wastes */
+.theme-ashenwastes:fullscreen .animated-bg-layer,
+.theme-ashenwastes::backdrop,
+.theme-ashenwastes .animated-bg-layer {
+	background: linear-gradient(125deg, #18181b 0%, #7f1d1d 100%);
+	background-size: 400% 400%;
+}
+
+/* 10. Inverted Neon */
+.theme-invertedneon:fullscreen .animated-bg-layer,
+.theme-invertedneon::backdrop,
+.theme-invertedneon .animated-bg-layer {
+	background: linear-gradient(125deg, #f1f5f9 0%, #cbd5e1 100%);
+	background-size: 400% 400%;
+}
+
+/* 11. Sour Lime */
+.theme-sourlime:fullscreen .animated-bg-layer,
+.theme-sourlime::backdrop,
+.theme-sourlime .animated-bg-layer {
+	background: linear-gradient(125deg, #064e3b 0%, #365314 100%);
+	background-size: 400% 400%;
+}
+
+/* 12. Obsidian Ledger */
+.theme-obsidianledger:fullscreen .animated-bg-layer,
+.theme-obsidianledger::backdrop,
+.theme-obsidianledger .animated-bg-layer {
+	background: linear-gradient(125deg, #000000 0%, #171717 100%);
+	background-size: 400% 400%;
+}
+
+
+
+.theme-ivory:fullscreen .animated-bg-layer,
+.theme-ivory::backdrop,
+.theme-ivory .animated-bg-layer {
+	background: linear-gradient(125deg, rgb(5, 39, 103) 0%, #3a0647 40%, rgb(10, 50, 120) 70%, #4a085c 100%);
+	background-size: 400% 400%;
+}
+
+
+.theme-darkslate:fullscreen .animated-bg-layer,
+.theme-darkslate::backdrop,
+.theme-darkslate .animated-bg-layer {
+	background: linear-gradient(125deg, #020617 0%,
+			/* True black-blue at the top */
+			#0f172a 40%,
+			/* Slate surface match */
+			#064e3b 70%,
+			/* Deep moss/emerald shadow */
+			#083344 100%
+			/* Deep cyan anchor */
+		);
+	background-size: 400% 400%;
+}
+
+/* 1. Classic Sunrise/Purple */
+.theme-daybreak:fullscreen .animated-bg-layer,
+.theme-daybreak::backdrop,
+.theme-daybreak .animated-bg-layer {
+	background: linear-gradient(125deg, #ff8c00 0%, #ff0080 50%, #800080 100%);
+	background-size: 400% 400%;
+}
+
+/* 2. Banded Gold, Orange, and Purple */
+.theme-desertsunset:fullscreen .animated-bg-layer,
+.theme-desertsunset::backdrop,
+.theme-desertsunset .animated-bg-layer {
+	background: linear-gradient(125deg, #4b0082 0%, #ff4500 45%, #ffd700 80%, #ffffff 100%);
+	background-size: 400% 400%;
+}
+
+/* 3. Deep Reflective Blue */
+.theme-oceanripple:fullscreen .animated-bg-layer,
+.theme-oceanripple::backdrop,
+.theme-oceanripple .animated-bg-layer {
+	background: linear-gradient(125deg, #000080 0%, #0000ff 40%, #00ffff 70%, #ffffff 100%);
+	background-size: 400% 400%;
+}
+
+/* 4. High-Contrast Metallic */
+.theme-silverchrome:fullscreen .animated-bg-layer,
+.theme-silverchrome::backdrop,
+.theme-silverchrome .animated-bg-layer {
+	background: linear-gradient(125deg, #4d4d4d 0%, #ffffff 45%, #7a7a7a 50%, #c0c0c0 100%);
+	background-size: 400% 400%;
+}
+
+/* 5. Tropical Cyan and Pink */
+.theme-coralreef:fullscreen .animated-bg-layer,
+.theme-coralreef::backdrop,
+.theme-coralreef .animated-bg-layer {
+	background: linear-gradient(125deg, #ff7f50 0%, #ff1493 40%, #ffd700 80%, #00ced1 100%);
+	background-size: 400% 400%;
+}
+
+/* 6. Atmospheric Night */
+.theme-dusk:fullscreen .animated-bg-layer,
+.theme-dusk::backdrop,
+.theme-dusk .animated-bg-layer {
+	background: linear-gradient(125deg, #000033 0%, #1a0033 40%, #330066 70%, #000066 100%);
+	background-size: 400% 400%;
+}
+
+/* 7. The Full Spectrum */
+.theme-rainbowpeak:fullscreen .animated-bg-layer,
+.theme-rainbowpeak::backdrop,
+.theme-rainbowpeak .animated-bg-layer {
+	background: linear-gradient(125deg, #ff0000 0%, #ffff00 25%, #00ff00 50%, #00ffff 75%, #0000ff 100%);
+	background-size: 400% 400%;
+}
+
+/* 8. Polished Metal Gold */
+.theme-goldengate:fullscreen .animated-bg-layer,
+.theme-goldengate::backdrop,
+.theme-goldengate .animated-bg-layer {
+	background: linear-gradient(125deg, #b8860b 0%, #ffd700 40%, #ffffff 50%, #b8860b 100%);
+	background-size: 400% 400%;
+}
+
+/* 9. Earthy Vibrant Green */
+.theme-emeraldforest:fullscreen .animated-bg-layer,
+.theme-emeraldforest::backdrop,
+.theme-emeraldforest .animated-bg-layer {
+	background: linear-gradient(125deg, #004d00 0%, #008000 40%, #32cd32 70%, #adff2f 100%);
+	background-size: 400% 400%;
+}
+
+/* 10. Matrix-Style Black & Green */
+.theme-nightvision:fullscreen .animated-bg-layer,
+.theme-nightvision::backdrop,
+.theme-nightvision .animated-bg-layer {
+	background: linear-gradient(125deg, #000000 0%, #003300 45%, #00ff00 55%, #000000 100%);
+	background-size: 400% 400%;
+}
+
+/* 11. 90s Candy Blue/Red */
+.theme-berryblast:fullscreen .animated-bg-layer,
+.theme-berryblast::backdrop,
+.theme-berryblast .animated-bg-layer {
+	background: linear-gradient(125deg, #0000ff 0%, #6a5acd 40%, #ff00ff 70%, #dc143c 100%);
+	background-size: 400% 400%;
+}
+
+/* 12. Structured Academic Beige */
+.theme-parchment:fullscreen .animated-bg-layer,
+.theme-parchment::backdrop,
+.theme-parchment .animated-bg-layer {
+	background: linear-gradient(125deg, #8b4513 0%, #d2b48c 40%, #f5f5dc 70%, #ffffff 100%);
+	background-size: 400% 400%;
+}

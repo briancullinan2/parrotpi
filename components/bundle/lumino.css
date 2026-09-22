@@ -1,0 +1,157 @@
+/* Viewport and Layout Resets */
+html body,
+body,
+html {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	line-height: normal;
+	background-color: var(--ace-bg);
+	color: var(--ace-foreground);
+	font-size: 16px;
+	font-family:
+		/* 1. MacOS/iOS: The gold standard for modern screens */
+		"SF Mono",
+		/* 2. MacOS Legacy: Still looks great */
+		"Menlo",
+		/* 3. Windows 10/11: Built specifically for coding */
+		"Cascadia Code",
+		/* 4. Windows Legacy: The classic VS look */
+		"Consolas",
+		/* 5. Linux: Clean and highly readable */
+		"Liberation Mono",
+		/* 6. General Linux: Wide support */
+		"DejaVu Sans Mono",
+		/* 7. The Final Safety Net */
+		monospace;
+}
+
+/* Absolute layout enforcement for Lumino elements */
+#app-root,
+#workspace-box,
+#main-workspace {
+	position: absolute !important;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+/* Visible Splitter Bars (The drag handles between panels) */
+.lm-SplitPanel-handle,
+.lm-DockPanel-handle {
+	background: var(--ace-bg) !important;
+	border: 2px solid var(--ace-gutter-bg);
+	transition: background 0.2s;
+}
+
+.lm-SplitPanel-handle:hover,
+.lm-DockPanel-handle:hover {
+	background: var(--ace-selection-bg) !important;
+}
+
+/* Native Tab Bar Styling (Jupyter/VSCode fusion) */
+.lm-TabBar {
+	background: var(--ace-bg);
+	border-bottom: 2px solid var(--ace-gutter-bg);
+	min-height: 38px;
+}
+
+.lm-TabBar-tab {
+	background: var(--ace-gutter-bg);
+	color: var(--ace-comment);
+	border-right: 2px solid var(--ace-bg);
+	padding: 6px 12px;
+	font-size: 16px;
+	min-width: 50px;
+	flex-shrink: 1;
+	flex-grow: 0;
+	overflow: hidden;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.lm-TabBar-tab:hover {
+	background: var(--ace-bg);
+	color: var(--ace-foreground);
+}
+
+.lm-TabBar-tab.lm-mod-current {
+	background: var(--ace-bg);
+	color: var(--ace-foreground);
+	border-top: 2px solid var(--ace-selection-bg);
+}
+
+.lm-TabBar-tabCloseIcon::before {
+	content: '×';
+	font-size: 14px;
+	margin-left: 6px;
+	cursor: pointer;
+}
+
+.lm-TabBar-content {
+	margin: 0 !important;
+	padding: 0 !important;
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-content: flex-start;
+	/* Keeps wrapped lines tightly stacked */
+	box-sizing: border-box;
+}
+
+.lm-TabBar-content::-webkit-scrollbar {
+	display: none;
+	/* Safari and Chrome */
+}
+
+
+/* Absolute Drag Drop Target Overlay Graphic Indicators */
+.lm-DockPanel-overlay {
+	background: rgba(53, 73, 50, 0.2) !important;
+	/* Semi-transparent selection layer match */
+	border: 2px solid var(--ace-selection-bg) !important;
+}
+
+.animated-bg-layer {
+	/* Fix position so it doesn't scroll or affect document flow */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+
+	/* Crucial: Strict containment breaks all layout dependencies */
+	contain: strict;
+
+	/* Force GPU layer promotion to prevent paint invalidation on body */
+	will-change: transform;
+
+	/* Use a hardware-accelerated property for the animation */
+	animation: waveMovement 18s ease infinite;
+
+	background: linear-gradient(45deg, var(--ace-pink), var(--ace-purple));
+	background-size: 400% 400%;
+}
+
+#sidebar-panel.lm-mod-hidden {
+	min-width: 0 !important;
+	width: 0 !important;
+	overflow: hidden;
+	transition: width 0.2s ease, min-width 0.2s ease;
+}
+
+#sidebar-panel:not(.lm-mod-hidden) {
+	min-width: 250px !important;
+	width: 250px !important;
+}
+
+
+[class^="bx"]::before, [class*=" bx"]::before, .bx::before, #tabs a:empty::before, #toolbar a:empty::before {
+    text-shadow: 1px 2px 3px rgb(from var(--ace-gutter-bg) r g b / 100%);
+    color: var(--ace-foreground);
+    font-family: boxicons !important;
+}
+

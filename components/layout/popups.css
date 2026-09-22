@@ -1,0 +1,198 @@
+#gh-token-input {
+	width: 100%;
+	box-sizing: border-box;
+	/* Prevent the input from collapsing below a usable size */
+	min-width: 200px;
+}
+
+#token-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	/*background: rgba(0, 0, 0, 0.85);*/
+	/* Dim the rest of the UI */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10000;
+	/* Stay above xterm and everything else */
+	backdrop-filter: blur(4px);
+	/* Modern touch */
+}
+
+
+#popups .popup .close,
+#token-modal .close-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: none;
+	border: none;
+	color: transparent;
+	font-size: 24px;
+	cursor: pointer;
+	transition: color 0.2s, transform 0.2s;
+	width: var(--global-height);
+	margin: 0;
+	line-height: auto;
+	height: var(--global-height);
+	width: var(--global-height);
+	vertical-align: middle;
+	align-content: center;
+	font-size: 1;
+	font-family: boxicons !important;
+	/*border-radius: 0 8px 0 0;*/
+}
+
+
+#popups .popup .close:before,
+#token-modal .close-btn:before {
+	font-family: boxicons !important;
+	content: "\f859";
+	color: rgb(from var(--ace-foreground) r g b / 50%);
+	font-size: 24px;
+}
+
+#popups .popup .close:hover:before,
+#token-modal .close-btn:hover:before {
+	color: var(--ace-pink);
+	margin: 0;
+}
+
+#popups .popup .close:hover,
+#token-modal .close-btn:hover {
+	transform: scale(1.1);
+	background-color: rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+/* The actual box */
+.modal-content {
+	background: #1e1e1e;
+	color: #e0e0e0;
+	border: 1px solid #333;
+	padding: 2rem;
+	border-radius: 0;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+	width: 100%;
+	max-width: 400px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	position: relative;
+}
+
+.modal-content h3 {
+	margin-top: 0;
+	color: #fff;
+	border-bottom: 2px solid #333;
+	padding-bottom: 0.5rem;
+}
+
+.modal-content p {
+	color: #aaa;
+}
+
+.actions {
+	display: flex;
+	gap: 10px;
+	margin-top: 1.5rem;
+	justify-content: flex-end;
+}
+
+#token-modal.hidden {
+	display: none;
+}
+
+.mobile_menu_spacer {
+	width: max-content;
+	flex-basis: max-content;
+}
+
+body #popups .popup .close,
+body #popups #token-modal .close-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: none;
+	border: none;
+	color: transparent;
+	font-size: 24px;
+	cursor: pointer;
+	transition: color 0.2s, transform 0.2s;
+	width: var(--global-height);
+	margin: 0;
+	line-height: unset;
+	height: var(--global-height);
+	width: var(--global-height);
+	vertical-align: middle;
+	align-content: center;
+	font-size: 24px;
+	font-family: boxicons !important;
+	box-shadow: none;
+	/*border-radius: 0 8px 0 0;*/
+}
+
+
+#popups .popup .close:before,
+#token-modal .close-btn:before {
+	font-family: boxicons !important;
+	content: "\f859";
+	color: rgb(from var(--ace-foreground) r g b / 50%);
+	font-size: 24px;
+}
+
+#popups .popup .close:hover:before,
+#token-modal .close-btn:hover:before {
+	color: var(--ace-pink);
+	margin: 0;
+}
+
+#popups .popup .close:hover,
+#token-modal .close-btn:hover {
+	transform: scale(1.1);
+	background-color: rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+#popups:not(:empty) {
+	position: absolute;
+	z-index: 1000;
+	backdrop-filter: blur(4px);
+	background: rgba(0, 0, 0, 0.5);
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+
+}
+
+#popups .popup {
+	background: rgb(from var(--ace-gutter-bg) r g b / 80%);
+	color: var(--ace-foreground);
+	border: 2px solid var(--ace-gutter-bg);
+	font-size: 16px;
+	box-shadow: 0 10px 30px rgb(from var(--ace-bg) r g b / 80%)
+}
+
+#popups h3 {
+	color: var(--ace-foreground);
+	border-bottom: 2px solid var(--ace-gutter-bg);
+}
+
+#popups p {
+	color: var(--ace-foreground);
+}
+
+
+#popups .ui_range,
+.lm-miniPaintPanel .ui_range {
+	border: 2px solid rgb(from var(--ace-gutter-bg) r g b / 50%);
+}
+
+#popups .popup .buttons {
+	display: flex;
+	gap: 10px;
+	margin-top: 2px !important;
+	height: unset !important;
+	line-height: unset !important;
+	justify-content: flex-end;
+}

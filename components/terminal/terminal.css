@@ -1,0 +1,478 @@
+.terminal-filter-widget {
+	padding: 4px;
+}
+
+.terminal-instance-container {
+	flex: 1 1 auto;
+	flex-basis: 400px;
+	max-height: none;
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+
+.xterm .xterm-screen {
+	z-index: 0;
+	pointer-events: none;
+}
+
+/* ================================================================= */
+/* XTERM.JS VIEWPORT INTERACTIVE RESIZER ANCHORS                      */
+/* ================================================================= */
+
+/* 1. Base configuration for ALL registered boundary markers */
+.terminal-box-resize-t,
+.terminal-box-resize-b,
+.terminal-box-resize-l,
+.terminal-box-resize-r,
+.terminal-box-corner {
+	/* Force xterm to acknowledge pointer triggers on these overlays */
+	pointer-events: auto !important;
+
+	/* Keep it floating right over the respective text cell block */
+	position: absolute;
+	z-index: 100;
+
+	/* Transparent by default, but ready for a subtle structural glow on hover */
+	background-color: rgba(161, 68, 255, 0.0);
+	transition: background-color 0.15s ease-in-out;
+}
+
+/* Subtle visual feedback when hovering over a scaling track area */
+.terminal-box-resize-t:hover,
+.terminal-box-resize-b:hover,
+.terminal-box-resize-l:hover,
+.terminal-box-resize-r:hover,
+.terminal-box-corner:hover {
+	background-color: rgba(161, 68, 255, 0.15);
+	box-shadow: 0 0 4px rgba(161, 68, 255, 0.4);
+}
+
+/* 2. Vertical Edge Border Handles */
+.terminal-box-resize-l,
+.terminal-box-resize-r {
+	/* Horizontal east-west mapping cursor alignment */
+	cursor: ew-resize !important;
+}
+
+.terminal-box-resize-t {
+	cursor: move !important;
+}
+
+.terminal-box-resize-b {
+	/* Horizontal east-west mapping cursor alignment */
+	cursor: ns-resize !important;
+}
+
+.dragging,
+.dragging * {
+	user-select: none !important;
+	-webkit-user-select: none !important;
+}
+
+/* 3. Diagonal Corner Node Enforcements */
+
+/* Top-Left to Bottom-Right Line Nodes (Northwest - Southeast) */
+.terminal-box-corner-tl,
+.terminal-box-corner-br {
+	cursor: nwse-resize !important;
+}
+
+/* Top-Right to Bottom-Left Line Nodes (Northeast - Southwest) */
+.terminal-box-corner-tr,
+.terminal-box-corner-bl {
+	cursor: nesw-resize !important;
+}
+
+@media all and (max-width: 800px) {
+
+	.xterm-screen,
+	.xterm-viewport {
+		height: auto !important;
+		overflow: visible !important;
+	}
+
+	/* Hide the xterm-provided scrollbar element entirely */
+	.xterm-scrollbar {
+		display: none !important;
+	}
+}
+
+
+.xterm,
+.xterm-viewport,
+.xterm-scrollable-element,
+.xterm-screen {
+	min-width: 120ch;
+}
+
+
+.xterm .xterm-selection div {
+	background-color: rgb(from var(--ace-selection-bg) r g b / 50%) !important;
+}
+
+
+.xterm .xterm-rows {
+	color: var(--ace-foreground) !important;
+}
+
+/* --- FOREGROUND COLORS (ANSI 0 - 15) --- */
+
+/* Normal Block (0 - 7) */
+.xterm .xterm-fg-0 {
+	color: var(--ace-bg) !important;
+}
+
+/* Black (Inverse Fallback) */
+.xterm .xterm-fg-1 {
+	color: var(--ace-pink) !important;
+}
+
+
+/* Red */
+.xterm .xterm-fg-2 {
+	color: var(--ace-green) !important;
+}
+
+/* Green */
+.xterm .xterm-fg-3 {
+	color: var(--ace-yellow) !important;
+}
+
+/* Yellow */
+.xterm .xterm-fg-4 {
+	color: var(--ace-blue) !important;
+}
+
+/* Blue */
+.xterm .xterm-fg-5 {
+	color: var(--ace-pink) !important;
+}
+
+/* Magenta */
+.xterm .xterm-fg-6 {
+	color: var(--ace-purple) !important;
+}
+
+/* Cyan */
+.xterm .xterm-fg-7 {
+	color: var(--ace-foreground) !important;
+}
+
+/* White */
+
+/* Bright/Bold Block (8 - 15) */
+.xterm .xterm-fg-8 {
+	color: var(--ace-selection-bg) !important;
+}
+
+/* Bright Black (Dark Gray / Gutter) */
+.xterm .xterm-fg-9 {
+	color: var(--ace-orange) !important;
+}
+
+/* Bright Red */
+.xterm .xterm-fg-10 {
+	color: rgb(from var(--ace-green) r g b) !important;
+}
+
+/* Bright Green */
+.xterm .xterm-fg-11 {
+	color: var(--ace-orange) !important;
+}
+
+/* Bright Yellow */
+.xterm .xterm-fg-12 {
+	color: rgb(from var(--ace-blue) r g b) !important;
+}
+
+/* Bright Blue */
+.xterm .xterm-fg-13 {
+	color: var(--ace-purple) !important;
+}
+
+/* Bright Magenta */
+.xterm .xterm-fg-14 {
+	color: var(--ace-blue) !important;
+}
+
+/* Bright Cyan */
+.xterm .xterm-fg-15 {
+	color: var(--ace-white, #ffffff) !important;
+}
+
+/* Bright White */
+
+
+/* --- BACKGROUND COLORS (ANSI 0 - 15) --- */
+
+/* Normal Block (0 - 7) */
+.xterm .xterm-bg-0 {
+	background-color: var(--ace-bg) !important;
+}
+
+.xterm .xterm-bg-1 {
+	background-color: var(--ace-pink) !important;
+}
+
+.xterm .xterm-bg-2 {
+	background-color: var(--ace-green) !important;
+}
+
+.xterm .xterm-bg-3 {
+	background-color: var(--ace-yellow) !important;
+}
+
+.xterm .xterm-bg-4 {
+	background-color: var(--ace-blue) !important;
+}
+
+.xterm .xterm-bg-5 {
+	background-color: var(--ace-pink) !important;
+}
+
+.xterm .xterm-bg-6 {
+	background-color: var(--ace-purple) !important;
+}
+
+.xterm .xterm-bg-7 {
+	background-color: var(--ace-foreground) !important;
+}
+
+/* Bright/Bold Block (8 - 15) */
+.xterm .xterm-bg-8 {
+	background-color: var(--ace-gutter-bg) !important;
+}
+
+.xterm .xterm-bg-9 {
+	background-color: var(--ace-orange) !important;
+}
+
+.xterm .xterm-bg-10 {
+	background-color: var(--ace-green) !important;
+}
+
+.xterm .xterm-bg-11 {
+	background-color: var(--ace-orange) !important;
+}
+
+.xterm .xterm-bg-12 {
+	background-color: var(--ace-blue) !important;
+}
+
+.xterm .xterm-bg-13 {
+	background-color: var(--ace-purple) !important;
+}
+
+.xterm .xterm-bg-14 {
+	background-color: var(--ace-blue) !important;
+}
+
+.xterm .xterm-bg-15 {
+	background-color: var(--ace-white, #ffffff) !important;
+}
+
+/* ==========================================================================
+   EXTENDED 256-COLOR ANSI OVERRIDES (MAPPED TO EXTRACTED LOG PREAMBLES)
+   ========================================================================== */
+
+/* --- BLUES & CYANS --- */
+.xterm .xterm-fg-27 {
+	color: var(--ace-blue) !important;
+}
+
+/* GITHUB */
+.xterm .xterm-fg-32 {
+	color: var(--ace-blue) !important;
+}
+
+/* LOG */
+.xterm .xterm-fg-33 {
+	color: var(--ace-blue) !important;
+}
+
+/* WARN */
+.xterm .xterm-fg-39 {
+	color: var(--ace-blue) !important;
+}
+
+/* FETCH */
+.xterm .xterm-fg-45 {
+	color: var(--ace-blue) !important;
+}
+
+/* API_RUN */
+
+/* --- GREENS & TEALS --- */
+.xterm .xterm-fg-36 {
+	color: var(--ace-green) !important;
+}
+
+/* INFO, ENGINE (Quake3e) */
+.xterm .xterm-fg-76 {
+	color: var(--ace-green) !important;
+}
+
+/* API_BUILD */
+.xterm .xterm-fg-118 {
+	color: var(--ace-green) !important;
+}
+
+/* API_LINK, BUILD */
+.xterm .xterm-fg-121 {
+	color: var(--ace-green) !important;
+}
+
+/* TOOLS */
+
+/* --- PURPLES & MAGENTAS --- */
+.xterm .xterm-fg-134 {
+	color: var(--ace-purple) !important;
+}
+
+/* UNZIP */
+.xterm .xterm-fg-165 {
+	color: var(--ace-purple) !important;
+}
+
+/* QVM */
+
+/* --- TAN & YELLOWS --- */
+.xterm .xterm-fg-179 {
+	color: var(--ace-yellow) !important;
+}
+
+/* TAR (Falls back cleanly if orange fails) */
+.xterm .xterm-fg-221 {
+	color: var(--ace-yellow) !important;
+}
+
+/* API_HEADER */
+
+/* --- ORANGES --- */
+.xterm .xterm-fg-202 {
+	color: var(--ace-orange) !important;
+}
+
+/* QVMERR */
+.xterm .xterm-fg-208 {
+	color: var(--ace-orange) !important;
+}
+
+/* API_COMPILE */
+.xterm .xterm-fg-214 {
+	color: var(--ace-orange) !important;
+}
+
+/* API_PREAMBLE */
+
+/* --- PINKS & REDS --- */
+.xterm .xterm-fg-196 {
+	color: var(--ace-pink) !important;
+}
+
+/* CMD_PREAMBLE, ERROR */
+.xterm .xterm-fg-201 {
+	color: var(--ace-pink) !important;
+}
+
+/* EDITOR */
+.xterm .xterm-fg-203 {
+	color: var(--ace-pink) !important;
+}
+
+/* TOOLERR */
+
+/* --- MUTED SYSTEM CONTROLS --- */
+.xterm .xterm-fg-244 {
+	color: var(--ace-comment) !important;
+}
+
+/* API_REMOVE (Slate Gray) */
+
+/* --- SELECTION & DECORATION TRAPS --- */
+
+/* Dynamic Selection Background with alpha generation */
+.xterm .xterm-selection div {
+	background-color: rgb(from var(--ace-selection-bg) r g b / 40%) !important;
+	color: var(--ace-foreground) !important;
+}
+
+/* Match your custom selection hacks safely */
+.xterm-decoration-top[style*="#DEADBEEF"],
+.xterm-decoration-top[style*="#DEADBE"],
+.xterm-decoration-top[style*="#deadbe"],
+.xterm-decoration-top[style*="rgb(222, 173, 190)"] {
+	background-color: rgb(from var(--ace-selection-bg) r g b / 20%) !important;
+	color: var(--ace-foreground) !important;
+}
+
+/* Optional: Customize the color of selected text if using the DOM backend */
+.xterm-rows .xterm-selection-selected {
+	color: #ffffff !important;
+}
+
+.terminal-filter-widget .scrollbar.vertical>.slider {
+	max-height: 100%;
+}
+
+.terminal-filter-widget .scrollbar.vertical {
+	position: absolute !important;
+
+	/* Lock it strictly to the right side of the layout screen */
+	top: 2px !important;
+	bottom: 2px !important;
+	right: 0px !important;
+
+	/* Fix the sizing collapse */
+	width: 14px !important;
+	max-height: inherit !important;
+	height: auto !important;
+	/* Forces it to match parent terminal bounding box height */
+
+	/* Ensure it floats on top of passing code text blocks */
+	z-index: 100 !important;
+}
+
+
+
+.xterm-scrollable-element,
+.xterm-viewport {
+	background-color: transparent !important;
+}
+
+.terminal-search-highlight {
+	/*
+    color: var(--ace-bg);
+    background-color: var(--ace-foreground);
+    backdrop-filter: invert(100%);
+     The actual inversion
+    z-index: 10;
+    opacity: 1;
+    */
+}
+
+.terminal-search-highlight {
+	mix-blend-mode: difference;
+	background-color: #ffffff !important;
+	/* Forces absolute, high-contrast inversion math */
+	color: transparent !important;
+	/* Ensures no inner text CSS blocks the math */
+}
+
+.terminal-file-underline {
+	background-color: transparent;
+	border-bottom: 2px dashed var(--ace-blue) !important;
+	cursor: pointer !important;
+}
+
+/*
+.xterm .xterm-viewport {
+    z-index: -1;
+}
+*/
+
+.xterm .terminal-file-underline {
+	pointer-events: all !important;
+}

@@ -1,0 +1,81 @@
+.filelist-wrapper {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 200px;
+	transition: max-width ease-in-out 0.5s, min-width ease-in-out 0.5s;
+	height: 100%;
+	width: 100%;
+}
+
+.filelist-wrapper>* {
+	flex-grow: 0;
+	flex-basis: min-content;
+}
+
+.treejs-render-target {
+	max-height: 100%;
+	max-width: 100%;
+	overflow: auto;
+	flex-grow: 1;
+}
+
+
+.treejs>.treejs-nodes {
+	margin: 0;
+	padding: 0 !important;
+}
+
+.treejs>.treejs-nodes,
+.treejs>.treejs-nodes>.treejs-node {
+	overflow: visible !important;
+}
+
+.treejs .treejs-node {
+	white-space: nowrap;
+}
+
+.treejs .treejs-node__open,
+.treejs .treejs-node__open>.treejs-nodes,
+.treejs .treejs-node__open>.treejs-nodes>.treejs-node {
+	overflow: visible;
+	max-width: none;
+	min-width: min-content;
+}
+
+.treejs .treejs-node__open>.treejs-nodes>.treejs-node__close>.treejs-nodes {
+	overflow: hidden;
+	width: 0;
+}
+
+.treejs .treejs-switcher:hover:before,
+.treejs .treejs-switcher:before {
+	border-top-color: var(--ace-foreground) !important;
+}
+
+
+.treejs .treejs-checkbox {
+	display: none !important;
+}
+
+.treejs-label::before {
+	font-family: 'boxicons' !important;
+	content: "\f413";
+	/* Boxicons 'file' code */
+	color: #555;
+	position: relative;
+	top: 3px;
+	padding-right: 4px;
+}
+
+/* Folder Icon (When node has children) */
+.treejs-node__close[data-extension="folder"]>.treejs-label::before {
+	content: "\f440";
+	/* Boxicons 'folder' code */
+	color: #f1c40f;
+}
+
+.treejs-node__open[data-extension="folder"]>.treejs-label::before {
+	content: "\f439";
+	/* Boxicons 'folder' code */
+	color: #f1c40f;
+}

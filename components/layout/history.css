@@ -1,0 +1,106 @@
+/* Updated container class to match our Lumino element style rules */
+#history-inline-toolbar {
+	position: relative;
+	display: inline-block;
+}
+
+/* Updated selector from .dropdown-menu to target the HTML element layout */
+.history-menu-dropdown {
+	display: none;
+	/* Controlled cleanly by the .show class toggle */
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background: var(--ace-gutter-bg);
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+	color: var(--ace-foreground);
+	list-style: none;
+	padding: 0;
+	margin: 4px 0 0 0;
+	width: 320px;
+	border-radius: 0;
+	max-height: 300px;
+	overflow-y: auto;
+	z-index: 10000;
+	/* Maintained the high z-index boundary layer from TS */
+}
+
+/* Class variant for displaying the dropdown dynamically */
+.history-menu-dropdown.show {
+	display: block;
+}
+
+.history-menu-dropdown li {
+	white-space: normal;
+}
+
+.history-item {
+	padding: 10px 12px;
+	cursor: pointer;
+}
+
+.history-item:hover:not(.disabled) {
+	background-color: var(--ace-bg);
+}
+
+.item-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+}
+
+.item-desc {
+	margin: 4px 0 0 24px;
+	font-size: 12px;
+}
+
+.history-item.current {}
+
+.history-item.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Updated parent from #toolbar to match the Lumino widget instance ID */
+#history-inline-toolbar button.select-box-trigger {
+	width: 100%;
+	color: var(--ace-foreground);
+	background: var(--ace-gutter-bg);
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+	border-radius: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	max-width: 100%;
+	margin-right: 0;
+	padding-right: 0;
+	height: 30px;
+	white-space: nowrap;
+}
+
+#history-inline-toolbar button.select-box-trigger .toggle-arrow {
+	margin: 0;
+	padding: 0;
+}
+
+.select-box-trigger .selected-value span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+}
+
+.select-box-trigger .selected-value {
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+}
+
+.select-box-trigger:focus {
+	outline: none;
+	border-color: var(--ace-blue);
+	background: var(--ace-bg);
+}

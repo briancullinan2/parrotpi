@@ -1,0 +1,742 @@
+#editor-container {
+    flex: 1 1 auto;
+    flex-basis: min-content;
+    min-height: 0;
+    overflow: hidden;
+}
+
+#editor-wrapper,
+#viewport-frame {
+    overflow: hidden;
+    scroll-margin-top: 100vh;
+}
+
+#paint,
+#viewport-frame {
+    font-size: 0;
+}
+
+#audio-editor,
+#nunu,
+#terminal,
+#paint,
+#viewport-frame {
+    margin-trim: block;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24em;
+    z-index: 1;
+    /* padding-top:22px; */
+    flex-direction: row;
+    perspective: 1000px;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+    white-space: collapse;
+    z-index: -1;
+    visibility: hidden;
+    flex-basis: 100%;
+}
+
+canvas {
+    touch-action: none;
+    overscroll-behavior: none;
+}
+
+#viewport-frame canvas {
+    background-color: var(--ace-bg);
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    display: inline-block;
+}
+
+#viewport-frame:focus {
+    outline: none;
+}
+
+.done-loading #viewport-frame canvas {
+    background-color: var(--ace-bg);
+}
+
+#viewport-frame:-moz-full-screen,
+#viewport-frame canvas:-moz-full-screen {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#viewport-frame:-webkit-full-screen,
+#viewport-frame canvas:-webkit-full-screen {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#scratch {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+}
+
+.panel-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.panel-column {
+    display: flex;
+    flex-direction: column;
+}
+
+#main {
+    touch-action: none;
+    overflow: hidden;
+    user-select: none;
+    overscroll-behavior: none;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    position: relative;
+    overflow: hidden;
+}
+
+#toggle-wrapper>div {
+    max-width: 100%;
+}
+
+#main-body {
+    flex-basis: 100%;
+    max-width: 100%;
+}
+
+#toggle-wrapper>*,
+#main-body>* {
+    flex-shrink: 1;
+    flex-grow: 1;
+    min-height: 0;
+    max-width: 100%;
+}
+
+#toggle-wrapper {
+    max-width: calc(100% - 60px);
+    width: calc(100% - 60px);
+    justify-content: stretch;
+    overflow: hidden;
+}
+
+#main>* {
+    flex-shrink: 1;
+    flex-grow: 1;
+    min-height: 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+#statusbar>* {
+    flex-basis: 50%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    /* The number of lines to show before the ellipsis */
+    overflow: hidden;
+}
+
+#statusbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    background-color: #666;
+    max-height: 1.6em;
+}
+
+#tabs {
+    max-width: 60px;
+    flex-basis: 60px;
+}
+
+@media all and (max-height: 600px) {
+    #tabs {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
+#list-wrapper ul.toolbar,
+#statusbar,
+#toolbar {
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: min-content;
+    flex-basis: min-content;
+    overflow: hidden;
+}
+
+#main_menu {
+    position: static !important;
+}
+
+#main_menu>ul.menu_bar {
+    padding: 0 10px !important;
+    display: inline-flex !important;
+    flex-wrap: wrap;
+    height: auto !important;
+    width: max-content;
+    max-width: 100%;
+}
+
+#main_menu>ul.menu_bar>li>a {
+    font-size: unset !important;
+    border: 2px solid transparent;
+}
+
+#toolbar>ul>li>ul>li:has(#main_menu) {
+    min-width: min-content;
+}
+
+#list-wrapper ul.toolbar>li:not(:has(:not(a:empty))),
+#toolbar>ul>li>ul>li:not(:has(:not(a:empty))),
+#toolbar>ul>li:not(:has(:not(a:empty))),
+#main_menu>ul.menu_bar>li {
+    min-width: min-content;
+}
+
+.ui_range .padded_track {
+    width: 100% !important;
+}
+
+#tabs ul {
+    display: flex;
+    flex-direction: column;
+}
+
+#toolbar>ul>li:has(ul),
+#toolbar>ul>li:has(nav) {
+    flex-basis: min-content;
+    padding: 2px 0;
+}
+
+#main #main_menu {
+    min-width: 100px;
+    max-width: 100%;
+}
+
+#toolbar>ul>li:has(ul):first-child>ul,
+#toolbar>ul>li:has(ul)+li:has(ul)>ul {
+    padding-left: 0;
+    margin-left: 0;
+    border-left: 0;
+}
+
+#toolbar>ul>li:has(ul):last-child>ul {
+    padding-right: 0;
+    margin-right: 0;
+    border-right: 0;
+}
+
+#list-wrapper ul.toolbar,
+#toolbar>ul>li>ul,
+#toolbar>ul {
+    display: inline-flex;
+    flex-direction: row;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#toolbar>ul>li>ul>li:has(select),
+#toolbar>ul>li:has(>select) {
+    min-width: 100px;
+    padding: 2px 5px;
+}
+
+#list-wrapper ul.toolbar>li,
+#toolbar>ul>li>ul>li,
+#toolbar>ul>li {
+    flex-shrink: 1;
+    min-width: 0;
+    flex-basis: 32px;
+    flex-grow: 1;
+    min-width: 100px;
+    width: 100%;
+    max-width: max-content;
+    white-space: nowrap;
+}
+
+#toolbar #filename {
+    width: 100%;
+}
+
+#toolbar>ul>li:has(#filename),
+#toolbar>ul>li:has(#reload) {
+    min-width: 200px;
+}
+
+#list-wrapper ul.toolbar,
+#terminals ul,
+#toolbar>ul,
+#tabs ul {
+    max-width: 100%;
+    display: flex;
+}
+
+#list-wrapper ul.toolbar,
+#list-wrapper ul.toolbar>li,
+#terminals ul,
+#terminals li,
+#toolbar>ul,
+#toolbar>ul>li,
+#toolbar>ul>li>ul,
+#toolbar>ul>li>ul>li,
+#tabs ul,
+#tabs li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    user-select: none;
+}
+
+#toolbar>ul>li {
+    padding: 0 5px;
+}
+
+#tabs a:empty {
+    text-decoration: none;
+    color: var(--ace-foreground);
+    padding: 5px 10px;
+    font-size: 32px;
+    border-left: 2px solid transparent;
+    border: 2px solid transparent;
+}
+
+[class^="bx"],
+[class*=" bx"],
+.bx,
+#toolbar a:empty {
+    text-decoration: none;
+    padding: 3px 5px;
+    font-size: 24px;
+    color: var(--ace-foreground);
+    border: 2px solid transparent;
+}
+
+[class^="bx"]::before,
+[class*=" bx"]::before,
+.bx::before,
+#tabs a:empty::before,
+#toolbar a:empty::before {
+    text-shadow: 1px 2px 3px rgb(from var(--ace-gutter-bg) r g b / 100%);
+    color: var(--ace-foreground);
+    font-family: boxicons !important;
+}
+
+#tabs a {
+    color: var(--ace-foreground);
+}
+
+#searchlist {
+    flex-basis: 300px;
+    flex-direction: column;
+}
+
+#github,
+#editor,
+#assetlist,
+#gamelist,
+#database,
+#filelist {
+    overflow: scroll;
+    flex-basis: 300px;
+    flex-direction: column;
+}
+
+#search-results {
+    overflow: scroll;
+    flex-basis: 100%;
+    flex-direction: column;
+}
+
+
+#terminal-container,
+#github,
+#editor,
+#assetlist,
+#gamelist,
+#database,
+#searchlist,
+#filelist {
+    display: none;
+    visibility: collapse;
+    max-height: 100%;
+}
+
+#audio-editor.not-hidden,
+#nunu.not-hidden,
+#terminal-container.not-hidden #terminal,
+#paint.not-hidden,
+#editor-container:not(:has(.not-hidden))~#paint:not(.hidden) {
+    visibility: visible;
+    position: relative;
+    z-index: 10;
+}
+
+#editor-container:not(:has(.not-hidden ~ .not-hidden)) #paint,
+#editor-container:not(:has(.not-hidden ~ .not-hidden)) #editor {
+    flex-basis: 100%;
+    width: 100%;
+}
+
+#editor-container:has(.not-hidden) {
+    display: flex;
+    visibility: visible;
+}
+
+#editor-container:has(#editor.not-hidden),
+#editor-container:has(#paint.not-hidden) {
+    flex-basis: 100%;
+}
+
+#editor-container:has(.not-hidden:not(#editor):not(#paint)) {
+    flex-basis: min-content;
+}
+
+/* ==========================================================================
+   TERMINAL AXIS BEHAVIORS (Applies regardless of order or sidebars)
+   ========================================================================== */
+
+.layout-terminal #terminal-container #terminal {
+    visibility: visible;
+    position: relative;
+    z-index: 10;
+}
+
+.layout-terminal #terminal-container {
+    display: flex;
+    min-width: 200px;
+    visibility: visible;
+    flex-grow: 1;
+    flex-basis: 40%;
+}
+
+.layout-terminal #toggle-wrapper {
+    flex-direction: column;
+}
+
+
+/* ==========================================================================
+   ORDER AXIS BEHAVIORS (Applies only when the ordering is reversed)
+   ========================================================================== */
+
+.layout-reverse-order #editor-container {
+    flex-direction: row-reverse;
+}
+
+
+/* ==========================================================================
+   SIDEBAR & ORDER CROSS-AXIS BEHAVIORS
+   ========================================================================== */
+
+/* Group 2 rule: Left files but with reversed viewport order */
+.layout-left-hand-files.layout-reverse-order #list-wrapper {
+    order: 1;
+}
+
+/* Groups 3 & 4 rule: Files sit on the right, no matter the direction order */
+.layout-right-hand-files #main-body {
+    flex-direction: row-reverse;
+}
+
+.layout-right-hand-files.layout-normal-order #list-wrapper {
+    order: 10;
+}
+
+
+.layout-focus-mode #toolbar .setting,
+.layout-focus-mode #toolbar .engine {
+    display: none;
+}
+
+
+@media all and (min-width: 1200px) {
+    [class*="previous-"]:not(.panel-filelist):not(.panel-gamelist):not(.panel-assetlist):not(.panel-serchlist):not(.panel-database) #editor-container:has(.not-hidden) {
+        flex-basis: 50%;
+        display: flex;
+        visibility: visible;
+    }
+
+    #editor-container:has(#editor.not-hidden),
+    #editor-container:has(#paint.not-hidden) {
+        flex-basis: 50%;
+        width: 50%;
+    }
+
+    .previous-viewport-frame #editor-container:not(:has(.not-hidden))~.not-hidden {
+        flex-basis: 50%;
+    }
+
+    .previous-editor #editor.hidden {
+        display: block;
+        min-width: 200px;
+        visibility: visible;
+    }
+
+    #editor-container:has(.not-hidden) {
+        flex-basis: 50%;
+        display: flex;
+        visibility: visible;
+    }
+
+    .previous-paint #paint.hidden {
+        visibility: visible;
+        position: relative;
+        z-index: 10;
+        display: block;
+    }
+
+    .previous-terminal-container #terminal-container {
+        display: flex;
+        min-width: 200px;
+        visibility: visible;
+        flex-basis: 50%;
+    }
+
+    .previous-viewport-frame #viewport-frame.hidden {
+        visibility: visible;
+        position: relative;
+        z-index: 100;
+        display: block;
+    }
+
+    .previous-terminal-container #terminal-container #terminal {
+        visibility: visible;
+        position: relative;
+        z-index: 10;
+    }
+
+    .previous-terminal-container:not(.panel-viewport-frame) #editor-container:not(:has(> :not(.hidden))),
+    .previous-viewport-frame:not(.panel-terminal-container) #editor-container:not(:has(> :not(.hidden))),
+    .previous-editor #editor-container:not(:has(> :not(.hidden):not(#list-wrapper))),
+    .previous-paint #editor-container:not(:has(> :not(.hidden):not(#list-wrapper))) {
+        display: flex;
+        visibility: visible;
+        flex-basis: 50%;
+    }
+
+    .previous-paint #viewport-frame,
+    .previous-editor #viewport-frame,
+    .previous-viewport-frame #viewport-frame,
+    [class*="previous-"]:not(.panel-filelist):not(.panel-gamelist):not(.panel-assetlist):not(.panel-serchlist):not(.panel-database) #editor-container:has(~.not-hidden)~.not-hidden {
+        flex-basis: 50%;
+    }
+
+    .previous-paint.panel-filelist #viewport-frame,
+    .previous-editor.panel-filelist #viewport-frame,
+    .previous-viewport-frame.panel-filelist #viewport-frame,
+    .previous-paint.panel-gamelist #viewport-frame,
+    .previous-editor.panel-gamelist #viewport-frame,
+    .previous-viewport-frame.panel-gamelist #viewport-frame,
+    .previous-paint.panel-assetlist #viewport-frame,
+    .previous-editor.panel-assetlist #viewport-frame,
+    .previous-viewport-frame.panel-search #viewport-frame,
+    .previous-paint.panel-search #viewport-frame,
+    .previous-editor.panel-search #viewport-frame,
+    .previous-viewport-frame.panel-database #viewport-frame,
+    .previous-paint.panel-database #viewport-frame,
+    .previous-editor.panel-database #viewport-frame {
+        flex-basis: 100%;
+    }
+}
+
+#list-wrapper {
+    min-width: 200px;
+    max-width: 200px;
+    /* Parent collapses/expands at 0.5s */
+    transition: max-width 0.3s ease-in-out, min-width 0.3s ease-in-out;
+}
+
+#list-wrapper:not(:has(>.not-hidden)) {
+    min-width: 0;
+    max-width: 0;
+}
+
+/* ==========================================
+   THE OPENING STATE (Reappear Slowly)
+============================================= */
+#list-wrapper ul.toolbar {
+    display: flex;
+    opacity: 1;
+
+    /* On Open: Take 0.5s to fade in, and WAIT 0.5s for the parent wrapper to expand first */
+    transition: display 0.3s allow-discrete, opacity 0.3s ease-in-out;
+    transition-delay: 0.3s;
+    min-width: 200px;
+    flex-shrink: 0;
+    min-height: min-content;
+}
+
+/* ==========================================
+   THE CLOSING STATE (Disappear Quickly)
+============================================= */
+#list-wrapper:not(:has(>.not-hidden)) ul.toolbar {
+    display: none;
+    opacity: 0;
+
+    /* On Close: Fade out instantly (0.1s) with NO delay (0s) so it vanishes before parent shrinks */
+    transition: display 0.1s allow-discrete, opacity 0.1s ease-in-out;
+    transition-delay: 0s;
+}
+
+/* 3. Entry hook for display swap */
+@starting-style {
+    #list-wrapper ul.toolbar {
+        opacity: 0;
+    }
+}
+
+#list-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    max-width: 200px;
+    flex-basis: 200px;
+    transition: max-width ease-in-out 0.5s, min-width ease-in-out 0.5s;
+}
+
+#list-wrapper ul.toolbar {
+    flex-basis: 50px;
+}
+
+#github.not-hidden,
+#assetlist.not-hidden,
+#gamelist.not-hidden,
+#database.not-hidden,
+#filelist.not-hidden {
+    display: block;
+    min-width: 200px;
+    flex-basis: 100%;
+    visibility: visible;
+}
+
+#searchlist.not-hidden {
+    display: flex;
+    flex-basis: 100%;
+    visibility: visible;
+}
+
+#editor:not(.hidden),
+#editor.not-hidden {
+    display: block;
+    min-width: 200px;
+    visibility: visible;
+}
+
+#terminal-container.not-hidden {
+    display: flex;
+    min-width: 200px;
+    visibility: visible;
+}
+
+#viewport-frame.not-hidden {
+    visibility: visible;
+    position: relative;
+    z-index: 100;
+}
+
+@media all and (max-width: 1200px) {
+    #editor-container:not(:has(> .not-hidden)):not(:has(> #list-wrapper>.not-hidden)) {
+        display: none;
+        visibility: collapse;
+    }
+}
+
+#viewport-frame.hidden~.not-hidden,
+#terminal-container.not-hidden {
+    flex-basis: 100%;
+}
+
+.not-hidden {}
+
+@media all and (max-width: 800px) {
+    #toolbar {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    #toolbar .engine,
+    #toolbar .setting {
+        display: none;
+    }
+
+    #terminal-container,
+    #editor,
+    #assetlist,
+    #github,
+    #gamelist,
+    #database,
+    #searchlist,
+    #filelist {
+        display: none;
+    }
+
+    #editor-container:not(:has(.not-hidden)):has(~ .not-hidden) {
+        display: none;
+    }
+
+    #terminals li {
+        flex-basis: 10%;
+        min-width: 60px;
+        flex-shrink: 1;
+    }
+
+    #terminals li:last-child {
+        flex-basis: 10%;
+        min-width: 150px;
+    }
+
+    #terminals ul {
+        flex-wrap: wrap;
+    }
+
+    #statusbar {
+        flex-basis: 100%;
+    }
+}
+
+@media all and (max-height: 800px) {
+
+    #toolbar .engine,
+    #toolbar .setting {
+        display: none;
+    }
+
+    #terminal,
+    #terminals {
+        display: none;
+    }
+}
