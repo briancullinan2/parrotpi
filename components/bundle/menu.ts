@@ -60,8 +60,6 @@ export const MODULE_REGISTRY: Record<string, ComponentRoute> = {
 	'audio': { label: 'Acoustic Spectrum', url: './components/audio/widget.ts', className: 'AudioSpectrumWidget', iconClass: 'bx bx-pulse' },
 	'searchlist': { label: 'Search Files', url: './components/filelist/widget-search.ts', className: 'SearchListWidget', iconClass: 'bx bx-search' },
 	'filelist': { label: 'Engine Files', url: './components/filelist/widget.ts', className: 'FileListWidget', iconClass: 'bx bx-folder-code' },
-	'database': { label: 'Local Database', url: './components/filelist/widget-database.ts', className: 'DatabaseListWidget', iconClass: 'bx bx-database' },
-	'github': { label: 'Github Commit', url: './components/filelist/widget-github.ts', className: 'GithubListWidget', iconClass: 'bx bx-git-repo-forked' },
 	'settings': { label: 'Edit Settings', url: './components/editor/widget-settings.ts', className: 'SettingsWidget', iconClass: 'bx bx-gear' },
 	'terminal-container': { label: 'Show Console', url: './components/terminal/widget.ts', className: 'TerminalWidget', iconClass: 'bx bx-terminal' },
 	'graph': { label: 'Workflow Graph', url: './components/graph/widget.ts', className: 'LightGraphWidget', iconClass: 'bx bx-chart-stacked-rows' },
