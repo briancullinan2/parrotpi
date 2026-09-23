@@ -59,6 +59,40 @@ export interface IStatusDataPayload
 	events: string[];
 }
 
+export interface IOpenFileInfo
+{
+	pid: number;
+	process: string;
+	fd?: string;
+	path: string;
+}
+
+export interface IOpenPortInfo
+{
+	protocol: string;
+	localAddress: string;
+	port: number;
+	pid: number;
+	process: string;
+	state: string;
+}
+
+// Update IStatusDataPayload interface to include new properties:
+export interface IStatusDataPayload
+{
+	timestamp: number;
+	os: OSPlatform;
+	metrics: IPerformanceMetrics;
+	samples: IPerformanceSample[];
+	processes: IProcessInfo[];
+	services: IServiceInfo[];
+	users: string[];
+	startupApps: string[];
+	events: string[];
+	openFiles: IOpenFileInfo[];  // <-- ADDED
+	openPorts: IOpenPortInfo[];  // <-- ADDED
+}
+
 export class StatusDataGenerator
 {
 	public static detectOS(): OSPlatform
@@ -101,11 +135,13 @@ export class StatusDataGenerator
 		const samples: IPerformanceSample[] = [];
 
 		// Fetch slow static lists (services, users, startup apps, logs) once upfront
-		const [services, users, startupApps, events] = await Promise.all([
+		const [services, users, startupApps, events, openFiles, openPorts] = await Promise.all([
 			this.fetchServices(targetOs),
 			this.fetchUsers(targetOs),
 			this.fetchStartupApps(targetOs),
-			this.fetchEvents(targetOs)
+			this.fetchEvents(targetOs),
+			this.fetchOpenFiles(targetOs),
+			this.fetchOpenPorts(targetOs)
 		]);
 
 		let latestProcesses: IProcessInfo[] = [];
@@ -148,7 +184,9 @@ export class StatusDataGenerator
 				services,
 				users,
 				startupApps,
-				events
+				events,
+				openFiles,
+				openPorts
 			};
 
 			if(onChunk)
@@ -174,9 +212,143 @@ export class StatusDataGenerator
 			services,
 			users,
 			startupApps,
-			events
+			events,
+			openFiles,
+			openPorts
 		};
 	}
+
+	private static async fetchOpenFiles(os: OSPlatform): Promise<IOpenFileInfo[]>
+	{
+		const files: IOpenFileInfo[] = [];
+		if(os === 'win32')
+		{
+			// Try Windows native 'openfiles' command first
+			const openFilesRaw = await this.runCmd('openfiles /query /fo csv /nh');
+
+			if(openFilesRaw && !openFilesRaw.includes('ERROR:'))
+			{
+				const lines = openFilesRaw.split('\n');
+				for(const line of lines)
+				{
+					const parts = line.replace(/"/g, '').split(',');
+					if(parts.length >= 4)
+					{
+						files.push({
+							pid: parseInt(parts[0], 10) || 0,
+							process: parts[1].trim(),
+							fd: parts[2].trim(), // Accessible User / Lock ID
+							path: parts[3].trim()
+						});
+					}
+				}
+			}
+
+			// Fallback: Query open DLL/File handles via PowerShell CIM if openfiles is disabled
+			if(files.length === 0)
+			{
+				const psCmd = `powershell -NoProfile -Command "Get-Process | Where-Object { $_.Path -ne $null } | Select-Object -First 100 Id, ProcessName, Path | ConvertTo-Json"`;
+				const raw = await this.runCmd(psCmd);
+				try
+				{
+					if(raw.startsWith('[') || raw.startsWith('{'))
+					{
+						const parsed = JSON.parse(raw);
+						const list = Array.isArray(parsed) ? parsed : [parsed];
+						for(const item of list)
+						{
+							if(item.Path)
+							{
+								files.push({
+									pid: item.Id || 0,
+									process: item.ProcessName || 'Unknown',
+									fd: 'FILE',
+									path: item.Path
+								});
+							}
+						}
+					}
+				} catch { /* Fallback fail */ }
+			}
+		} else
+		{
+			const raw = await this.runCmd('lsof -i -P -n | head -n 30 || lsof +D /tmp | head -n 30');
+			const lines = raw.split('\n').slice(1);
+			for(const line of lines)
+			{
+				const parts = line.trim().split(/\s+/);
+				if(parts.length >= 9)
+				{
+					files.push({
+						process: parts[0],
+						pid: parseInt(parts[1], 10) || 0,
+						fd: parts[3],
+						path: parts.slice(8).join(' ')
+					});
+				}
+			}
+		}
+		return files;
+	}
+
+
+	private static async fetchOpenPorts(os: OSPlatform): Promise<IOpenPortInfo[]>
+	{
+		const ports: IOpenPortInfo[] = [];
+		if(os === 'win32')
+		{
+			const cmd = 'powershell -NoProfile -Command "Get-NetTCPConnection -State Listen | Select-Object -First 100 LocalAddress, LocalPort, OwningProcess | ConvertTo-Json"';
+			const raw = await this.runCmd(cmd);
+			try
+			{
+				if(raw.startsWith('[') || raw.startsWith('{'))
+				{
+					const parsed = JSON.parse(raw);
+					const list = Array.isArray(parsed) ? parsed : [parsed];
+					for(const item of list)
+					{
+						ports.push({
+							protocol: 'TCP',
+							localAddress: item.LocalAddress || '0.0.0.0',
+							port: item.LocalPort || 0,
+							pid: item.OwningProcess || 0,
+							process: 'PID ' + (item.OwningProcess || 0),
+							state: 'LISTENING'
+						});
+					}
+				}
+			} catch { /* Fallback */ }
+		} else
+		{
+			const raw = await this.runCmd('netstat -tuln || ss -tuln');
+			const lines = raw.split('\n');
+			for(const line of lines)
+			{
+				if(line.includes('LISTEN') || line.includes('udp'))
+				{
+					const parts = line.trim().split(/\s+/);
+					if(parts.length >= 4)
+					{
+						const addrPort = parts[3].split(':');
+						const port = parseInt(addrPort[addrPort.length - 1], 10);
+						if(!isNaN(port))
+						{
+							ports.push({
+								protocol: parts[0].toUpperCase(),
+								localAddress: parts[3],
+								port: port,
+								pid: 0,
+								process: 'SYSTEM',
+								state: 'LISTEN'
+							});
+						}
+					}
+				}
+			}
+		}
+		return ports;
+	}
+
 
 	private static async runCmd(cmd: string): Promise<string>
 	{
@@ -190,33 +362,40 @@ export class StatusDataGenerator
 		}
 	}
 
-
 	private static async fetchMetrics(os: OSPlatform): Promise<IPerformanceMetrics>
 	{
 		if(os === 'win32')
 		{
-			const [cpuRaw, memRaw] = await Promise.all([
-				this.runCmd('wmic cpu get LoadPercentage /value'),
-				this.runCmd('wmic OS get FreePhysicalMemory,TotalVisibleMemorySize /value')
-			]);
+			// Query CPU & Memory directly via PowerShell JSON pipeline to avoid WMIC deprecation
+			const psCmd = `powershell -NoProfile -Command "$os = Get-CimInstance Win32_OperatingSystem; $cpu = (Get-CimInstance Win32_Processor | Measure-Object -Property LoadPercentage -Average).Average; @{ Free = $os.FreePhysicalMemory; Total = $os.TotalVisibleMemorySize; Cpu = $cpu } | ConvertTo-Json"`;
+			const raw = await this.runCmd(psCmd);
 
-			const cpuMatch = cpuRaw.match(/LoadPercentage=(\d+)/i);
-			let cpuVal = cpuMatch ? parseInt(cpuMatch[1], 10) : 0;
+			let cpuVal = 0;
+			let totalKb = 16777216; // Default 16GB
+			let freeKb = 8388608;
 
-			// Clean carriage returns and extract memory KB
-			const cleanMemRaw = memRaw.replace(/\r/g, '');
-			const freeMatch = cleanMemRaw.match(/FreePhysicalMemory=(\d+)/i);
-			const totalMatch = cleanMemRaw.match(/TotalVisibleMemorySize=(\d+)/i);
-
-			const freeKb = freeMatch ? parseInt(freeMatch[1], 10) : 0;
-			const totalKb = totalMatch ? parseInt(totalMatch[1], 10) : 16777216; // 16GB fallback
+			try
+			{
+				if(raw.startsWith('{'))
+				{
+					const parsed = JSON.parse(raw);
+					cpuVal = Math.round(parsed.Cpu || 0);
+					totalKb = parseInt(parsed.Total || '16777216', 10);
+					freeKb = parseInt(parsed.Free || '8388608', 10);
+				}
+			} catch
+			{
+				// Fallback parsing if JSON parsing fails
+				const cpuMatch = raw.match(/"Cpu":\s*([\d\.]+)/);
+				if(cpuMatch) cpuVal = Math.round(parseFloat(cpuMatch[1]));
+			}
 
 			const totalMb = Math.round(totalKb / 1024);
 			const freeMb = Math.round(freeKb / 1024);
-			const usedMb = Math.max(1024, totalMb - freeMb);
+			const usedMb = Math.max(0, totalMb - freeMb);
 
 			return {
-				cpuUsagePct: cpuVal,
+				cpuUsagePct: Math.min(100, Math.max(0, cpuVal)),
 				memUsedMB: usedMb,
 				memTotalMB: totalMb,
 				diskReadKbps: Math.floor(Math.random() * 400) + 20,
@@ -258,12 +437,10 @@ export class StatusDataGenerator
 		}
 	}
 
-
-
 	private static async fetchProcesses(os: OSPlatform): Promise<IProcessInfo[]>
 	{
 		const cmd = os === 'win32'
-			? 'powershell -NoProfile -Command "Get-Process | Sort-Object WorkingSet64 -Descending | Select-Object -First 30 Id, ProcessName, CPU, WorkingSet64 | ConvertTo-Json"'
+			? 'powershell -NoProfile -Command "Get-Process | Sort-Object WorkingSet64 -Descending | Select-Object -First 100 Id, ProcessName, @{Name=\'CPU\';Expression={if ($_.CPU) { [math]::Round($_.CPU, 1) } else { 0 }}}, @{Name=\'WorkingSet64\';Expression={$_.WorkingSet64}} | ConvertTo-Json"'
 			: 'ps aux --sort=-%cpu | head -n 31';
 
 		const raw = await this.runCmd(cmd);
@@ -280,7 +457,7 @@ export class StatusDataGenerator
 					procs.push({
 						pid: item.Id || 0,
 						name: item.ProcessName || 'Unknown',
-						cpu: Math.round((item.CPU || 0) * 10) / 10,
+						cpu: item.CPU || 0,
 						memoryMB: Math.round((item.WorkingSet64 || 0) / 1024 / 1024),
 						user: 'SYSTEM'
 					});
@@ -288,7 +465,7 @@ export class StatusDataGenerator
 				return procs;
 			} catch
 			{
-				// Fallback
+				// Fallback to manual line parsing
 			}
 		}
 
@@ -313,7 +490,7 @@ export class StatusDataGenerator
 	private static async fetchServices(os: OSPlatform): Promise<IServiceInfo[]>
 	{
 		const cmd = os === 'win32'
-			? 'powershell -NoProfile -Command "Get-Service | Select-Object -First 30 Name, Status | ConvertTo-Json"'
+			? 'powershell -NoProfile -Command "Get-Service | Select-Object -First 100 Name, Status | ConvertTo-Json"'
 			: 'systemctl list-units --type=service --state=running --no-pager --plain | head -n 30 || launchctl list | head -n 30';
 
 		const raw = await this.runCmd(cmd);

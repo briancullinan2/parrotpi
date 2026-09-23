@@ -48,9 +48,17 @@ export async function githubRequest(ownerName: string, repoName: string, url: st
 			headers['Authorization'] = `Bearer  ${token}`;
 		}
 
+		const timeoutSignal = AbortSignal.timeout(15000);
+
+		// Combine manual cancellation signal + 15s timeout signal
+		//const combinedSignal = this._abortController
+		//	? AbortSignal.any([this._abortController.signal, timeoutSignal])
+		//	: timeoutSignal;
+
 		const response = await fetch(fullUrl, {
 			method: 'GET',
-			headers: headers
+			headers: headers,
+			signal: timeoutSignal //combinedSignal
 		});
 
 		if(!response.ok)

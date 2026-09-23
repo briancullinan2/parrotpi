@@ -96,7 +96,7 @@ module.exports = {
 			patterns: [
 				{
 					from: path.resolve(__dirname, 'node_modules/d3/dist/d3.min.js'),
-					to: path.resolve(__dirname, 'd3.min.js'),
+					to: path.resolve(__dirname, 'components/status/d3.min.js'),
 				},
 			],
 		}),

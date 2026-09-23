@@ -2,7 +2,7 @@
 
 // @ts-check
 
-/** @type {import('../bundle/github.d').GithubWindow & import('../bundle/local.d').LocalWindow & import('../bundle/menu.d').GlobalToolbarsWindow & import('../compiler/make.d').BuildWindow} */
+/** @type {import('../bundle/github.d').GithubWindow & import('../bundle/local.d').LocalWindow & import('../bundle/menu.d').GlobalToolbarsWindow & import('../bundle/make.d').BuildWindow} */
 const localSelf = /** @type {any} */ (self);
 
 

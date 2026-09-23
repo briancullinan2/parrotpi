@@ -1,5 +1,5 @@
 import { Widget, Panel } from '@lumino/widgets';
-import { Message } from '@lumino/messaging';
+import { Message, MessageLoop } from '@lumino/messaging';
 import { DataGrid, DataModel } from '@lumino/datagrid';
 
 import type { IPerformanceSample, IProcessInfo, IStatusDataPayload } from './generate';
@@ -73,12 +73,15 @@ export class StatusWidget extends Widget
 	private _historyMetrics: IPerformanceSample[] = [];
 
 	// DOM Elements
+	private _openFilesTableBody!: HTMLElement;
+	private _openPortsTableBody!: HTMLElement;
 	private _accordionContainer!: HTMLElement;
 	private _d3SvgEl!: SVGSVGElement;
 	private _osBadgeEl!: HTMLElement;
 	private _uptimeEl!: HTMLElement;
 
 	// Lumino Grids & Interactive Containers
+	private _processesTableBody!: HTMLElement;
 	private _summaryBarEl!: HTMLDivElement;
 	private _processGrid!: DataGrid;
 	private _processGridModel!: ProcessGridModel;
@@ -164,14 +167,40 @@ export class StatusWidget extends Widget
 		super.dispose();
 	}
 
+	private _forceGridLayout(): void
+	{
+		if(!this._processGrid || !this._processGrid.isAttached) return;
+
+		const node = this._processGrid.node;
+		const w = node.clientWidth;
+		const h = node.clientHeight;
+
+		if(w <= 0 || h <= 0) return;
+
+		// 1. Tell Lumino the exact size
+		MessageLoop.sendMessage(
+			this._processGrid,
+			new Widget.ResizeMessage(w, h)
+		);
+
+		// 2. Recalculate sections + paint
+		this._processGrid.fit();
+		this._processGrid.update();
+	}
+
 	protected onResize(msg: Widget.ResizeMessage): void
 	{
 		super.onResize(msg);
 		this._renderD3Sparklines();
-		if(this._processGrid)
+
+		requestAnimationFrame(() =>
 		{
-			this._processGrid.update();
-		}
+			setTimeout(this.resizeGrid.bind(this), 200);
+		});
+		//if(this._processGrid)
+		//{
+		//	this._processGrid.update();
+		//}
 	}
 
 	public async startStreamingFetch(): Promise<void>
@@ -389,11 +418,57 @@ export class StatusWidget extends Widget
 		this._d3SvgEl.style.height = '100%';
 		perfContent.appendChild(this._d3SvgEl);
 
-		// Panel 2: Active Processes Section
+		// // Panel 2: Active Processes Section
+		// const procContainerWrapper = document.createElement('div');
+		// procContainerWrapper.style.display = 'flex';
+		// procContainerWrapper.style.flexDirection = 'column';
+		// procContainerWrapper.style.height = '320px';
+		// procContainerWrapper.style.width = '100%';
+
+		// this._summaryBarEl = document.createElement('div');
+		// this._summaryBarEl.style.display = 'grid';
+		// this._summaryBarEl.style.gridTemplateColumns = 'repeat(auto-fit, minmax(130px, 1fr))';
+		// this._summaryBarEl.style.gap = '8px';
+		// this._summaryBarEl.style.marginBottom = '8px';
+		// this._summaryBarEl.style.padding = '8px';
+		// this._summaryBarEl.style.backgroundColor = '#141414';
+		// this._summaryBarEl.style.border = '1px solid #282828';
+		// this._summaryBarEl.style.borderRadius = '3px';
+		// this._summaryBarEl.style.fontSize = '11px';
+
+		// const gridHost = document.createElement('div');
+		// gridHost.style.flex = '1';
+		// gridHost.style.position = 'relative';
+		// gridHost.style.minHeight = '260px';
+		// gridHost.style.width = '100%';
+
+		// this._processGridModel = new ProcessGridModel();
+		// this._processGrid = new DataGrid({
+		// 	style: {
+		// 		...DataGrid.defaultStyle,
+		// 		voidColor: '#1e1e1e',
+		// 		backgroundColor: '#181818',
+		// 		headerBackgroundColor: '#252526',
+		// 		headerGridLineColor: '#3c3c3c',
+		// 		gridLineColor: '#2d2d2d',
+		// 		selectionFillColor: 'rgba(0, 122, 204, 0.2)'
+		// 	},
+		// 	defaultSizes: {
+		// 		rowHeight: 24,
+		// 		columnWidth: 120,
+		// 		rowHeaderWidth: 0,
+		// 		columnHeaderHeight: 28
+		// 	}
+		// });
+		// this._processGrid.dataModel = this._processGridModel;
+
+		// gridHost.appendChild(this._processGrid.node);
+		// procContainerWrapper.appendChild(this._summaryBarEl);
+		// procContainerWrapper.appendChild(gridHost);
+		// Panel 2: Active Processes Section (Pure HTML Table)
 		const procContainerWrapper = document.createElement('div');
 		procContainerWrapper.style.display = 'flex';
 		procContainerWrapper.style.flexDirection = 'column';
-		procContainerWrapper.style.height = '320px';
 		procContainerWrapper.style.width = '100%';
 
 		this._summaryBarEl = document.createElement('div');
@@ -407,35 +482,39 @@ export class StatusWidget extends Widget
 		this._summaryBarEl.style.borderRadius = '3px';
 		this._summaryBarEl.style.fontSize = '11px';
 
-		const gridHost = document.createElement('div');
-		gridHost.style.flex = '1';
-		gridHost.style.position = 'relative';
-		gridHost.style.minHeight = '260px';
-		gridHost.style.width = '100%';
+		const procTableScrollWrapper = document.createElement('div');
+		procTableScrollWrapper.style.maxHeight = '280px';
+		procTableScrollWrapper.style.overflowY = 'auto';
+		procTableScrollWrapper.style.overflowX = 'hidden';
+		procTableScrollWrapper.style.border = '1px solid #282828';
+		procTableScrollWrapper.style.backgroundColor = '#181818';
 
-		this._processGridModel = new ProcessGridModel();
-		this._processGrid = new DataGrid({
-			style: {
-				...DataGrid.defaultStyle,
-				voidColor: '#1e1e1e',
-				backgroundColor: '#181818',
-				headerBackgroundColor: '#252526',
-				headerGridLineColor: '#3c3c3c',
-				gridLineColor: '#2d2d2d',
-				selectionFillColor: 'rgba(0, 122, 204, 0.2)'
-			},
-			defaultSizes: {
-				rowHeight: 24,
-				columnWidth: 120,
-				rowHeaderWidth: 0,
-				columnHeaderHeight: 28
-			}
-		});
-		this._processGrid.dataModel = this._processGridModel;
+		const procTable = document.createElement('table');
+		procTable.style.width = '100%';
+		procTable.style.borderCollapse = 'collapse';
+		procTable.style.fontSize = '11px';
+		procTable.style.textAlign = 'left';
 
-		gridHost.appendChild(this._processGrid.node);
+		procTable.innerHTML = `
+  <thead style="position: sticky; top: 0; background-color: #252526; z-index: 1;">
+    <tr style="border-bottom: 1px solid #3c3c3c; color: #007acc;">
+      <th style="padding: 6px 8px;">PID</th>
+      <th style="padding: 6px 8px;">Process Name</th>
+      <th style="padding: 6px 8px;">CPU %</th>
+      <th style="padding: 6px 8px;">Memory</th>
+      <th style="padding: 6px 8px;">User</th>
+      <th style="padding: 6px 8px;">Actions</th>
+    </tr>
+  </thead>
+`;
+
+		this._processesTableBody = document.createElement('tbody');
+		procTable.appendChild(this._processesTableBody);
+		procTableScrollWrapper.appendChild(procTable);
+
 		procContainerWrapper.appendChild(this._summaryBarEl);
-		procContainerWrapper.appendChild(gridHost);
+		procContainerWrapper.appendChild(procTableScrollWrapper);
+
 
 		// Panel 3: Services Table
 		const svcContent = document.createElement('div');
@@ -480,6 +559,57 @@ export class StatusWidget extends Widget
 		this._eventsLogEl.style.backgroundColor = '#141414';
 		this._eventsLogEl.style.padding = '8px';
 		this._eventsLogEl.style.border = '1px solid #282828';
+		// --- Panel: Open Files Shell ---
+		const filesContentWrapper = document.createElement('div');
+		filesContentWrapper.style.maxHeight = '220px';
+		filesContentWrapper.style.overflowY = 'auto';
+		filesContentWrapper.style.border = '1px solid #282828';
+		filesContentWrapper.style.backgroundColor = '#181818';
+
+		const filesTable = document.createElement('table');
+		filesTable.style.width = '100%';
+		filesTable.style.borderCollapse = 'collapse';
+		filesTable.style.fontSize = '11px';
+		filesTable.style.textAlign = 'left';
+		filesTable.innerHTML = `
+  <thead style="position: sticky; top: 0; background-color: #252526; z-index: 1;">
+    <tr style="border-bottom: 1px solid #3c3c3c; color: #007acc;">
+      <th style="padding: 6px 8px;">PID</th>
+      <th style="padding: 6px 8px;">Process</th>
+      <th style="padding: 6px 8px;">File / Handle Path</th>
+    </tr>
+  </thead>
+`;
+		this._openFilesTableBody = document.createElement('tbody');
+		filesTable.appendChild(this._openFilesTableBody);
+		filesContentWrapper.appendChild(filesTable);
+
+		// --- Panel: Active Ports Shell ---
+		const portsContentWrapper = document.createElement('div');
+		portsContentWrapper.style.maxHeight = '220px';
+		portsContentWrapper.style.overflowY = 'auto';
+		portsContentWrapper.style.border = '1px solid #282828';
+		portsContentWrapper.style.backgroundColor = '#181818';
+
+		const portsTable = document.createElement('table');
+		portsTable.style.width = '100%';
+		portsTable.style.borderCollapse = 'collapse';
+		portsTable.style.fontSize = '11px';
+		portsTable.style.textAlign = 'left';
+		portsTable.innerHTML = `
+  <thead style="position: sticky; top: 0; background-color: #252526; z-index: 1;">
+    <tr style="border-bottom: 1px solid #3c3c3c; color: #007acc;">
+      <th style="padding: 6px 8px;">Proto</th>
+      <th style="padding: 6px 8px;">Local Address</th>
+      <th style="padding: 6px 8px;">Port</th>
+      <th style="padding: 6px 8px;">Process (PID)</th>
+      <th style="padding: 6px 8px;">State</th>
+    </tr>
+  </thead>
+`;
+		this._openPortsTableBody = document.createElement('tbody');
+		portsTable.appendChild(this._openPortsTableBody);
+		portsContentWrapper.appendChild(portsTable);
 
 		// Mount Accordion Sections
 		this._accordionContainer.appendChild(this._createAccordionSection('Performance Metrics (Sustained 30s Window)', perfContent, true));
@@ -488,14 +618,38 @@ export class StatusWidget extends Widget
 		this._accordionContainer.appendChild(this._createAccordionSection('User Accounts', userGrid, false));
 		this._accordionContainer.appendChild(this._createAccordionSection('Startup Applications', mgmtGrid, false));
 		this._accordionContainer.appendChild(this._createAccordionSection('App History / System Log (dmesg & EventLog)', this._eventsLogEl, false));
+		this._accordionContainer.appendChild(this._createAccordionSection('Open Handles & File Locks', filesContentWrapper, false));
+		this._accordionContainer.appendChild(this._createAccordionSection('Listening Network Ports', portsContentWrapper, false));
 
 		this.node.appendChild(header);
 		this.node.appendChild(this._accordionContainer);
 
 		// Attach Lumino DataGrid Widget to trigger layout lifecycle messages
-		if(!this._processGrid.isAttached)
+
+
+		requestAnimationFrame(() =>
 		{
-			//Widget.attach(this._processGrid, gridHost);
+			setTimeout(this.resizeGrid.bind(this), 200);
+		});
+	}
+
+	private resizeGrid()
+	{
+		if(this._processGrid)
+		{
+			const host = this._processGrid.node.parentElement;
+			if(host && host.clientWidth > 0 && host.clientHeight > 0)
+			{
+				this._processGrid.node.style.width = `${host.clientWidth}px`;
+				this._processGrid.node.style.height = `${host.clientHeight}px`;
+				// optional: stretch columns
+				const colWidth = Math.max(90, Math.floor((host.clientWidth - 20) / 6));
+				for(let c = 0; c < 6; c++)
+				{
+					this._processGrid.resizeColumn('body', c, colWidth);
+				}
+			}
+			this._forceGridLayout();
 		}
 	}
 
@@ -548,33 +702,93 @@ export class StatusWidget extends Widget
 		}
 
 		// Lumino DataGrid Viewport & Canvas Layout Sync
-		if(Array.isArray(data.processes) && data.processes.length > 0)
+		// if(Array.isArray(data.processes) && data.processes.length > 0)
+		// {
+		// 	this._processGridModel.updateData(data.processes);
+
+		// 	if(this._processGrid)
+		// 	{
+		// 		const host = this._processGrid.node.parentElement;
+		// 		if(host && host.clientWidth > 0 && host.clientHeight > 0)
+		// 		{
+		// 			// Force container pixel bounds to match parent wrapper
+		// 			this._processGrid.node.style.width = `${host.clientWidth}px`;
+		// 			this._processGrid.node.style.height = `${host.clientHeight}px`;
+
+		// 			// Auto-stretch process columns to fill grid width
+		// 			const colWidth = Math.max(90, Math.floor((host.clientWidth - 20) / 6));
+		// 			for(let c = 0; c < 6; c++)
+		// 			{
+		// 				this._processGrid.resizeColumn('body', c, colWidth);
+		// 			}
+		// 		}
+
+		// 		// Trigger Lumino's internal message loop to redraw the canvas
+		// 		this._processGrid.update();
+		// 		if((this._processGrid as any).viewport)
+		// 		{
+		// 			(this._processGrid as any).viewport.update();
+		// 		}
+		// 	}
+		// }
+
+		// Render Processes HTML Table
+		if(Array.isArray(data.processes))
 		{
-			this._processGridModel.updateData(data.processes);
-
-			if(this._processGrid)
+			this._processesTableBody.replaceChildren();
+			for(const p of data.processes)
 			{
-				const host = this._processGrid.node.parentElement;
-				if(host && host.clientWidth > 0 && host.clientHeight > 0)
-				{
-					// Force container pixel bounds to match parent wrapper
-					this._processGrid.node.style.width = `${host.clientWidth}px`;
-					this._processGrid.node.style.height = `${host.clientHeight}px`;
+				const tr = document.createElement('tr');
+				tr.style.borderBottom = '1px solid #222';
 
-					// Auto-stretch process columns to fill grid width
-					const colWidth = Math.max(90, Math.floor((host.clientWidth - 20) / 6));
-					for(let c = 0; c < 6; c++)
-					{
-						this._processGrid.resizeColumn('body', c, colWidth);
-					}
-				}
+				const pidTd = document.createElement('td');
+				pidTd.style.padding = '4px 8px';
+				pidTd.style.color = '#888';
+				pidTd.textContent = String(p.pid);
 
-				// Trigger Lumino's internal message loop to redraw the canvas
-				this._processGrid.update();
-				if((this._processGrid as any).viewport)
-				{
-					(this._processGrid as any).viewport.update();
-				}
+				const nameTd = document.createElement('td');
+				nameTd.style.padding = '4px 8px';
+				nameTd.style.fontWeight = 'bold';
+				nameTd.textContent = p.name;
+
+				const cpuTd = document.createElement('td');
+				cpuTd.style.padding = '4px 8px';
+				cpuTd.style.color = p.cpu > 50 ? '#f44747' : '#4ec9b0';
+				cpuTd.textContent = `${p.cpu}%`;
+
+				const memTd = document.createElement('td');
+				memTd.style.padding = '4px 8px';
+				memTd.style.color = '#569cd6';
+				memTd.textContent = `${p.memoryMB} MB`;
+
+				const userTd = document.createElement('td');
+				userTd.style.padding = '4px 8px';
+				userTd.style.color = '#aaa';
+				userTd.textContent = p.user;
+
+				const actionTd = document.createElement('td');
+				actionTd.style.padding = '4px 8px';
+				const killBtn = document.createElement('button');
+				killBtn.textContent = 'KILL';
+				killBtn.style.fontSize = '9px';
+				killBtn.style.padding = '1px 6px';
+				killBtn.style.cursor = 'pointer';
+				killBtn.style.backgroundColor = '#841919';
+				killBtn.style.color = '#fff';
+				killBtn.style.border = 'none';
+				killBtn.style.borderRadius = '2px';
+				killBtn.onclick = () => this._sendAdminCommand('process', String(p.pid), 'kill');
+
+				actionTd.appendChild(killBtn);
+
+				tr.appendChild(pidTd);
+				tr.appendChild(nameTd);
+				tr.appendChild(cpuTd);
+				tr.appendChild(memTd);
+				tr.appendChild(userTd);
+				tr.appendChild(actionTd);
+
+				this._processesTableBody.appendChild(tr);
 			}
 		}
 
@@ -687,6 +901,80 @@ export class StatusWidget extends Widget
 				logEntry.style.marginBottom = '3px';
 				logEntry.textContent = `> ${ev}`;
 				this._eventsLogEl.appendChild(logEntry);
+			}
+		}
+
+		// --- Render Open Files ---
+		if(Array.isArray(data.openFiles))
+		{
+			this._openFilesTableBody.replaceChildren();
+			for(const f of data.openFiles)
+			{
+				const tr = document.createElement('tr');
+				tr.style.borderBottom = '1px solid #222';
+
+				const pidTd = document.createElement('td');
+				pidTd.style.padding = '4px 8px';
+				pidTd.style.color = '#888';
+				pidTd.textContent = String(f.pid);
+
+				const procTd = document.createElement('td');
+				procTd.style.padding = '4px 8px';
+				procTd.style.fontWeight = 'bold';
+				procTd.textContent = f.process;
+
+				const pathTd = document.createElement('td');
+				pathTd.style.padding = '4px 8px';
+				pathTd.style.color = '#ce9178';
+				pathTd.style.wordBreak = 'break-all';
+				pathTd.textContent = f.path;
+
+				tr.appendChild(pidTd);
+				tr.appendChild(procTd);
+				tr.appendChild(pathTd);
+				this._openFilesTableBody.appendChild(tr);
+			}
+		}
+
+		// --- Render Open Ports ---
+		if(Array.isArray(data.openPorts))
+		{
+			this._openPortsTableBody.replaceChildren();
+			for(const pt of data.openPorts)
+			{
+				const tr = document.createElement('tr');
+				tr.style.borderBottom = '1px solid #222';
+
+				const protoTd = document.createElement('td');
+				protoTd.style.padding = '4px 8px';
+				protoTd.style.color = '#569cd6';
+				protoTd.textContent = pt.protocol;
+
+				const addrTd = document.createElement('td');
+				addrTd.style.padding = '4px 8px';
+				addrTd.textContent = pt.localAddress;
+
+				const portTd = document.createElement('td');
+				portTd.style.padding = '4px 8px';
+				portTd.style.color = '#4ec9b0';
+				portTd.style.fontWeight = 'bold';
+				portTd.textContent = String(pt.port);
+
+				const procTd = document.createElement('td');
+				procTd.style.padding = '4px 8px';
+				procTd.textContent = `${pt.process} (${pt.pid})`;
+
+				const stateTd = document.createElement('td');
+				stateTd.style.padding = '4px 8px';
+				stateTd.style.color = '#6a9955';
+				stateTd.textContent = pt.state;
+
+				tr.appendChild(protoTd);
+				tr.appendChild(addrTd);
+				tr.appendChild(portTd);
+				tr.appendChild(procTd);
+				tr.appendChild(stateTd);
+				this._openPortsTableBody.appendChild(tr);
 			}
 		}
 	}

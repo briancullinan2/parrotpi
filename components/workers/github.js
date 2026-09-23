@@ -52,11 +52,14 @@ async function githubRequest(ownerName, repoName, url, authorize = true, buffer 
 		{
 		}
 
+		const timeoutSignal = AbortSignal.timeout(15000);
+
 		const response = await fetch(fullUrl, {
 			method: 'GET',
 			//mode: 'cors',
 			//credentials: 'omit',
-			headers: headers
+			headers: headers,
+			signal: timeoutSignal
 		});
 
 		if(!response.ok)

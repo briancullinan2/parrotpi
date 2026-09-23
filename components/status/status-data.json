@@ -1,442 +1,806 @@
 {
-  "timestamp": 1790117897759,
+  "timestamp": 1790125315521,
   "os": "win32",
   "metrics": {
-    "cpuUsagePct": 0,
-    "memUsedMB": 16384,
-    "memTotalMB": 16384,
-    "diskReadKbps": 339,
-    "diskWriteKbps": 160,
-    "netRxKbps": 352,
-    "netTxKbps": 209
+    "cpuUsagePct": 8,
+    "memUsedMB": 13399,
+    "memTotalMB": 16247,
+    "diskReadKbps": 46,
+    "diskWriteKbps": 31,
+    "netRxKbps": 181,
+    "netTxKbps": 245
   },
   "samples": [
     {
-      "time": 1790117870449,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 279,
-      "diskWriteKbps": 80,
-      "netRxKbps": 641,
-      "netTxKbps": 238
+      "time": 1790125287026,
+      "cpu": 13,
+      "memPct": 83.7,
+      "diskReadKbps": 256,
+      "diskWriteKbps": 82,
+      "netRxKbps": 579,
+      "netTxKbps": 284
     },
     {
-      "time": 1790117871890,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 272,
+      "time": 1790125290661,
+      "cpu": 18,
+      "memPct": 83.2,
+      "diskReadKbps": 394,
       "diskWriteKbps": 161,
-      "netRxKbps": 588,
-      "netTxKbps": 135
+      "netRxKbps": 678,
+      "netTxKbps": 277
     },
     {
-      "time": 1790117872915,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 43,
-      "diskWriteKbps": 205,
-      "netRxKbps": 808,
-      "netTxKbps": 189
+      "time": 1790125293391,
+      "cpu": 15,
+      "memPct": 82.4,
+      "diskReadKbps": 167,
+      "diskWriteKbps": 185,
+      "netRxKbps": 709,
+      "netTxKbps": 245
     },
     {
-      "time": 1790117873953,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 213,
-      "diskWriteKbps": 70,
-      "netRxKbps": 670,
-      "netTxKbps": 285
+      "time": 1790125296107,
+      "cpu": 18,
+      "memPct": 82.3,
+      "diskReadKbps": 137,
+      "diskWriteKbps": 14,
+      "netRxKbps": 244,
+      "netTxKbps": 169
     },
     {
-      "time": 1790117875380,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 306,
-      "diskWriteKbps": 186,
-      "netRxKbps": 445,
-      "netTxKbps": 35
+      "time": 1790125299265,
+      "cpu": 5,
+      "memPct": 82.3,
+      "diskReadKbps": 277,
+      "diskWriteKbps": 181,
+      "netRxKbps": 585,
+      "netTxKbps": 226
     },
     {
-      "time": 1790117876418,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 80,
-      "diskWriteKbps": 32,
-      "netRxKbps": 755,
-      "netTxKbps": 265
+      "time": 1790125301997,
+      "cpu": 16,
+      "memPct": 82.3,
+      "diskReadKbps": 280,
+      "diskWriteKbps": 92,
+      "netRxKbps": 580,
+      "netTxKbps": 215
     },
     {
-      "time": 1790117877442,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 194,
+      "time": 1790125304725,
+      "cpu": 7,
+      "memPct": 82.2,
+      "diskReadKbps": 198,
+      "diskWriteKbps": 161,
+      "netRxKbps": 285,
+      "netTxKbps": 147
+    },
+    {
+      "time": 1790125307890,
+      "cpu": 13,
+      "memPct": 82.2,
+      "diskReadKbps": 254,
       "diskWriteKbps": 196,
-      "netRxKbps": 819,
-      "netTxKbps": 247
+      "netRxKbps": 478,
+      "netTxKbps": 109
     },
     {
-      "time": 1790117878883,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 223,
-      "diskWriteKbps": 168,
-      "netRxKbps": 459,
-      "netTxKbps": 114
-    },
-    {
-      "time": 1790117879910,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 193,
-      "diskWriteKbps": 101,
-      "netRxKbps": 352,
-      "netTxKbps": 115
-    },
-    {
-      "time": 1790117880936,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 138,
-      "diskWriteKbps": 50,
-      "netRxKbps": 408,
-      "netTxKbps": 93
-    },
-    {
-      "time": 1790117882408,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 113,
-      "diskWriteKbps": 165,
-      "netRxKbps": 70,
-      "netTxKbps": 308
-    },
-    {
-      "time": 1790117883436,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 57,
-      "diskWriteKbps": 81,
-      "netRxKbps": 386,
-      "netTxKbps": 167
-    },
-    {
-      "time": 1790117884460,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 44,
-      "diskWriteKbps": 27,
-      "netRxKbps": 385,
-      "netTxKbps": 30
-    },
-    {
-      "time": 1790117885912,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 91,
-      "diskWriteKbps": 25,
-      "netRxKbps": 753,
-      "netTxKbps": 239
-    },
-    {
-      "time": 1790117886952,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 121,
+      "time": 1790125310640,
+      "cpu": 19,
+      "memPct": 82.4,
+      "diskReadKbps": 396,
       "diskWriteKbps": 144,
-      "netRxKbps": 502,
-      "netTxKbps": 44
+      "netRxKbps": 230,
+      "netTxKbps": 302
     },
     {
-      "time": 1790117887977,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 307,
-      "diskWriteKbps": 204,
-      "netRxKbps": 744,
-      "netTxKbps": 68
-    },
-    {
-      "time": 1790117889415,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 158,
-      "diskWriteKbps": 154,
-      "netRxKbps": 486,
-      "netTxKbps": 64
-    },
-    {
-      "time": 1790117890439,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 251,
-      "diskWriteKbps": 36,
-      "netRxKbps": 324,
-      "netTxKbps": 54
-    },
-    {
-      "time": 1790117891478,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 155,
-      "diskWriteKbps": 125,
-      "netRxKbps": 519,
-      "netTxKbps": 186
-    },
-    {
-      "time": 1790117893124,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 352,
-      "diskWriteKbps": 90,
-      "netRxKbps": 153,
-      "netTxKbps": 247
-    },
-    {
-      "time": 1790117894160,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 100,
-      "diskWriteKbps": 114,
-      "netRxKbps": 842,
-      "netTxKbps": 251
-    },
-    {
-      "time": 1790117895187,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 351,
-      "diskWriteKbps": 104,
-      "netRxKbps": 481,
-      "netTxKbps": 260
-    },
-    {
-      "time": 1790117896706,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 131,
-      "diskWriteKbps": 21,
-      "netRxKbps": 330,
-      "netTxKbps": 295
-    },
-    {
-      "time": 1790117897733,
-      "cpu": 0,
-      "memPct": 100,
-      "diskReadKbps": 339,
-      "diskWriteKbps": 160,
-      "netRxKbps": 352,
-      "netTxKbps": 209
+      "time": 1790125313369,
+      "cpu": 8,
+      "memPct": 82.5,
+      "diskReadKbps": 46,
+      "diskWriteKbps": 31,
+      "netRxKbps": 181,
+      "netTxKbps": 245
     }
   ],
   "processes": [
     {
-      "pid": 18796,
-      "name": "Code",
-      "cpu": 569.5,
-      "memoryMB": 725,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 13344,
+      "pid": 21228,
       "name": "chrome",
-      "cpu": 2506.9,
-      "memoryMB": 667,
+      "cpu": 500.9,
+      "memoryMB": 1555,
       "user": "SYSTEM"
     },
     {
       "pid": 16576,
       "name": "Code",
-      "cpu": 1802.9,
-      "memoryMB": 647,
+      "cpu": 2193.6,
+      "memoryMB": 675,
       "user": "SYSTEM"
     },
     {
-      "pid": 4756,
-      "name": "chrome",
-      "cpu": 1049.5,
-      "memoryMB": 324,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 12320,
-      "name": "chrome",
-      "cpu": 1731.1,
-      "memoryMB": 322,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 8528,
-      "name": "chrome",
-      "cpu": 4193.9,
-      "memoryMB": 319,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 16592,
+      "pid": 18796,
       "name": "Code",
-      "cpu": 31.5,
-      "memoryMB": 291,
+      "cpu": 708.6,
+      "memoryMB": 571,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15084,
+      "name": "chrome",
+      "cpu": 384.2,
+      "memoryMB": 454,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 20192,
+      "name": "chrome",
+      "cpu": 161.4,
+      "memoryMB": 449,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4768,
+      "name": "Fork",
+      "cpu": 298.8,
+      "memoryMB": 437,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 20704,
+      "name": "chrome",
+      "cpu": 239.9,
+      "memoryMB": 435,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 19364,
+      "name": "chrome",
+      "cpu": 121.2,
+      "memoryMB": 415,
       "user": "SYSTEM"
     },
     {
       "pid": 9032,
       "name": "explorer",
-      "cpu": 374.2,
-      "memoryMB": 286,
+      "cpu": 425.1,
+      "memoryMB": 312,
       "user": "SYSTEM"
     },
     {
       "pid": 2620,
       "name": "MsMpEng",
       "cpu": 0,
-      "memoryMB": 283,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 4768,
-      "name": "Fork",
-      "cpu": 225.8,
-      "memoryMB": 278,
+      "memoryMB": 307,
       "user": "SYSTEM"
     },
     {
       "pid": 8072,
       "name": "Code",
-      "cpu": 306.2,
-      "memoryMB": 274,
+      "cpu": 368,
+      "memoryMB": 305,
       "user": "SYSTEM"
     },
     {
-      "pid": 9540,
-      "name": "BackgroundDownload",
-      "cpu": 61.4,
-      "memoryMB": 272,
+      "pid": 20788,
+      "name": "chrome",
+      "cpu": 24.3,
+      "memoryMB": 290,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15988,
+      "name": "chrome",
+      "cpu": 401,
+      "memoryMB": 262,
       "user": "SYSTEM"
     },
     {
       "pid": 14728,
       "name": "Discord",
-      "cpu": 2595.4,
-      "memoryMB": 246,
+      "cpu": 2638.7,
+      "memoryMB": 257,
       "user": "SYSTEM"
     },
     {
       "pid": 5568,
       "name": "steamwebhelper",
-      "cpu": 92.8,
+      "cpu": 93.9,
       "memoryMB": 215,
       "user": "SYSTEM"
     },
     {
-      "pid": 8660,
-      "name": "node",
+      "pid": 20416,
+      "name": "chrome",
       "cpu": 3.7,
       "memoryMB": 196,
       "user": "SYSTEM"
     },
     {
-      "pid": 16280,
-      "name": "EpicGamesLauncher",
-      "cpu": 2541.9,
-      "memoryMB": 154,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 8404,
-      "name": "Taskmgr",
-      "cpu": 890.9,
-      "memoryMB": 139,
+      "pid": 20984,
+      "name": "node",
+      "cpu": 3.5,
+      "memoryMB": 195,
       "user": "SYSTEM"
     },
     {
       "pid": 2180,
       "name": "Code",
-      "cpu": 383.9,
-      "memoryMB": 136,
+      "cpu": 472.8,
+      "memoryMB": 169,
       "user": "SYSTEM"
     },
     {
-      "pid": 4452,
-      "name": "agy",
-      "cpu": 3228.8,
-      "memoryMB": 133,
+      "pid": 16280,
+      "name": "EpicGamesLauncher",
+      "cpu": 2734.1,
+      "memoryMB": 162,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 8404,
+      "name": "Taskmgr",
+      "cpu": 1461.4,
+      "memoryMB": 158,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 10588,
+      "name": "chrome",
+      "cpu": 17.8,
+      "memoryMB": 142,
       "user": "SYSTEM"
     },
     {
       "pid": 11020,
       "name": "LaunchBox",
-      "cpu": 2708.4,
-      "memoryMB": 132,
+      "cpu": 3422.4,
+      "memoryMB": 138,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4452,
+      "name": "agy",
+      "cpu": 3411.8,
+      "memoryMB": 136,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 21468,
+      "name": "chrome",
+      "cpu": 2.6,
+      "memoryMB": 131,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 10576,
+      "name": "chrome",
+      "cpu": 2.9,
+      "memoryMB": 129,
       "user": "SYSTEM"
     },
     {
       "pid": 1600,
       "name": "dwm",
       "cpu": 0,
-      "memoryMB": 116,
+      "memoryMB": 123,
       "user": "SYSTEM"
     },
     {
-      "pid": 20364,
-      "name": "BackgroundDownload",
-      "cpu": 13.6,
-      "memoryMB": 115,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 268,
-      "name": "chrome",
-      "cpu": 0.3,
-      "memoryMB": 89,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 16124,
-      "name": "jellyfin",
-      "cpu": 66.2,
-      "memoryMB": 80,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 2904,
-      "name": "node",
-      "cpu": 1.2,
-      "memoryMB": 80,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 18828,
-      "name": "node",
-      "cpu": 1.3,
-      "memoryMB": 79,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 19616,
-      "name": "node",
-      "cpu": 1.2,
-      "memoryMB": 79,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 19768,
-      "name": "node",
-      "cpu": 1.1,
-      "memoryMB": 79,
-      "user": "SYSTEM"
-    },
-    {
-      "pid": 17396,
-      "name": "chrome",
-      "cpu": 9.1,
-      "memoryMB": 76,
+      "pid": 16592,
+      "name": "Code",
+      "cpu": 38.1,
+      "memoryMB": 103,
       "user": "SYSTEM"
     },
     {
       "pid": 3456,
       "name": "Code",
-      "cpu": 295.8,
+      "cpu": 360.7,
+      "memoryMB": 100,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 20824,
+      "name": "chrome",
+      "cpu": 1.5,
+      "memoryMB": 98,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 19768,
+      "name": "node",
+      "cpu": 28.6,
+      "memoryMB": 88,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 18828,
+      "name": "node",
+      "cpu": 26.6,
+      "memoryMB": 87,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 19616,
+      "name": "node",
+      "cpu": 28,
+      "memoryMB": 87,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 2904,
+      "name": "node",
+      "cpu": 28.5,
+      "memoryMB": 86,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 16124,
+      "name": "jellyfin",
+      "cpu": 67.3,
+      "memoryMB": 84,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 2988,
+      "name": "explorer",
+      "cpu": 140.1,
+      "memoryMB": 83,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15048,
+      "name": "Discord",
+      "cpu": 56.1,
+      "memoryMB": 82,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 12380,
+      "name": "chrome",
+      "cpu": 0.9,
       "memoryMB": 75,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 21420,
+      "name": "powershell",
+      "cpu": 0.5,
+      "memoryMB": 73,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 18144,
+      "name": "chrome",
+      "cpu": 1.5,
+      "memoryMB": 71,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 14820,
+      "name": "Discord",
+      "cpu": 1868.2,
+      "memoryMB": 68,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 16648,
+      "name": "node",
+      "cpu": 0.8,
+      "memoryMB": 68,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 21288,
+      "name": "chrome",
+      "cpu": 0.9,
+      "memoryMB": 66,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 12888,
+      "name": "chrome",
+      "cpu": 24.9,
+      "memoryMB": 64,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 8708,
+      "name": "WindowsTerminal",
+      "cpu": 20.6,
+      "memoryMB": 59,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 2496,
+      "name": "chrome",
+      "cpu": 0.5,
+      "memoryMB": 58,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 13580,
+      "name": "steam",
+      "cpu": 2826.7,
+      "memoryMB": 57,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 19792,
+      "name": "node",
+      "cpu": 0.5,
+      "memoryMB": 55,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 188,
+      "name": "Secure System",
+      "cpu": 0,
+      "memoryMB": 55,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 19848,
+      "name": "node",
+      "cpu": 0.2,
+      "memoryMB": 53,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 12552,
+      "name": "node",
+      "cpu": 0.2,
+      "memoryMB": 53,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4108,
+      "name": "svchost",
+      "cpu": 0,
+      "memoryMB": 51,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 12104,
+      "name": "msedgewebview2",
+      "cpu": 39.7,
+      "memoryMB": 51,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 8580,
+      "name": "steamwebhelper",
+      "cpu": 207.2,
+      "memoryMB": 49,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15396,
+      "name": "EpicOnlineServicesUserHelper",
+      "cpu": 162.7,
+      "memoryMB": 48,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15776,
+      "name": "Code",
+      "cpu": 75.2,
+      "memoryMB": 46,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 436,
+      "name": "Code",
+      "cpu": 55.4,
+      "memoryMB": 46,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 17168,
+      "name": "EOSOverlayRenderer-Win64-Shipping",
+      "cpu": 12.8,
+      "memoryMB": 46,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 13104,
+      "name": "chrome",
+      "cpu": 0.3,
+      "memoryMB": 43,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 10152,
+      "name": "SearchHost",
+      "cpu": 28.8,
+      "memoryMB": 43,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 6208,
+      "name": "Code",
+      "cpu": 3.1,
+      "memoryMB": 43,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15624,
+      "name": "powershell",
+      "cpu": 9.9,
+      "memoryMB": 42,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 1348,
+      "name": "svchost",
+      "cpu": 0,
+      "memoryMB": 42,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 12036,
+      "name": "OneDrive",
+      "cpu": 47.4,
+      "memoryMB": 41,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 11144,
+      "name": "msedgewebview2",
+      "cpu": 140.2,
+      "memoryMB": 39,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4396,
+      "name": "taskhostw",
+      "cpu": 8.7,
+      "memoryMB": 39,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15512,
+      "name": "ShellExperienceHost",
+      "cpu": 3.2,
+      "memoryMB": 38,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 13936,
+      "name": "steamwebhelper",
+      "cpu": 116.5,
+      "memoryMB": 36,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 17708,
+      "name": "EOSOverlayRenderer-Win64-Shipping",
+      "cpu": 2862.1,
+      "memoryMB": 36,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 5800,
+      "name": "Twinkle Tray",
+      "cpu": 322.2,
+      "memoryMB": 35,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 13700,
+      "name": "steamwebhelper",
+      "cpu": 1925.2,
+      "memoryMB": 35,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 14740,
+      "name": "chrome",
+      "cpu": 0.1,
+      "memoryMB": 35,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 6204,
+      "name": "powershell",
+      "cpu": 1.7,
+      "memoryMB": 33,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 5684,
+      "name": "Twinkle Tray",
+      "cpu": 23.4,
+      "memoryMB": 32,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 3708,
+      "name": "Code",
+      "cpu": 6.2,
+      "memoryMB": 31,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 10172,
+      "name": "StartMenuExperienceHost",
+      "cpu": 22.3,
+      "memoryMB": 31,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 228,
+      "name": "Registry",
+      "cpu": 0,
+      "memoryMB": 29,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4868,
+      "name": "MicrosoftStartFeedProvider",
+      "cpu": 11,
+      "memoryMB": 29,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 9704,
+      "name": "svchost",
+      "cpu": 10.5,
+      "memoryMB": 28,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 1636,
+      "name": "sihost",
+      "cpu": 292.2,
+      "memoryMB": 27,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 7136,
+      "name": "svchost",
+      "cpu": 0,
+      "memoryMB": 26,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 17404,
+      "name": "Code",
+      "cpu": 19.1,
+      "memoryMB": 26,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 2480,
+      "name": "backgroundTaskHost",
+      "cpu": 4.4,
+      "memoryMB": 26,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 11852,
+      "name": "msedgewebview2",
+      "cpu": 12.8,
+      "memoryMB": 25,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 14372,
+      "name": "Twinkle Tray",
+      "cpu": 127.4,
+      "memoryMB": 25,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 21456,
+      "name": "chrome",
+      "cpu": 3.1,
+      "memoryMB": 25,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 11500,
+      "name": "Code",
+      "cpu": 2.1,
+      "memoryMB": 24,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 17008,
+      "name": "WmiPrvSE",
+      "cpu": 0,
+      "memoryMB": 24,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 8304,
+      "name": "svchost",
+      "cpu": 6.7,
+      "memoryMB": 24,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 5688,
+      "name": "TextInputHost",
+      "cpu": 85.5,
+      "memoryMB": 23,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 13944,
+      "name": "cloudflared",
+      "cpu": 0,
+      "memoryMB": 23,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 10228,
+      "name": "Code",
+      "cpu": 17.7,
+      "memoryMB": 23,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15068,
+      "name": "Discord",
+      "cpu": 79.2,
+      "memoryMB": 23,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 5104,
+      "name": "gamingservices",
+      "cpu": 0,
+      "memoryMB": 22,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4288,
+      "name": "svchost",
+      "cpu": 0,
+      "memoryMB": 22,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 16740,
+      "name": "ollama app",
+      "cpu": 53,
+      "memoryMB": 22,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 5276,
+      "name": "svchost",
+      "cpu": 0,
+      "memoryMB": 22,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 7440,
+      "name": "RuntimeBroker",
+      "cpu": 27.6,
+      "memoryMB": 22,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 15820,
+      "name": "svchost",
+      "cpu": 0,
+      "memoryMB": 22,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 4088,
+      "name": "svchost",
+      "cpu": 0,
+      "memoryMB": 21,
+      "user": "SYSTEM"
+    },
+    {
+      "pid": 9664,
+      "name": "CrossDeviceService",
+      "cpu": 1338.7,
+      "memoryMB": 21,
       "user": "SYSTEM"
     }
   ],
@@ -519,7 +883,7 @@
     },
     {
       "name": "BITS",
-      "status": "running"
+      "status": "stopped"
     },
     {
       "name": "BluetoothUserService_96b08",
@@ -560,6 +924,286 @@
     {
       "name": "CDPUserSvc_96b08",
       "status": "running"
+    },
+    {
+      "name": "CertPropSvc",
+      "status": "stopped"
+    },
+    {
+      "name": "chromoting",
+      "status": "running"
+    },
+    {
+      "name": "ClipSVC",
+      "status": "stopped"
+    },
+    {
+      "name": "CloudBackupRestoreSvc_96b08",
+      "status": "stopped"
+    },
+    {
+      "name": "Cloudflared",
+      "status": "running"
+    },
+    {
+      "name": "cloudidsvc",
+      "status": "stopped"
+    },
+    {
+      "name": "com.docker.service",
+      "status": "stopped"
+    },
+    {
+      "name": "COMSysApp",
+      "status": "stopped"
+    },
+    {
+      "name": "ConsentUxUserSvc_96b08",
+      "status": "stopped"
+    },
+    {
+      "name": "CoreMessagingRegistrar",
+      "status": "running"
+    },
+    {
+      "name": "cphs",
+      "status": "running"
+    },
+    {
+      "name": "cplspcon",
+      "status": "running"
+    },
+    {
+      "name": "CredentialEnrollmentManagerUserSvc_96b08",
+      "status": "stopped"
+    },
+    {
+      "name": "CryptSvc",
+      "status": "running"
+    },
+    {
+      "name": "CscService",
+      "status": "stopped"
+    },
+    {
+      "name": "DcomLaunch",
+      "status": "running"
+    },
+    {
+      "name": "dcsvc",
+      "status": "stopped"
+    },
+    {
+      "name": "debugregsvc",
+      "status": "running"
+    },
+    {
+      "name": "defragsvc",
+      "status": "stopped"
+    },
+    {
+      "name": "Deskflow",
+      "status": "running"
+    },
+    {
+      "name": "DeveloperToolsService",
+      "status": "stopped"
+    },
+    {
+      "name": "DeviceAssociationBrokerSvc_96b08",
+      "status": "stopped"
+    },
+    {
+      "name": "DeviceAssociationService",
+      "status": "running"
+    },
+    {
+      "name": "DeviceInstall",
+      "status": "running"
+    },
+    {
+      "name": "DevicePickerUserSvc_96b08",
+      "status": "stopped"
+    },
+    {
+      "name": "DevicesFlowUserSvc_96b08",
+      "status": "stopped"
+    },
+    {
+      "name": "DevQueryBroker",
+      "status": "stopped"
+    },
+    {
+      "name": "Dhcp",
+      "status": "running"
+    },
+    {
+      "name": "diagsvc",
+      "status": "stopped"
+    },
+    {
+      "name": "DiagTrack",
+      "status": "stopped"
+    },
+    {
+      "name": "DialogBlockingService",
+      "status": "stopped"
+    },
+    {
+      "name": "DiscordSystemHelper",
+      "status": "stopped"
+    },
+    {
+      "name": "DispBrokerDesktopSvc",
+      "status": "running"
+    },
+    {
+      "name": "DisplayEnhancementService",
+      "status": "running"
+    },
+    {
+      "name": "DmEnrollmentSvc",
+      "status": "stopped"
+    },
+    {
+      "name": "dmwappushservice",
+      "status": "stopped"
+    },
+    {
+      "name": "Dnscache",
+      "status": "running"
+    },
+    {
+      "name": "DoSvc",
+      "status": "running"
+    },
+    {
+      "name": "dot3svc",
+      "status": "stopped"
+    },
+    {
+      "name": "DPS",
+      "status": "running"
+    },
+    {
+      "name": "DsmSvc",
+      "status": "stopped"
+    },
+    {
+      "name": "DsSvc",
+      "status": "running"
+    },
+    {
+      "name": "DusmSvc",
+      "status": "running"
+    },
+    {
+      "name": "EapHost",
+      "status": "stopped"
+    },
+    {
+      "name": "edgeupdate",
+      "status": "stopped"
+    },
+    {
+      "name": "edgeupdatem",
+      "status": "stopped"
+    },
+    {
+      "name": "EFS",
+      "status": "stopped"
+    },
+    {
+      "name": "embeddedmode",
+      "status": "stopped"
+    },
+    {
+      "name": "EntAppSvc",
+      "status": "stopped"
+    },
+    {
+      "name": "EpicGamesUpdater",
+      "status": "stopped"
+    },
+    {
+      "name": "EpicOnlineServices",
+      "status": "stopped"
+    },
+    {
+      "name": "EventLog",
+      "status": "running"
+    },
+    {
+      "name": "EventSystem",
+      "status": "running"
+    },
+    {
+      "name": "fdPHost",
+      "status": "stopped"
+    },
+    {
+      "name": "FDResPub",
+      "status": "stopped"
+    },
+    {
+      "name": "fhsvc",
+      "status": "stopped"
+    },
+    {
+      "name": "FontCache",
+      "status": "running"
+    },
+    {
+      "name": "FontCache3.0.0.0",
+      "status": "running"
+    },
+    {
+      "name": "FrameServer",
+      "status": "stopped"
+    },
+    {
+      "name": "FrameServerMonitor",
+      "status": "stopped"
+    },
+    {
+      "name": "GameInputRedistService",
+      "status": "running"
+    },
+    {
+      "name": "GameInputSvc",
+      "status": "running"
+    },
+    {
+      "name": "GamingServices",
+      "status": "running"
+    },
+    {
+      "name": "GamingServicesNet",
+      "status": "running"
+    },
+    {
+      "name": "GoogleChromeElevationService",
+      "status": "stopped"
+    },
+    {
+      "name": "GoogleUpdaterInternalService152.0.7933.0",
+      "status": "stopped"
+    },
+    {
+      "name": "GoogleUpdaterService152.0.7933.0",
+      "status": "stopped"
+    },
+    {
+      "name": "gpsvc",
+      "status": "running"
+    },
+    {
+      "name": "GraphicsPerfSvc",
+      "status": "stopped"
+    },
+    {
+      "name": "HgClientService",
+      "status": "stopped"
     }
   ],
   "users": [
@@ -584,23 +1228,980 @@
     "JellyfinTray",
     "EpicGamesLauncher",
     "Docker Desktop",
+    "GoogleChromeAutoLaunch_CB54AF63FEC9218B78433039B76FD77F",
     "SecurityHealth"
   ],
   "events": [
-    "The start type of the Background Intelligent Transfer Service service was changed from demand start to auto start.",
-    "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start.",
-    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628894760501270). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628894760501270). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628929120239639). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628929120239639). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628911940370453). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628911940370453). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18158513719569547273). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18158513719569547273). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18302628911940370452). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18302628911940370452). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18158513719569547272). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Attempted to add URL (http://*:2869/upnp/eventing/) to URL group (18158513719569547272). Status: 0. Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
-    "Removed URL (http://*:2869/upnp/eventing/) from URL group (18374686484503461896). Process Id 11088 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19"
+    "A request to allocate an ephemeral port number from the global UDP port space has failed due to all such ports being in use.",
+    "The time provider 'VMICTimeProvider' has indicated that the current hardware and operating environment is not supported and has stopped. This behavior is expected for VMICTimeProvider on non-HyperV-guest environments. This may be the expected behavior for the current provider in the current operating environment as well.",
+    "The time provider 'VMICTimeProvider' has indicated that the current hardware and operating environment is not supported and has stopped. This behavior is expected for VMICTimeProvider on non-HyperV-guest environments. This may be the expected behavior for the current provider in the current operating environment as well.",
+    "Attempted to add URL (http://*:5357/6505ac59-8483-4196-b02e-c2678ef8ae30/) to URL group (18302628894760501271). Status: 0. Process Id 4280 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Create URL group 18302628894760501271. Status 0. Process Id 4280 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Delete URL group 18302628886170566680. Status 0. Process Id 4280 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Removed URL (http://*:5357/d5056fdd-9b5f-495f-8b2e-96e853f263fc/) from URL group (18302628886170566680). Process Id 4280 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Attempted to add URL (http://*:5357/d5056fdd-9b5f-495f-8b2e-96e853f263fc/) to URL group (18302628886170566680). Status: 0. Process Id 4280 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Create URL group 18302628886170566680. Status 0. Process Id 4280 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Delete URL group 18302628907645403155. Status 0. Process Id 4280 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "Removed URL (http://*:5357/742a1677-f7e8-451d-8a1c-ccacbded2924/) from URL group (18302628907645403155). Process Id 4280 Executable path \\Device\\HarddiskVolume2\\Windows\\System32\\svchost.exe, User S-1-5-19",
+    "The description for Event ID '1073873936' in Source 'mtkwlex' cannot be found.  The local computer may not have the necessary registry information or message DLL files to display the message, or you may not have permission to access them.  The following information is part of the event:'\\Device\\NDMP1'",
+    "The description for Event ID '10016' in Source 'DCOM' cannot be found.  The local computer may not have the necessary registry information or message DLL files to display the message, or you may not have permission to access them.  The following information is part of the event:'application-specific', 'Local', 'Activation', '{2593F8B9-4EAF-457C-B68A-50F6B8EA6B54}', '{15C20B67-12E7-4BB6-92BB-7AFF07997402}', 'guest', 'megam', 'S-1-5-21-152274099-2178361535-625513083-1001', 'LocalHost (Using LRPC)', 'Unavailable', 'Unavailable'",
+    "The Trusted Platform Module (TPM) hardware failed to execute a TPM command.",
+    "The Trusted Platform Module (TPM) hardware failed to execute a TPM command."
+  ],
+  "openFiles": [
+    {
+      "pid": 4452,
+      "process": "agy",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\agy\\bin\\agy.exe"
+    },
+    {
+      "pid": 2480,
+      "process": "backgroundTaskHost",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\backgroundTaskHost.exe"
+    },
+    {
+      "pid": 20336,
+      "process": "backgroundTaskHost",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\backgroundTaskHost.exe"
+    },
+    {
+      "pid": 20532,
+      "process": "backgroundTaskHost",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\backgroundTaskHost.exe"
+    },
+    {
+      "pid": 2496,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 5332,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 7532,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 7676,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 8456,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 10576,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 10588,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 12380,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 12616,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 12888,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 13104,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 14740,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 15084,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 15988,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 18144,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 19364,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 20192,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 20416,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 20704,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 20788,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 20824,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 21228,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 21288,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 21456,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 21468,
+      "process": "chrome",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    {
+      "pid": 6892,
+      "process": "cmd",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\cmd.exe"
+    },
+    {
+      "pid": 7388,
+      "process": "cmd",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\cmd.exe"
+    },
+    {
+      "pid": 14976,
+      "process": "cmd",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\cmd.exe"
+    },
+    {
+      "pid": 17924,
+      "process": "cmd",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\cmd.exe"
+    },
+    {
+      "pid": 18500,
+      "process": "cmd",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\cmd.exe"
+    },
+    {
+      "pid": 21348,
+      "process": "cmd",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\cmd.exe"
+    },
+    {
+      "pid": 436,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 2180,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 2552,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 3456,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 3708,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 6208,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 8072,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 8264,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 10228,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 10936,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 11488,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 11500,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 14608,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 15776,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 16576,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 16592,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 17404,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 18796,
+      "process": "Code",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "pid": 14620,
+      "process": "CodeSetup-stable-7debcd0e2acdea1c52de81bf9ee1620444407dda",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Temp\\vscode-stable-user-x64\\CodeSetup-stable-7debcd0e2acdea1c52de81bf9ee1620444407dda.exe"
+    },
+    {
+      "pid": 10548,
+      "process": "CodeSetup-stable-7debcd0e2acdea1c52de81bf9ee1620444407dda.tmp",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Temp\\is-2A4JN.tmp\\CodeSetup-stable-7debcd0e2acdea1c52de81bf9ee1620444407dda.tmp"
+    },
+    {
+      "pid": 2216,
+      "process": "conhost",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\conhost.exe"
+    },
+    {
+      "pid": 6188,
+      "process": "conhost",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\conhost.exe"
+    },
+    {
+      "pid": 16372,
+      "process": "conhost",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\conhost.exe"
+    },
+    {
+      "pid": 17824,
+      "process": "conhost",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\conhost.exe"
+    },
+    {
+      "pid": 8884,
+      "process": "CrossDeviceResume",
+      "fd": "FILE",
+      "path": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe"
+    },
+    {
+      "pid": 9664,
+      "process": "CrossDeviceService",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\WindowsApps\\MicrosoftWindows.CrossDevice_1.26071.84.0_x64__cw5n1h2txyewy\\CrossDeviceService.exe"
+    },
+    {
+      "pid": 12572,
+      "process": "deskflow",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Deskflow\\deskflow.exe"
+    },
+    {
+      "pid": 14728,
+      "process": "Discord",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Discord\\app-1.0.9257\\Discord.exe"
+    },
+    {
+      "pid": 14820,
+      "process": "Discord",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Discord\\app-1.0.9257\\Discord.exe"
+    },
+    {
+      "pid": 14932,
+      "process": "Discord",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Discord\\app-1.0.9257\\Discord.exe"
+    },
+    {
+      "pid": 15048,
+      "process": "Discord",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Discord\\app-1.0.9257\\Discord.exe"
+    },
+    {
+      "pid": 15068,
+      "process": "Discord",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Discord\\app-1.0.9257\\Discord.exe"
+    },
+    {
+      "pid": 15952,
+      "process": "Discord",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Discord\\app-1.0.9257\\Discord.exe"
+    },
+    {
+      "pid": 8936,
+      "process": "dllhost",
+      "fd": "FILE",
+      "path": "C:\\Windows\\system32\\DllHost.exe"
+    },
+    {
+      "pid": 6192,
+      "process": "EOSOverlayRenderer-Win64-Shipping",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\managedArtifacts\\98bc04bc842e4906993fd6d6644ffb8d\\EOSOverlayRenderer-Win64-Shipping.exe"
+    },
+    {
+      "pid": 8992,
+      "process": "EOSOverlayRenderer-Win64-Shipping",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\managedArtifacts\\98bc04bc842e4906993fd6d6644ffb8d\\EOSOverlayRenderer-Win64-Shipping.exe"
+    },
+    {
+      "pid": 13208,
+      "process": "EOSOverlayRenderer-Win64-Shipping",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\managedArtifacts\\98bc04bc842e4906993fd6d6644ffb8d\\EOSOverlayRenderer-Win64-Shipping.exe"
+    },
+    {
+      "pid": 17168,
+      "process": "EOSOverlayRenderer-Win64-Shipping",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\managedArtifacts\\98bc04bc842e4906993fd6d6644ffb8d\\EOSOverlayRenderer-Win64-Shipping.exe"
+    },
+    {
+      "pid": 17708,
+      "process": "EOSOverlayRenderer-Win64-Shipping",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\managedArtifacts\\98bc04bc842e4906993fd6d6644ffb8d\\EOSOverlayRenderer-Win64-Shipping.exe"
+    },
+    {
+      "pid": 16280,
+      "process": "EpicGamesLauncher",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Epic Games\\Launcher\\Portal\\Binaries\\Win64\\EpicGamesLauncher.exe"
+    },
+    {
+      "pid": 15396,
+      "process": "EpicOnlineServicesUserHelper",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\EpicOnlineServicesUserHelper.exe"
+    },
+    {
+      "pid": 17004,
+      "process": "EpicOnlineServicesUserHelper",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\EpicOnlineServicesUserHelper.exe"
+    },
+    {
+      "pid": 7828,
+      "process": "EpicWebHelper",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Epic Games\\Launcher\\Engine\\Binaries\\Win64\\EpicWebHelper.exe"
+    },
+    {
+      "pid": 18212,
+      "process": "EpicWebHelper",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Epic Games\\Launcher\\Engine\\Binaries\\Win64\\EpicWebHelper.exe"
+    },
+    {
+      "pid": 2988,
+      "process": "explorer",
+      "fd": "FILE",
+      "path": "C:\\Windows\\explorer.exe"
+    },
+    {
+      "pid": 9032,
+      "process": "explorer",
+      "fd": "FILE",
+      "path": "C:\\Windows\\Explorer.EXE"
+    },
+    {
+      "pid": 9392,
+      "process": "FileCoAuth",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Microsoft\\OneDrive\\26.163.0823.0004\\FileCoAuth.exe"
+    },
+    {
+      "pid": 4768,
+      "process": "Fork",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\AppData\\Local\\Fork\\current\\Fork.exe"
+    },
+    {
+      "pid": 5500,
+      "process": "GameInputRedistService",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Microsoft GameInput\\x64\\GameInputRedistService.exe"
+    },
+    {
+      "pid": 8892,
+      "process": "igfxEM",
+      "fd": "FILE",
+      "path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_bdd49bbe6b990549\\igfxEM.exe"
+    },
+    {
+      "pid": 16124,
+      "process": "jellyfin",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Jellyfin\\Server\\jellyfin.exe"
+    },
+    {
+      "pid": 16080,
+      "process": "Jellyfin.Windows.Tray",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\Jellyfin\\Server\\jellyfin-windows-tray\\Jellyfin.Windows.Tray.exe"
+    },
+    {
+      "pid": 8060,
+      "process": "jucheck",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Common Files\\Java\\Java Update\\jucheck.exe"
+    },
+    {
+      "pid": 17144,
+      "process": "jusched",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Common Files\\Java\\Java Update\\jusched.exe"
+    },
+    {
+      "pid": 1676,
+      "process": "LaunchBox",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\LaunchBox\\Core\\LaunchBox.exe"
+    },
+    {
+      "pid": 11020,
+      "process": "LaunchBox",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\LaunchBox\\Core\\LaunchBox.exe"
+    },
+    {
+      "pid": 3192,
+      "process": "LaunchBox.MediaEngine",
+      "fd": "FILE",
+      "path": "C:\\Users\\megam\\LaunchBox\\System\\Software\\LaunchBox Media Engine\\LaunchBox.MediaEngine.exe"
+    },
+    {
+      "pid": 4868,
+      "process": "MicrosoftStartFeedProvider",
+      "fd": "FILE",
+      "path": "C:\\Program Files\\WindowsApps\\Microsoft.StartExperiencesApp_1.380.2.0_x64__8wekyb3d8bbwe\\MicrosoftStartFeedProvider\\MicrosoftStartFeedProvider.exe"
+    },
+    {
+      "pid": 21212,
+      "process": "MoNotificationUx",
+      "fd": "FILE",
+      "path": "C:\\Windows\\uus\\AMD64\\MoNotificationUx.exe"
+    },
+    {
+      "pid": 8400,
+      "process": "msedgewebview2",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.66\\msedgewebview2.exe"
+    },
+    {
+      "pid": 10536,
+      "process": "msedgewebview2",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.66\\msedgewebview2.exe"
+    },
+    {
+      "pid": 11144,
+      "process": "msedgewebview2",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.66\\msedgewebview2.exe"
+    },
+    {
+      "pid": 11852,
+      "process": "msedgewebview2",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.66\\msedgewebview2.exe"
+    },
+    {
+      "pid": 11860,
+      "process": "msedgewebview2",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.66\\msedgewebview2.exe"
+    },
+    {
+      "pid": 11992,
+      "process": "msedgewebview2",
+      "fd": "FILE",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.66\\msedgewebview2.exe"
+    }
+  ],
+  "openPorts": [
+    {
+      "protocol": "TCP",
+      "localAddress": "::1",
+      "port": 63772,
+      "pid": 1580,
+      "process": "PID 1580",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 49679,
+      "pid": 1144,
+      "process": "PID 1144",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 49668,
+      "pid": 3772,
+      "process": "PID 3772",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 49667,
+      "pid": 2940,
+      "process": "PID 2940",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 49666,
+      "pid": 2680,
+      "process": "PID 2680",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 49665,
+      "pid": 760,
+      "process": "PID 760",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 49664,
+      "pid": 1196,
+      "process": "PID 1196",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::1",
+      "port": 42050,
+      "pid": 8772,
+      "process": "PID 8772",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::1",
+      "port": 35783,
+      "pid": 15396,
+      "process": "PID 15396",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::1",
+      "port": 8080,
+      "pid": 19792,
+      "process": "PID 19792",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 7680,
+      "pid": 15820,
+      "process": "PID 15820",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 2179,
+      "pid": 2424,
+      "process": "PID 2424",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 445,
+      "pid": 4,
+      "process": "PID 4",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 135,
+      "pid": 1476,
+      "process": "PID 1476",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 53,
+      "pid": 4116,
+      "process": "PID 4116",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "::",
+      "port": 22,
+      "pid": 4500,
+      "process": "PID 4500",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 57106,
+      "pid": 4452,
+      "process": "PID 4452",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 57105,
+      "pid": 4452,
+      "process": "PID 4452",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 56817,
+      "pid": 8072,
+      "process": "PID 8072",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 55767,
+      "pid": 10228,
+      "process": "PID 10228",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 55425,
+      "pid": 13580,
+      "process": "PID 13580",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 55422,
+      "pid": 13580,
+      "process": "PID 13580",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 53349,
+      "pid": 16740,
+      "process": "PID 16740",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 49679,
+      "pid": 1144,
+      "process": "PID 1144",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 49668,
+      "pid": 3772,
+      "process": "PID 3772",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 49667,
+      "pid": 2940,
+      "process": "PID 2940",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 49666,
+      "pid": 2680,
+      "process": "PID 2680",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 49665,
+      "pid": 760,
+      "process": "PID 760",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 49664,
+      "pid": 1196,
+      "process": "PID 1196",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 35783,
+      "pid": 15396,
+      "process": "PID 15396",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 27036,
+      "pid": 13580,
+      "process": "PID 13580",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 24800,
+      "pid": 7456,
+      "process": "PID 7456",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 24563,
+      "pid": 16280,
+      "process": "PID 16280",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 20241,
+      "pid": 13944,
+      "process": "PID 13944",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 11434,
+      "pid": 16480,
+      "process": "PID 16480",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 8096,
+      "pid": 16124,
+      "process": "PID 16124",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 6463,
+      "pid": 14728,
+      "process": "PID 14728",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "127.0.0.1",
+      "port": 5357,
+      "pid": 4,
+      "process": "PID 4",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 5040,
+      "pid": 8784,
+      "process": "PID 8784",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 2179,
+      "pid": 2424,
+      "process": "PID 2424",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "192.168.4.34",
+      "port": 139,
+      "pid": 4,
+      "process": "PID 4",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 135,
+      "pid": 1476,
+      "process": "PID 1476",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 53,
+      "pid": 4116,
+      "process": "PID 4116",
+      "state": "LISTENING"
+    },
+    {
+      "protocol": "TCP",
+      "localAddress": "0.0.0.0",
+      "port": 22,
+      "pid": 4500,
+      "process": "PID 4500",
+      "state": "LISTENING"
+    }
   ]
 }

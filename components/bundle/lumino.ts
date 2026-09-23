@@ -14,6 +14,7 @@ import { SettingConfig, SettingsManager } from './settings';
 import { isDevToolsOpen, OUTLINE_WIDGET_TYPES, ResponsiveManager } from './lumino-resize';
 
 import '@lumino/widgets/style/index.css';
+//import '@lumino/default-theme/style/index.css'
 import { applyInitialLayout } from './menu-app';
 import JSZip from 'jszip';
 import type { LuminoLayoutWindow } from './lumino.d';

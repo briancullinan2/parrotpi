@@ -162,6 +162,8 @@ html {
 .lm-DataGrid-viewport {
 	height: 100%;
 	width: 100%;
+	min-height: 100%;
+	min-width: 100%;
 }
 
 .lm-DataGrid-viewport>canvas {
