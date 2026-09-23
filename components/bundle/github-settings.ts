@@ -296,7 +296,7 @@ const LOCAL_SETTINGS: Record<string, Record<string, SettingConfig>> = {
 		},
 		environmentRepository: {
 			key: 'environment_repository',
-			default: 'briancullinan2/quedit',
+			default: 'briancullinan2/parrotpi',
 			description: 'Repository for this workspace, the entire IDE, code editor and engine runner, for editing the environment inside the workspace.',
 			set: configureRepository
 		},

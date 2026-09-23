@@ -7,7 +7,7 @@ const localSelf = /** @type {any} */ (self);
 
 
 const DB_VERSION = 1; // Increment this when you add new C# Entities!
-const DB_NAME = "briancullinan2/quedit";
+const DB_NAME = "briancullinan2/parrotpi";
 localSelf.DB_NAME = DB_NAME;
 const DB_STORE_NAME = 'FILE_DATA';
 localSelf.DB_STORE_NAME = DB_STORE_NAME;
