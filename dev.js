@@ -50,7 +50,7 @@ if(cluster.isMaster)
 	}
 
 	const params = {
-		port: 8080,
+		port: 4080,
 		host: "localhost",
 		root: "./",
 		open: cluster.worker.id === 1,
@@ -69,5 +69,5 @@ if(cluster.isMaster)
 	};
 
 	liveServer.start(params);
-	console.log(`[Worker ${process.pid}] Static file server ready on http://localhost:8080`);
+	console.log(`[Worker ${process.pid}] Static file server ready on http://localhost:4080`);
 }
