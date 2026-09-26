@@ -1,0 +1,49 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"types": [
+			"node"
+		],
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ES2022",
+			"ESNext",
+			"WebWorker",
+			"ScriptHost"
+		],
+		"rootDir": "./",
+		"noEmit": false,
+		"allowJs": true,
+		"checkJs": false,
+		"esModuleInterop": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitAny": true,
+		"ignoreDeprecations": "6.0",
+		"sourceMap": true
+	},
+	"include": [
+		"components/bundle/*",
+		"*.d.ts",
+		"**/*.d.ts"
+	],
+	"exclude": [
+		"components/terminal/xterm.js",
+		"components/workers/sys_*.js",
+		"components/map-loader/*.js",
+		"node_modules",
+		"**/node_modules",
+		"build",
+		"docs",
+		"source/page/node_modules",
+		"**/*.nsp",
+		"**/*.js.mem",
+		"**/.git"
+	]
+}
+

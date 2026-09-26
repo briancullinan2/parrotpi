@@ -1,0 +1,52 @@
+.compiler-error-marker,
+.compiler-warning-marker {
+	position: absolute;
+	z-index: 5 !important;
+	text-decoration-style: wavy;
+}
+
+/* 1. Wavy Red Error Underline */
+.compiler-error-marker {
+	border-bottom: 2px dashed #ef4444 !important;
+	/* Modern browser wavy option alternative: */
+	text-decoration: underline wavy #ef4444 2px !important;
+	text-decoration-style: wavy;
+}
+
+/* 2. Wavy Yellow Warning Underline */
+.compiler-warning-marker {
+	border-bottom: 2px dashed #f1c40f !important;
+	/* Modern browser wavy option alternative: */
+	text-decoration: underline wavy #f1c40f 2px !important;
+	text-decoration-style: wavy;
+}
+
+.ace_gutter-cell .ace_fold-widget {
+	transition: opacity 0.15ms ease, color 0.15ms ease;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+}
+
+/* Gutter icon hover states */
+.ace_gutter-cell:hover .ace_fold-widget {
+	color: rgb(from var(--ace-selection-bg) r g b / 80%) !important;
+}
+
+/* Style for the inline collapsed block pill text placeholder (... ) */
+.ace_fold {
+	background-color: rgb(from var(--ace-selection-bg) r g b / 10%) !important;
+	border: 1px solid rgb(from var(--ace-selection-bg) r g b / 30%) !important;
+	color: #5A525F !important;
+	font-style: normal !important;
+}
+
+.ace_marker-layer .ace_active_block_scope_highlight {
+	background-color: rgb(from var(--ace-selection-bg, rgba(39, 95, 255, 0.3)) r g b / 05%) !important;
+	border-left: 3px solid rgb(from var(--ace-selection-bg, rgba(39, 95, 255, 0.3)) r g b / 60%) !important;
+	border-radius: 2px 0 0 2px;
+	position: absolute;
+}
+
+.ace_gutter_annotation {
+	cursor: pointer;
+}

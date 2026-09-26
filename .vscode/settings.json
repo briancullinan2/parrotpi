@@ -1,0 +1,96 @@
+{
+	// ==========================================
+	// Files & Formatting Guidelines
+	// ==========================================
+	"files.eol": "\n",
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": false,
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true,
+	"files.encoding": "utf8",
+	// ==========================================
+	// HTML-Specific Formatting Rules
+	// ==========================================
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features",
+		"editor.insertSpaces": false,
+		"editor.tabSize": 4
+	},
+	"html.format.indentHandlebars": true,
+	"html.format.indentInnerHtml": true,
+	"html.format.wrapAttributes": "auto",
+	// ==========================================
+	// JavaScript & Syntax Constraints
+	// ==========================================
+	"[javascript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
+	"js/ts.format.semicolons": "insert",
+	"js/ts.format.insertSpaceBeforeFunctionParenthesis": false,
+	"js/ts.format.insertSpaceAfterKeywordsInControlFlowStatements": false,
+	"js/ts.format.placeOpenBraceOnNewLineForControlBlocks": true,
+	"js/ts.format.placeOpenBraceOnNewLineForFunctions": true,
+	// ==========================================
+	// Code Linting & Validation (Enforcing ES5/ES9 & Strict Rules)
+	// ==========================================
+	"jshint.options": {
+		"esversion": 9,
+		"strict": "global",
+		"curly": true,
+		"eqeqeq": true,
+		"undef": true,
+		"unused": true,
+		"asi": false,
+		"boss": false,
+		"eqnull": false
+	},
+	// ==========================================
+	// JSDoc / Documentation Settings
+	// ==========================================
+	"javascript.suggest.jsdoc": true,
+	"jsdoc.generateDescription": true,
+	"javascript.implicitProjectConfig.checkJs": true,
+	"js/js.validate.enable": true,
+	// ==========================================
+	// File & Folder Naming Enforcement Rules
+	// ==========================================
+	"ls-lint.rules": {
+		"*.js": "pascalcase",
+		"*.md": "screaming_snakecase",
+		"dir": "camelcase"
+	},
+	// ==========================================
+	// Custom TODO Highlight Configuration
+	// ==========================================
+	"todo-tree.regex.expressions": [
+		"//\\s*(TODO\\s*<[^>]+>)"
+	],
+	"todo-tree.highlights.custom": {
+		"TODO": {
+			"background": "#ebcb8b",
+			"foreground": "#2e3440",
+			"icon": "check",
+			"type": "text"
+		}
+	},
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/build": true,
+		"**/docs": true,
+		"**/.git": true,
+		"**/*.nsp": true,
+		"**/*.js.mem": true,
+		"**/*.wasm": true,
+		"**/*.zip": true,
+		"**/*.bin": true,
+		"**/dist": true
+	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/*.js.mem": true
+	},
+	"search.followSymlinks": false,
+	"search.useIgnoreFiles": true,
+	"search.maxResults": 5000
+}

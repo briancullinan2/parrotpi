@@ -1,0 +1,277 @@
+input,
+button,
+select,
+textarea {
+	font-size: inherit;
+	font-family: inherit;
+}
+
+
+#search-terminal,
+#popups .popup .buttons button,
+#popups select,
+#popups *:not(.ui_number_input)>button,
+#popups input,
+.toolbar a.bx,
+.toolbar button.bx,
+#app-top-header-row button.bx,
+#app-top-header-row select,
+#app-top-header-row select option,
+#app-top-header-row select optgroup,
+#ace_settingsmenu input,
+#ace_settingsmenu select,
+#ace_settingsmenu select option,
+#ace_settingsmenu button,
+ul.toolbar input,
+ul.toolbar select,
+ul.toolbar select option,
+ul.toolbar button,
+.search-box input,
+.search-box input[type="text"],
+.search-box input[type="number"] {
+	margin: 0;
+	width: stretch;
+	box-sizing: border-box;
+	height: 30px;
+	font-size: 14px;
+	/* Prevents select from using system fonts */
+	vertical-align: middle;
+	background: var(--ace-bg);
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+	border-radius: 0;
+	color: var(--ace-foreground);
+	font-family: inherit;
+	cursor: pointer;
+	box-shadow: none;
+}
+
+#popups input[type="radio"],
+#popups input[type="checkbox"] {
+	width: min-content;
+	zoom: 1;
+}
+
+
+#search-terminal:focus,
+#search-terminal:hover,
+#popups .popup input:focus,
+#popups .popup input:hover,
+#popups .popup .buttons button:focus,
+#popups .popup .buttons button:hover,
+#popups .popup .actions button:focus,
+#popups .popup .actions button:hover,
+.toolbar a.bx:hover,
+.toolbar button.bx:hover,
+#app-top-header-row button.bx:hover,
+#app-top-header-row select:hover,
+#app-top-header-row select option:hover,
+#app-top-header-row select optgroup:hover,
+#ace_settingsmenu input:hover,
+#ace_settingsmenu select:hover,
+#ace_settingsmenu select option:hover,
+#ace_settingsmenu button:hover,
+#ace_settingsmenu input:focus,
+#ace_settingsmenu select:focus,
+#ace_settingsmenu select option:focus,
+#ace_settingsmenu button:focus,
+ul.toolbar input:hover,
+ul.toolbar select:hover,
+ul.toolbar select option:hover,
+ul.toolbar button:hover,
+.search-box input:hover,
+.search-box input[type="text"]:hover,
+.search-box input[type="number"]:hover {
+	background: var(--ace-bg);
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+	cursor: pointer;
+}
+
+
+
+.toolbar a.bx,
+.toolbar button.bx,
+#app-top-header-row a.bx,
+#app-top-header-row button.bx {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+	text-decoration: none;
+	font-size: 24px;
+	color: var(--ace-foreground);
+	border: 2px solid transparent;
+	padding: 0px;
+	height: 30px;
+	width: 30px;
+}
+
+.toolbar a.bx:hover,
+.toolbar button.bx:hover,
+#app-top-header-row button:hover,
+#app-top-header-row a:hover {
+	background: rgb(from var(--ace-selection-bg) r g b / 50%);
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+}
+
+
+/* The container/track */
+#ace_settingsmenu input[type="checkbox"],
+#popups input[type="checkbox"],
+#app-top-header-row input[type="checkbox"] {
+	appearance: none;
+	-webkit-appearance: none;
+	min-width: 60px;
+	width: 60px;
+	max-width: 60px;
+	/* Off state gray */
+	border-radius: 50px;
+	position: relative;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	outline: none;
+	/* Light border */
+	box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+	align-items: center;
+	display: inline-flex;
+	padding: 0;
+	font-weight: bold;
+	background-color: var(--ace-gutter-bg);
+	border: 2px solid var(--ace-blue);
+	height: calc(var(--global-height) + 4px);
+	transition: box-shadow ease-in-out 0.3s;
+	zoom: 1;
+}
+
+#app-top-header-row #reload-container {
+	min-width: 200px;
+}
+
+
+
+/* The sliding dot (thumb) */
+#ace_settingsmenu input[type="checkbox"]::before,
+#popups input[type="checkbox"]::before,
+#app-top-header-row input[type="checkbox"]::before {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	width: calc(1.6em - 4px);
+	height: calc(1.6em - 4px);
+	border-radius: 50%;
+	transition: transform 0.3s ease;
+	background-color: var(--ace-bg);
+	box-shadow: -1px -2px 5px inset rgb(from var(--ace-gutter-bg) r g b / 50%);
+	width: calc(var(--global-height) - 4px);
+	height: calc(var(--global-height) - 4px);
+}
+
+#ace_settingsmenu input[type="checkbox"]::after,
+#popups input[type="checkbox"]::after,
+#app-top-header-row input[type="checkbox"]::after {
+	content: "OFF";
+	left: calc(100% - 25px);
+	position: relative;
+	/*top: 4px;*/
+	font-size: 12px;
+	transition: left 0.3s ease;
+	color: var(--ace-foreground);
+}
+
+
+#ace_settingsmenu input[type="checkbox"]:checked::after,
+#popups input[type="checkbox"]:checked::after,
+#app-top-header-row input[type="checkbox"]:checked::after {
+	content: "ON";
+	left: 5px;
+	color: var(--ace-bg);
+}
+
+/* Active state (Background turns green) */
+#ace_settingsmenu input[type="checkbox"]:checked:focus,
+#ace_settingsmenu input[type="checkbox"]:checked,
+#popups input[type="checkbox"]:checked:focus,
+#popups input[type="checkbox"]:checked,
+#app-top-header-row input[type="checkbox"]:checked:focus,
+#app-top-header-row input[type="checkbox"]:checked {
+	background-color: var(--ace-blue);
+	border-color: rgb(from var(--ace-blue) r g b / 50%);
+	box-shadow: 1px 2px 3px rgb(from var(--ace-foreground) r g b / 50%);
+}
+
+
+/* Slide the dot over when checked */
+#ace_settingsmenu input[type="checkbox"]:checked:before,
+#popups input[type="checkbox"]:checked::before,
+#app-top-header-row input[type="checkbox"]:checked::before {
+	transform: translateX(26px);
+	transform: translateX(calc(60px - var(--global-height) - 4px));
+}
+
+/* Focus state for accessibility */
+#ace_settingsmenu input[type="checkbox"]:focus-visible,
+#popups input[type="checkbox"]:focus-visible,
+#app-top-header-row input[type="checkbox"]:focus-visible {
+	box-shadow: 0 0 0 2px rgb(from var(--ace-green) r g b / 50%);
+}
+
+#list-wrapper ul.toolbar input:placeholder-shown,
+#popups input:placeholder-shown,
+select:has(option[value=""]:checked),
+.lumino-tab-search-wrapper input:placeholder-shown,
+#token-modal input:placeholder-shown,
+#toolbar input:placeholder-shown {
+	border-color: var(--ace-bg);
+	background-color: var(--ace-bg);
+	color: var(--ace-foreground);
+}
+
+#popups input:not(:placeholder-shown),
+select:not(:has(option[value=""]:checked)),
+#token-modal input:not(:placeholder-shown),
+#search:not(:placeholder-shown),
+#list-wrapper ul.toolbar input:not(:placeholder-shown),
+#toolbar input:not(:placeholder-shown),
+#search-terminal:not(:placeholder-shown) {
+	border-color: var(--ace-blue);
+	background: var(--ace-bg);
+}
+
+#popups input::placeholder,
+#gh-token-input::placeholder,
+#search-terminal::placeholder,
+#token-modal input::placeholder,
+#list-wrapper ul.toolbar input::placeholder,
+#search::placeholder,
+#toolbar input::placeholder {
+	background-color: var(--ace-bg);
+	color: var(--ace-foreground);
+	opacity: 0.75;
+	font-style: italic;
+	color: rgb(from var(--ace-foreground) r g b / 50%);
+}
+
+a {
+	color: var(--ace-blue);
+	vertical-align: middle;
+}
+
+#ace_settingsmenu .ace_optionsMenuEntry button {
+	width: min-content;
+}
+
+#kbshortcutmenu,
+#ace_settingsmenu {
+	color: var(--ace-foreground);
+	background: var(--ace-bg);
+}
+
+#kbshortcutmenu .ace_optionsMenuCommand {
+	color: var(--ace-forground);
+}
+
+#kbshortcutmenu .ace_optionsMenuKey {
+	color: var(--ace-blue);
+}

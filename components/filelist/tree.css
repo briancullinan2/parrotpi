@@ -1,0 +1,54 @@
+.treejs-label {
+    align-items: center;
+}
+
+#github .treejs>.treejs-nodes,
+#assetlist .treejs>.treejs-nodes,
+#gamelist .treejs>.treejs-nodes,
+#database .treejs>.treejs-nodes,
+#searchlist .treejs>.treejs-nodes,
+#filelist .treejs>.treejs-nodes {
+    padding: 10px;
+    margin: 0;
+    overflow: visible;
+    max-width: none;
+    width: max-content;
+}
+
+.treejs-node__checked {
+    background: #ccc;
+}
+
+#github .treejs .treejs-checkbox,
+#database .treejs .treejs-checkbox,
+#assetlist .treejs .treejs-checkbox,
+#gamelist .treejs .treejs-checkbox,
+#search .treejs .treejs-checkbox,
+#filelist .treejs .treejs-checkbox {
+    display: none;
+}
+
+
+#github .treejs .treejs-node,
+#database .treejs .treejs-node,
+#assetlist .treejs .treejs-node,
+#gamelist .treejs .treejs-node,
+#search .treejs .treejs-node,
+#filelist .treejs .treejs-node {
+    overflow: visible;
+    max-width: none;
+}
+
+.treejs .treejs-node__open>.treejs-nodes {
+    overflow: visible;
+    max-width: none;
+}
+
+.treejs .treejs-node {
+    white-space: nowrap;
+    overflow: visible;
+}
+
+.treejs .treejs-node__close>.treejs-nodes {
+    overflow: hidden;
+}

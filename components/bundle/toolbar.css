@@ -1,0 +1,169 @@
+.toolbar .bx {
+	color: var(--ace-comment);
+	text-decoration: none;
+}
+
+
+.toolbar .bx:hover {
+	color: var(--ace-foreground);
+	text-decoration: none;
+}
+
+
+#app-top-header-row ul,
+ul.toolbar {
+	display: flex;
+	flex-direction: row;
+	max-width: 100%;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	user-select: none;
+	opacity: 1;
+	transition: display 0.3s allow-discrete, opacity 0.3s ease-in-out;
+	transition-delay: 0.3s;
+	flex-shrink: 0;
+	gap: 8px;
+}
+
+#app-top-header-row ul {
+	display: contents;
+}
+
+#app-top-header-row .lm-MenuBar-content {
+	flex-basis: 100%;
+	display: contents;
+}
+
+#app-top-header-row .lm-MenuBar-content>li {
+	flex-basis: min-content;
+	flex-grow: 0;
+}
+
+ul.toolbar {
+	flex-wrap: wrap;
+}
+
+.search-box {
+	padding-top: 8px;
+}
+
+#app-top-header-row li,
+ul.toolbar>li {
+	flex-shrink: 1;
+	min-width: 0;
+	flex-basis: min-content;
+	flex-grow: 1;
+	max-width: 100%;
+	white-space: nowrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	user-select: none;
+}
+
+#app-top-header-row li:has(select) {
+	flex-basis: 100px;
+}
+
+/* Left Sidebar Toolbar (VSCode Style) */
+#left-toolbar {
+	background: var(--ace-gutter-bg);
+	border-right: 1px solid var(--ace-bg);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 8px;
+	box-sizing: border-box;
+	z-index: 5;
+}
+
+#left-toolbar ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+}
+
+#left-toolbar li {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+#left-toolbar a {
+	color: var(--ace-comment);
+	font-size: 24px;
+	padding: 4px;
+	display: block;
+	text-decoration: none;
+	transition: color 0.15s ease;
+	width: 100%;
+	text-align: center;
+	border: 2px solid transparent;
+}
+
+#left-toolbar a:hover,
+#left-toolbar a.active {
+	background: rgb(from var(--ace-selection-bg) r g b / 50%);
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+	color: var(--ace-foreground);
+}
+
+/* Container holding the MenuBar and Custom Controls side-by-side */
+#app-top-header-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background: var(--ace-bg);
+	border-bottom: 1px solid var(--ace-gutter-bg);
+	overflow: visible !important;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+/* Clear, aligned spacing for your script tools */
+#app-top-header-row>* {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	padding: 0;
+	color: var(--ace-foreground);
+	max-width: 100%;
+}
+
+#app-top-header-row>*>* {
+	flex-basis: min-content;
+}
+
+
+#top-bar-btn-play {
+	color: var(--ace-green);
+}
+
+#top-bar-btn-stop {
+	color: var(--ace-pink);
+}
+
+.top-bar-divider {
+	border-left: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+	height: 16px;
+	margin: 0 4px;
+}
+
+@media all and (max-height: 700px) {
+	#left-toolbar {
+		overflow-y: scroll;
+	}
+}

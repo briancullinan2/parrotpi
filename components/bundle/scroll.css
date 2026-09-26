@@ -1,0 +1,63 @@
+.terminal-filter-widget .xterm-scrollable-element>.scrollbar.horizontal {
+	width: 100%;
+}
+
+.terminal-filter-widget .xterm-scrollable-element>.scrollbar>.slider,
+.terminal-filter-widget .xterm-scrollable-element>.scrollbar {
+	z-index: 1000;
+	opacity: 1;
+	pointer-events: all;
+}
+
+#main_menu>ul.menu_dropdown::-webkit-scrollbar,
+::-webkit-scrollbar,
+.xterm-viewport ::-webkit-scrollbar,
+.xterm-scrollable-element::-webkit-scrollbar,
+.ace_editor ::-webkit-scrollbar,
+.terminal-filter-widget .xterm-scrollable-element>.scrollbar {
+	width: 10px !important;
+	height: 10px !important;
+	background-color: transparent !important;
+}
+
+::-webkit-scrollbar-track-piece {
+	background: transparent !important;
+}
+
+
+#main_menu>ul.menu_dropdown::-webkit-scrollbar-track,
+::-webkit-scrollbar-track,
+.xterm-viewport ::-webkit-scrollbar-track,
+.ace_editor ::-webkit-scrollbar-track,
+.ace_scrollbar::-webkit-scrollbar-track,
+.ace_editor .ace_scrollbar-h::-webkit-scrollbar-track,
+.terminal-filter-widget .xterm-scrollable-element>.scrollbar {
+	background: transparent !important;
+}
+
+/* Global text selection styles */
+::selection {
+	background-color: rgb(from var(--ace-selection-bg) r g b / 50%);
+	/* Highlight background */
+	/*color: #00FF00;*/
+	/* Highlight text color */
+}
+
+
+#main_menu>ul.menu_dropdown::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb,
+.xterm-scrollable-element::-webkit-scrollbar-thumb,
+.xterm-viewport ::-webkit-scrollbar-thumb,
+.terminal-filter-widget .xterm-scrollable-element>.scrollbar>.slider,
+.terminal-filter-widget .scrollbar>.slider,
+.terminal-filter-widget .xterm-viewport::-webkit-scrollbar-thumb,
+.ace_editor ::-webkit-scrollbar-thumb {
+	width: 10px !important;
+
+	/*background: rgb(from var(--ace-selection-bg) r g b / 50%) !important;*/
+	background: rgb(from var(--ace-selection-bg) r g b / 50%) !important;
+	border-radius: 4px !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	box-shadow: 1px 2px 3px rgb(from var(--ace-gutter-bg) r g b / 100%) !important;
+}

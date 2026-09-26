@@ -1,0 +1,50 @@
+.ide-status-bar {
+	background: #252526;
+	/* Clean Jupyter Dark charcoal */
+	border-top: 1px solid #1e1e1e;
+	display: flex;
+	align-items: center;
+	padding: 0 8px;
+	box-sizing: border-box;
+	z-index: 15;
+	max-width: 100%;
+	width: 100% !important;
+	min-width: 100%;
+	left: 0 !important;
+}
+
+.status-bar-item {
+	padding: 0 4px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	transition: background 0.15s ease;
+}
+
+.status-bar-item:hover {
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.status-bar-left {
+	display: block !important;
+	flex: 1 1 auto;
+	text-overflow: ellipsis;
+	word-break: break-all;
+	line-break: anywhere;
+	overflow: auto;
+	flex-basis: 100%;
+}
+
+.status-bar-left,
+.status-bar-right {
+	height: 100%;
+	min-width: 0;
+}
+
+.status-bar-right {
+	flex: 0 0 auto;
+}
+
+.status-bar-right .status-bar-item {
+	height: 100%;
+}

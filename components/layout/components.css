@@ -1,0 +1,289 @@
+#popups .popup .buttons button,
+#popups select,
+#popups *:not(.ui_number_input)>button,
+#popups input,
+#token-modal input,
+#token-modal button,
+#search-terminal,
+#search,
+#list-wrapper ul.toolbar input,
+#list-wrapper ul.toolbar select,
+#list-wrapper ul.toolbar select option,
+#list-wrapper ul.toolbar button,
+#toolbar input,
+#toolbar select,
+#toolbar select option,
+#toolbar button {
+    border: 2px solid #666;
+    background: white;
+    padding: 3px 5px;
+    margin: 0;
+    width: stretch;
+    line-height: var(--global-height);
+    box-sizing: border-box;
+    height: 30px;
+    font-size: 14px;
+    /* Prevents select from using system fonts */
+    vertical-align: middle;
+    background: var(--ace-bg);
+    border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+    color: var(--ace-foreground);
+    font-family: inherit;
+    line-height: var(--global-height);
+}
+
+#popups input[type="radio"],
+#popups input[type="checkbox"] {
+    width: min-content;
+}
+
+#popup-group-type {
+    white-space: nowrap;
+}
+
+
+#list-wrapper ul.toolbar input:not([type="checkbox"]),
+#list-wrapper ul.toolbar select,
+#list-wrapper ul.toolbar select option,
+#list-wrapper ul.toolbar button,
+#toolbar input:not([type="checkbox"]),
+#toolbar select,
+#toolbar select option,
+#toolbar button {
+    overflow: hidden;
+    min-width: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: stretch;
+    width: stretch;
+}
+
+#toolbar select {
+    width: 140px;
+}
+
+#list-wrapper ul.toolbar input:placeholder-shown,
+#popups .popup input:placeholder-shown,
+select:has(option[value=""]:checked),
+#search-terminal input:placeholder-shown,
+#token-modal input:placeholder-shown,
+#toolbar input:placeholder-shown {
+    border-color: var(--ace-bg);
+    background-color: var(--ace-bg);
+    color: var(--ace-foreground);
+}
+
+#list-wrapper ul.toolbar input:hover,
+#list-wrapper ul.toolbar select:hover,
+#list-wrapper ul.toolbar select option:hover,
+#list-wrapper ul.toolbar button:hover,
+#popups .popup input:hover,
+#popups .popup .buttons button:hover,
+#token-modal input:hover,
+#search-terminal:hover,
+#toolbar input:not([type="checkbox"]):hover,
+#toolbar select:hover,
+#toolbar select option:hover,
+#toolbar button:hover {
+    background: rgb(from var(--ace-selection-bg) r g b / 50%);
+    border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+    cursor: pointer;
+}
+
+
+#list-wrapper ul.toolbar button:hover,
+#list-wrapper ul.toolbar select option:hover,
+#token-modal .actions button:hover,
+#toolbar select option:hover,
+#toolbar button:hover {
+    background: rgb(from var(--ace-selection-bg) r g b / 50%);
+    border-color: var(--ace-blue);
+    cursor: pointer;
+}
+
+#popups .popup input:focus,
+#popups .popup .buttons button:focus,
+#token-modal input:focus,
+#search-terminal:focus,
+#searchlist #search:focus,
+#list-wrapper ul.toolbar input:focus,
+#list-wrapper ul.toolbar select:focus,
+#toolbar input:focus,
+#toolbar select:focus {
+    border-color: var(--ace-blue);
+    background: var(--ace-bg);
+}
+
+#popups .popup input:not(:placeholder-shown),
+select:not(:has(option[value=""]:checked)),
+#token-modal input:not(:placeholder-shown),
+#search:not(:placeholder-shown),
+#list-wrapper ul.toolbar input:not(:placeholder-shown),
+#toolbar input:not(:placeholder-shown),
+#search-terminal:not(:placeholder-shown) {
+    border-color: var(--ace-blue);
+    background: var(--ace-bg);
+}
+
+
+#list-wrapper ul.toolbar input::-moz-placeholder,
+#search::-moz-placeholder,
+#toolbar input::-moz-placeholder,
+#toolbar input::-ms-input-placeholder {
+    background-color: var(--ace-bg);
+    color: var(--ace-foreground);
+    opacity: 0.75;
+    font-style: italic;
+    color: rgb(from var(--ace-foreground) r g b / 50%);
+}
+
+
+#popups .popup input::placeholder,
+#gh-token-input::placeholder,
+#search-terminal::placeholder,
+#token-modal input::placeholder,
+#list-wrapper ul.toolbar input::placeholder,
+#search::placeholder,
+#toolbar input::placeholder {
+    background-color: var(--ace-bg);
+    color: var(--ace-foreground);
+    opacity: 0.75;
+    font-style: italic;
+    color: rgb(from var(--ace-foreground) r g b / 50%);
+}
+
+#gh-token-input.has-token::placeholder {
+    color: rgb(from var(--ace-green) r g b / 50%);
+}
+
+
+
+#popups .popup button:active,
+#token-modal button:active,
+#list-wrapper ul.toolbar button:active,
+#toolbar select option:hover,
+#toolbar button:active {
+    background: var(--ace-bg);
+}
+
+
+#toolbar option {
+    background: var(--ace-gutter-bg);
+    color: var(--ace-foreground);
+}
+
+#token-modal button {
+    height: auto;
+}
+
+[placeholder],
+[alt],
+[data-tooltip] {
+    position: relative;
+}
+
+#toolbar [placeholder]:not([type="checkbox"])::after,
+#toolbar [alt]::after,
+#toolbar [data-tooltip]::after {
+    top: 100%;
+    bottom: auto;
+}
+
+[placeholder]:has(#search:active)::after,
+[placeholder]:has(#search:focus)::after,
+[placeholder]:has(#search-terminal:active)::after,
+[placeholder]:has(#search-terminal:focus)::after {
+    opacity: 1;
+}
+
+#global-tooltip:hover,
+#main:has(.ace_marker-layer .ace_active-line:hover)~#global-tooltip,
+#main:has(.ace_gutter .ace_gutter-active-line:hover)~#global-tooltip,
+#main:has([placeholder][popovertarget]:hover)~#global-tooltip {
+    opacity: 1;
+    display: inline-block;
+    white-space: wrap;
+}
+
+#main:has([placeholder][popovertarget]:hover)~#global-tooltip::after {}
+
+#global-tooltip:popover-open::after {
+    content: var(--tip, "Default Tooltip");
+    display: block;
+}
+
+#global-tooltip::backdrop {
+    background: transparent;
+}
+
+[placeholder][popovertarget]:not([type="checkbox"]):hover {
+    --tip: attr(placeholder);
+}
+
+[alt][popovertarget]:hover {
+    --tip: attr(alt);
+}
+
+[data-tooltip][popovertarget]:hover {
+    --tip: attr(data-tooltip);
+}
+
+
+.pk_ftr .pk_btn span,
+.pk_tb .pk_btn span,
+.pk_mt_head button span,
+.pk_mt_track button span,
+.pk_mt_knob span,
+.ace_tooltip,
+#global-tooltip,
+[placeholder]:not([popovertarget]):not([type="checkbox"])::after,
+[alt]:not([popovertarget])::after,
+[data-tooltip]:not([popovertarget])::after {
+    position: absolute;
+    cursor: pointer;
+    top: 100%;
+    bottom: auto;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: wrap;
+    word-break: normal;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    font-size: 16px;
+    z-index: -1;
+    margin: 0;
+
+    /* FIX 3: Constrain width using viewport-width (vw) units instead of percentages */
+    max-width: 95vw;
+    min-width: 100px;
+    width: fit-content;
+}
+
+
+.ace_tooltip,
+#global-tooltip {
+    white-space: wrap;
+    word-break: normal;
+}
+
+.ace_tooltip {
+    position: relative !important;
+}
+
+
+[data-tooltip]:not([popovertarget])::after {
+    content: attr(data-tooltip);
+    --tip: attr(data-tooltip);
+}
+
+[placeholder]:not([popovertarget]):not([type="checkbox"])::after {
+    content: attr(placeholder);
+    --tip: attr(placeholder);
+}
+
+[alt]:not([popovertarget])::after {
+    content: attr(alt);
+    --tip: attr(alt);
+}

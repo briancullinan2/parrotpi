@@ -1,0 +1,52 @@
+{
+	"name": "mediaserver",
+	"version": "1.0.0",
+	"description": "",
+	"license": "ISC",
+	"author": "Brian Cullinan",
+	"type": "commonjs",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node dev.js",
+		"build-manifest": "npx ts-node -O \"{\\\"module\\\":\\\"commonjs\\\",\\\"moduleResolution\\\":\\\"node\\\"}\" components/bundle/generate-manifest.ts",
+		"build-settings": "npx ts-node -O \"{\\\"module\\\":\\\"commonjs\\\",\\\"moduleResolution\\\":\\\"node\\\"}\" components/bundle/settings-coalescer.ts",
+		"generate-status": "npx ts-node -O \"{\\\"module\\\":\\\"commonjs\\\",\\\"moduleResolution\\\":\\\"node\\\"}\" components/status/generate.ts",
+		"build": "webpack --config webpack.prod.js",
+		"set-google": "gcloud storage buckets update gs://quake.games --cors-file=cors-json-file.json"
+	},
+	"dependencies": {
+		"@lumino/commands": "^2.3.4",
+		"@lumino/datagrid": "^2.5.8",
+		"@lumino/default-theme": "^2.1.16",
+		"@lumino/messaging": "^2.0.5",
+		"@lumino/widgets": "^2.9.0",
+		"@types/d3": "^7.4.3",
+		"ace-builds": "^1.44.0",
+		"d3": "^7.9.0",
+		"jszip": "^3.10.1",
+		"litegraph.js": "^0.7.18",
+		"live-server": "^1.2.2",
+		"wasm-git": "^0.0.17"
+	},
+	"devDependencies": {
+		"@babel/preset-env": "^8.0.2",
+		"@babel/standalone": "^8.0.3",
+		"@types/node": "^26.1.0",
+		"@xterm/xterm": "^6.0.0",
+		"@zip.js/zip.js": "^2.8.26",
+		"babel-loader": "^10.1.1",
+		"copy-webpack-plugin": "^14.0.0",
+		"css-loader": "^7.1.4",
+		"expose-loader": "^5.0.1",
+		"git-revision-webpack-plugin": "^5.0.0",
+		"html-webpack-plugin": "^5.6.7",
+		"style-loader": "^4.0.0",
+		"terser-webpack-plugin": "^5.6.1",
+		"ts-loader": "^9.6.2",
+		"ts-node": "^10.9.2",
+		"typescript": "^6.0.3",
+		"webpack": "^5.108.4",
+		"webpack-cli": "^7.2.1"
+	}
+}

@@ -1,0 +1,612 @@
+
+#popups,
+.lm-miniPaintPanel {
+	--background: var(--ace-bg);
+	--text-color: var(--ace-foreground);
+	--text-color-muted: var(--ace-foreground);
+	--text-color-red: var(--ace-pink);
+	--text-color-green: var(--ace-green);
+	--text-color-blue: var(--ace-blue);
+	--link-color: var(--ace-comment);
+
+	--section-background-color: var(--ace-gutter-bg);
+	--area-background-color: var(--ace-bg);
+	--block-background-color: var(--ace-gutter-bg);
+	--header-background-color: var(--ace-gutter-bg);
+	--border-color: rgb(from var(--ace-selection-bg) r g b / 50%);
+
+	--button-background-color: var(--ace-bg);
+	--button-background-color-hover: var(--ace-gutter-bg);
+	--button-background-color-active: var(--ace-blue);
+	--button-shadow-color: transparent;
+	--button-text-color-active: var(--ace-bg);
+	--button-border-radius: 0px;
+
+	--button-toggle-background-color: var(--ace-gutter-bg);
+	--button-toggle-background-color-hover: var(--ace-bg);
+
+	--input-background-color: var(--ace-gutter-bg);
+	--input-background-color-hover: var(--ace-bg);
+	--input-text-color: var(--ace-foreground);
+	--input-border-color: var(--ace-bg);
+	--input-border-color-active: var(--ace-blue);
+	--input-border-radius: 0px;
+	--input-group-border-color: var(--ace-bg);
+
+	--menu-background-color: transparent;
+	--menu-text-color: var(--ace-foreground);
+	--menu-icons-filter: invert(0.65);
+
+	--menu-icons-filter-active: none;
+	--mobile-menu-toggle-filter: invert(0.65);
+
+	--background-color-active: rgb(from var(--ace-selection-bg) r g b / 50%);
+	--background-color-hover: var(--ace-gutter-bg);
+	--text-color-active: var(--ace-comment);
+
+	--number-input-arrow-width: 2rem;
+	--scrollbar-track-color: var(--ace-bg);
+	--scrollbar-thumb-color: var(--ace-gutter-bg);
+}
+
+
+.lm-miniPaintPanel {
+	display: -ms-grid;
+	display: grid;
+	margin: 0;
+	position: absolute;
+	/* dont change it, vh does not work on mobiles with bottom footer */
+	top: 30px;
+	right: 0;
+	left: 0;
+	bottom: 5px;
+	height: auto;
+	overflow: hidden;
+
+	-ms-grid-rows: auto 1fr;
+	grid-template-rows: auto 1fr;
+	-ms-grid-columns: auto 1fr auto;
+	grid-template-columns: auto 1fr auto;
+
+	grid-template-areas:
+		"submenu submenu submenu"
+		"sidebar_left main sidebar_right";
+	line-height: var(--global-height);
+}
+
+.lm-miniPaintPanel .block.details button.reset:before,
+.lm-miniPaintPanel .layers_list .delete:before,
+.lm-miniPaintPanel .layers_list .visible:before,
+.lm-miniPaintPanel .layers_list .visibility:before,
+.lm-miniPaintPanel .ui_toggle_button:before,
+.lm-miniPaintPanel .sidebar_left .item:before {
+	font-family: 'boxicons' !important;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+	color: var(--ace-foreground);
+}
+
+.lm-miniPaintPanel .ui_toggle_button:before,
+.lm-miniPaintPanel .sidebar_left .item:before {
+	font-size: 20px;
+}
+
+.lm-miniPaintPanel .layers_list .delete {
+	background: none !important;
+}
+
+.lm-miniPaintPanel .block.details button.reset:after,
+.lm-miniPaintPanel .layers_list .delete:after,
+.lm-miniPaintPanel .layers_list .visible:after,
+.lm-miniPaintPanel .layers_list .visibility:after {
+	display: none !important;
+	background: none !important;
+	content: none !important;
+	filter: none !important;
+}
+
+.lm-miniPaintPanel .block.details button.reset {
+	border: 2px solid transparent;
+	font-size: small;
+	padding: 3px 2px;
+	margin: 1px;
+	width: 24px;
+}
+
+.lm-miniPaintPanel .layers_list .visibility,
+.lm-miniPaintPanel .layers_list .delete,
+.lm-miniPaintPanel .layers_list .visible {
+	border: 2px solid transparent;
+	font-size: small;
+	padding: 1px;
+	margin: 1px;
+	width: auto;
+}
+
+.lm-miniPaintPanel .block.details button.reset:before {
+	content: "\f6b5";
+}
+
+.lm-miniPaintPanel .layers_list .delete:before {
+	content: "\f7d3";
+}
+
+.lm-miniPaintPanel .layers_list .visibility.visible:before,
+.lm-miniPaintPanel .layers_list .visible:before {
+	content: "\f3f5";
+}
+
+.lm-miniPaintPanel .layers_list .visibility:before {
+	content: "\f3f6";
+}
+
+
+.lm-miniPaintPanel button.ui_toggle_button:before {
+	content: "\f859";
+	background-image: none !important;
+}
+
+.lm-miniPaintPanel button.ui_toggle_button:hover {
+	background-color: rgb(from var(--ace-selection-bg) r g b / 50%);
+	color: var(--ace-foreground);
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+}
+
+.lm-miniPaintPanel button.ui_toggle_button:hover:before {
+	background: var(--ace-blue);
+	content: "\f2d2";
+	color: var(--ace-green);
+}
+
+
+#popups .ui_swatches .swatch:hover:after,
+#popups .ui_swatches .swatch.active,
+.lm-miniPaintPanel .ui_swatches .swatch:hover:after,
+.lm-miniPaintPanel .ui_swatches .swatch.active {
+	box-shadow: 0 0 0 3px rgb(from var(--ace-blue) r g b / 100%) inset
+}
+
+#popups .ui_number_input,
+.lm-miniPaintPanel .ui_number_input {
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+#popups .ui_number_input:hover,
+.lm-miniPaintPanel .ui_number_input:hover {
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+}
+
+
+#popups .ui_number_input>.increase_number,
+#popups .ui_number_input>.decrease_number,
+.lm-miniPaintPanel .ui_number_input>.increase_number,
+.lm-miniPaintPanel .ui_number_input>.decrease_number {
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+
+#popups .ui_number_input>.increase_number:hover,
+#popups .ui_number_input>.decrease_number:hover,
+.lm-miniPaintPanel .ui_number_input>.increase_number:hover,
+.lm-miniPaintPanel .ui_number_input>.decrease_number:hover {
+	background-color: var(--ace-blue);
+	font-size: 0px;
+	min-height: 10px;
+}
+
+
+
+#popups .ui_number_input>.increase_number,
+.lm-miniPaintPanel .ui_number_input>.increase_number {
+	margin-top: -2px;
+	margin-right: -2px;
+}
+
+#popups .ui_number_input>.decrease_number,
+.lm-miniPaintPanel .ui_number_input>.decrease_number {
+	margin-bottom: -2px;
+	margin-right: -2px;
+}
+
+#popups .ui_number_input>input,
+.lm-miniPaintPanel .ui_number_input>input {
+	border: none !important;
+}
+
+.lm-miniPaintPanel .ui_button_group>button>svg {
+	display: none;
+}
+
+.lm-miniPaintPanel .ui_icon_button {
+	height: unset !important;
+	line-height: unset !important;
+}
+
+.lm-miniPaintPanel .canvas_preview_details .details {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.lm-miniPaintPanel .block h2 {
+	font-size: unset !important;
+}
+
+.lm-miniPaintPanel #toggle_color_swatches_section_button,
+.lm-miniPaintPanel #toggle_color_channels_section_button,
+.lm-miniPaintPanel #toggle_color_picker_section_button {
+	line-height: var(--global-height) !important;
+	padding: 2px;
+}
+
+
+.lm-miniPaintPanel #toggle_color_swatches_section_button::before,
+.lm-miniPaintPanel #toggle_color_channels_section_button::before,
+.lm-miniPaintPanel #toggle_color_picker_section_button::before {
+	padding: 2px;
+	font-family: boxicons !important;
+	font-size: 24px;
+	content: "\f60b";
+	vertical-align: middle;
+}
+
+.lm-miniPaintPanel #toggle_color_channels_section_button::before {
+	content: "\f534";
+}
+
+.lm-miniPaintPanel #toggle_color_swatches_section_button::before {
+	content: "\f798";
+}
+
+.lm-miniPaintPanel button.ui_toggle_button[aria-pressed="true"]:before {
+	background: var(--ace-blue);
+	color: var(--ace-green);
+	content: "\f2d2";
+}
+
+.lm-miniPaintPanel button.ui_toggle_button[aria-pressed="true"]:hover::before {
+	background-color: var(--ace-blue);
+	content: "\f859";
+	color: var(--ace-pink);
+}
+
+.lm-miniPaintPanel button.ui_toggle_button[aria-pressed="true"]:active,
+.lm-miniPaintPanel button.ui_toggle_button:active {
+	background-color: var(--ace-blue);
+	color: var(--ace-foreground);
+}
+
+
+.lm-miniPaintPanel .block,
+.lm-miniPaintPanel .block h2,
+.lm-miniPaintPanel .layers_list .layer_name,
+.ui_input_grid,
+.lm-miniPaintPanel input,
+.lm-miniPaintPanel select,
+.lm-miniPaintPanel button {
+	border-radius: 0px !important;
+}
+
+
+.lm-miniPaintPanel .block {
+	background-color: var(--block-background-color);
+	border: 2px solid var(--border-color);
+}
+
+.lm-miniPaintPanel .block h2 {
+	background-color: var(--header-background-color);
+	border-bottom: 2px solid var(--border-color);
+}
+
+.lm-miniPaintPanel .loaded .canvas_wrapper canvas {
+	border: 2px solid var(--border-color);
+}
+
+.lm-miniPaintPanel .layers_arrow,
+.lm-miniPaintPanel .layer_add,
+.lm-miniPaintPanel .layers_list .layer_name {
+	border: 2px solid var(--border-color);
+}
+
+.lm-miniPaintPanel .group {
+	border: 2px solid var(--border-color);
+}
+
+
+.lm-miniPaintPanel input[type="text"],
+.lm-miniPaintPanel select,
+.lm-miniPaintPanel input[type="number"],
+.lm-miniPaintPanel textarea {
+	background: var(--ace-gutter-bg);
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+	color: var(--ace-foreground);
+}
+
+.lm-miniPaintPanel .sidebar_right input[type="text"],
+.lm-miniPaintPanel .sidebar_right select,
+.lm-miniPaintPanel .sidebar_right input[type="number"],
+.lm-miniPaintPanel .sidebar_right textarea {
+	border: 2px solid rgb(from var(--ace-bg) r g b / 50%);
+	background: var(--ace-bg);
+}
+
+.lm-miniPaintPanel input[type="text"]:hover,
+.lm-miniPaintPanel select:hover,
+.lm-miniPaintPanel input[type="number"]:hover,
+.lm-miniPaintPanel textarea:hover {
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+	background: rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+.lm-miniPaintPanel input[type="text"]:active,
+.lm-miniPaintPanel select:active,
+.lm-miniPaintPanel input[type="number"]:active,
+.lm-miniPaintPanel textarea:active,
+.lm-miniPaintPanel input[type="text"]:focus,
+.lm-miniPaintPanel select:focus,
+.lm-miniPaintPanel input[type="number"]:focus,
+.lm-miniPaintPanel textarea:focus {
+	background: var(--ace-bg);
+	border-color: var(--ace-blue);
+	outline: none;
+}
+
+.lm-miniPaintPanel button,
+.lm-miniPaintPanel input[type="button"] {
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+	background-color: var(--ace-gutter-bg);
+	color: var(--text-color);
+}
+
+.lm-miniPaintPanel .block.details button.reset:hover,
+.lm-miniPaintPanel .layers_list .delete:hover,
+.lm-miniPaintPanel .layers_list .visible:hover,
+.lm-miniPaintPanel .layers_list .visibility:hover,
+.lm-miniPaintPanel button:hover,
+.lm-miniPaintPanel input[type="button"]:hover {
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+	background-color: rgb(from var(--ace-selection-bg) r g b / 50%);
+	color: var(--theme-comment);
+}
+
+
+#popups .ui_range .handle,
+.lm-miniPaintPanel .ui_range .handle {
+	background: rgb(from var(--ace-selection-bg) r g b / 50%);
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+.lm-miniPaintPanel .sidebar_right h2.toggle.toggled {
+	border-bottom: none;
+}
+
+
+.lm-miniPaintPanel button:hover:active,
+.lm-miniPaintPanel input[type="button"]:hover:active,
+.lm-miniPaintPanel button:active,
+.lm-miniPaintPanel input[type="button"]:active {
+	border: 2px solid var(--ace-blue);
+	background-color: var(--ace-bg);
+}
+
+.lm-miniPaintPanel button[aria-pressed="true"],
+.lm-miniPaintPanel input[type="button"][aria-pressed="true"] {
+	background-color: var(--button-background-color-active);
+	color: var(--button-text-color-active);
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+
+.lm-miniPaintPanel button[aria-pressed="true"],
+.lm-miniPaintPanel input[type="button"][aria-pressed="true"] {
+	background-color: var(--ace-blue);
+	color: var(--ace-foreground);
+	box-shadow: none;
+}
+
+.lm-miniPaintPanel button[aria-pressed="true"]:hover,
+.lm-miniPaintPanel input[type="button"][aria-pressed="true"]:hover {
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+	background-color: var(--button-background-color-hover);
+	color: var(--ace-foreground)
+}
+
+
+.lm-miniPaintPanel .block.details button {
+	border: 2px solid var(--border-color);
+}
+
+.lm-miniPaintPanel .block.details button.active {
+	background-color: var(--background-color-active);
+	color: var(--text-color-active);
+	border-color: var(--input-border-color-active);
+}
+
+
+.lm-miniPaintPanel .ui_toggle_button:before {
+	background-color: var(--ace-bg);
+}
+
+
+.lm-miniPaintPanel .sidebar_left .item {
+	padding: 1px !important;
+	background: var(--ace-gutter-bg);
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+.lm-miniPaintPanel .block.details button.reset {
+	transition: opacity ease-in-out 0.3s;
+}
+
+.lm-miniPaintPanel .block.details button.reset:hover,
+.lm-miniPaintPanel .sidebar_left .item:hover {
+	background-color: rgb(from var(--ace-selection-bg) r g b / 50%);
+	border-color: rgb(from var(--ace-blue) r g b / 50%);
+	opacity: 1;
+}
+
+
+
+
+.lm-miniPaintPanel .block.details button.reset:active,
+.lm-miniPaintPanel .block.details button.reset:hover:active,
+.lm-miniPaintPanel .sidebar_left .item:hover:active,
+.lm-miniPaintPanel .sidebar_left .item:active {
+	background-color: var(--ace-bg);
+	border: 2px solid var(--ace-blue);
+}
+
+.lm-miniPaintPanel .sidebar_left .item.active {
+	color: var(--ace-foreground);
+	background-color: var(--ace-blue);
+	border-color: rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+
+.lm-miniPaintPanel .layers_list .item.active .layer_name {
+	background-color: var(--background-color-active);
+	color: var(--text-color-active);
+	border-color: var(--input-border-color-active);
+}
+
+.lm-miniPaintPanel .attributes {
+	background-color: var(--area-background-color);
+	border-bottom: 2px solid var(--border-color);
+}
+
+
+.ui_swatches .swatch {
+	border: 1px solid var(--ace-bg);
+	margin: 0;
+}
+
+.ui_input_group> :first-child {
+	border-radius: none !important;
+	border: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+}
+
+.lm-miniPaintPanel .details-content {
+	height: unset;
+	max-height: none;
+}
+
+.lm-miniPaintPanel #undo_button,
+.lm-miniPaintPanel .left_mobile_menu,
+.lm-miniPaintPanel .right_mobile_menu {
+	background-image: none !important;
+	font-family: boxicons !important;
+	font-style: normal;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	display: inline-block;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	height: unset;
+	width: unset;
+	font-size: 24px;
+	padding: 3px 5px;
+	filter: none;
+	display: none;
+	position: static;
+
+}
+
+.lm-miniPaintPanel .ui_input_group {
+	align-items: center;
+	vertical-align: middle;
+}
+
+.lm-miniPaintPanel .ui_input_group>* {
+	align-items: center;
+	vertical-align: middle;
+}
+
+.lm-miniPaintPanel .ui_range .bar,
+.lm-miniPaintPanel .ui_input_group>.ui_range {
+	min-height: calc(var(--global-height) * 1.2);
+}
+
+.lm-miniPaintPanel input[type="text"],
+.lm-miniPaintPanel select,
+.lm-miniPaintPanel input[type="number"],
+.lm-miniPaintPanel textarea {
+	padding: 5px;
+}
+
+.lm-miniPaintPanel .ui_swatches .swatch_group.rows_3 {
+	height: calc(var(--global-height) * 3 + 4px * 3);
+	max-height: calc(var(--global-height) * 3 + 4px * 3);
+}
+
+.lm-miniPaintPanel .ui_swatches .swatch {
+	height: calc(var(--global-height) * 1.2);
+}
+
+
+@media all and (max-width: 800px) {
+
+	.lm-miniPaintPanel .left_mobile_menu,
+	.lm-miniPaintPanel .right_mobile_menu {
+		display: inline-block;
+	}
+}
+
+#undo_button::before,
+.right_mobile_menu::before,
+.left_mobile_menu::before {
+	background: none !important;
+	text-decoration: none;
+	font-size: 24px;
+	color: var(--ace-foreground);
+	padding: 0;
+	margin: 0;
+	font-family: boxicons !important;
+	font-style: normal;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	display: inline-block;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	padding: 0;
+}
+
+.left_mobile_menu::before {
+	content: "\f71c";
+}
+
+#undo_button::before {
+	content: "\f7ef";
+}
+
+.right_mobile_menu::before {
+	content: "\f71b";
+}
+
+
+#undo_button::after,
+.left_mobile_menu::after,
+.right_mobile_menu::after {
+	background: unset;
+	display: none;
+	position: unset;
+	filter: none;
+	left: unset;
+	top: unset;
+	right: unset;
+	bottom: unset;
+}
+
+
+.lm-miniPaintPanel .sidebar_right,
+.lm-miniPaintPanel .sidebar_left {
+	box-shadow: none !important;
+}

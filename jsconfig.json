@@ -1,0 +1,52 @@
+{
+	"compilerOptions": {
+		/* Basic Options */
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"rootDir": "./",
+		"sourceMap": true,
+		/* Environment & Libraries */
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ES2022",
+			"ESNext",
+			"WebWorker",
+			"ScriptHost"
+		],
+		"types": [
+			"node"
+		],
+		/* Enable JS Linting & Variable Checking */
+		"allowJs": true,
+		"checkJs": true, // WAS FALSE -> Must be true for JS variable/logic checks
+		/* Module Interop & Strictness */
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		/* Checking Rules */
+		"strict": true,
+		"noImplicitAny": true, // Good for plain JS so it won't yell at un-annotated params
+		"ignoreDeprecations": "6.0"
+	},
+	"include": [
+		"components/**/*.js", // Fixed path matching (added /**/)
+		"*.d.ts",
+		"**/*.d.ts"
+	],
+	"exclude": [
+		"components/terminal/xterm.js",
+		"components/workers/sys_*.js",
+		"components/map-loader/*.js",
+		"node_modules",
+		"**/node_modules",
+		"build",
+		"docs",
+		"source/page/node_modules",
+		"**/*.nsp",
+		"**/*.js.mem",
+		"**/.git"
+	]
+}

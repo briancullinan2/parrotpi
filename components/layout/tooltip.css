@@ -1,0 +1,60 @@
+.ace_tooltip,
+#global-tooltip,
+#global-editor-tooltip {
+	position: absolute;
+	cursor: pointer;
+	top: 100%;
+	bottom: auto;
+	display: block;
+	padding: 5px 10px;
+	border-radius: 4px;
+	white-space: wrap;
+	word-break: normal;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s;
+	font-size: 16px;
+	z-index: -1;
+	margin: 0;
+
+	/* FIX 3: Constrain width using viewport-width (vw) units instead of percentages */
+	max-width: 95vw;
+	min-width: 100px;
+	width: fit-content;
+}
+
+
+.ace_tooltip,
+#global-tooltip,
+#global-editor-tooltip {
+	white-space: wrap;
+	word-break: normal;
+}
+
+.ace_tooltip,
+#global-tooltip,
+#global-editor-tooltip {
+	background: var(--ace-gutter-bg) !important;
+	/* Use your Monokai variables! */
+	color: var(--ace-foreground);
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+	font-family:
+		/* 1. MacOS/iOS: The gold standard for modern screens */
+		"SF Mono",
+		/* 2. MacOS Legacy: Still looks great */
+		"Menlo",
+		/* 3. Windows 10/11: Built specifically for coding */
+		"Cascadia Code",
+		/* 4. Windows Legacy: The classic VS look */
+		"Consolas",
+		/* 5. Linux: Clean and highly readable */
+		"Liberation Mono",
+		/* 6. General Linux: Wide support */
+		"DejaVu Sans Mono",
+		/* 7. The Final Safety Net */
+		monospace;
+	line-height: var(--global-height);
+	font-size: var(--default-size);
+	z-index: 1000;
+	filter: none;
+}

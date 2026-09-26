@@ -1,0 +1,73 @@
+/* Jupyter-style Top MenuBar Styling */
+#top-menubar {
+	color: var(--ace-foreground);
+	z-index: 10;
+	display: inline-flex;
+	flex-shrink: 0;
+	overflow: visible !important;
+}
+
+
+#app-top-header-row .lm-MenuBar-item {
+	padding: 6px 10px;
+	cursor: pointer;
+}
+
+#app-top-header-row .lm-MenuBar-item:hover,
+#app-top-header-row .lm-MenuBar-item.lm-mod-active {
+	background: rgb(from var(--ace-selection-bg) r g b / 30%);
+	color: var(--ace-foreground);
+}
+
+.lm-Menu {
+	background: var(--ace-bg);
+	border: 1px solid var(--ace-gutter-bg);
+	box-shadow: 0 4px 8px rgb(from var(--ace-bg) r g b / 80%);
+	color: var(--ace-foreground);
+}
+
+.lm-Menu-item {
+	padding: 4px;
+	display: flex !important;
+	white-space: nowrap;
+	align-items: center;
+	border: 2px solid transparent;
+}
+
+
+.lm-Menu-item:hover,
+.lm-Menu-item.lm-mod-active {
+	border: 2px solid rgb(from var(--ace-blue) r g b / 50%);
+	background: rgb(from var(--ace-selection-bg) r g b / 30%);
+	color: var(--ace-foreground);
+}
+
+.lm-Menu-itemIcon {
+	padding: 4px;
+}
+
+.lm-Menu-itemLabel {
+	flex-grow: 1;
+}
+
+.lm-Menu-itemShortcut {
+	padding: 0 4px;
+}
+
+.lm-Menu-item[data-type="separator"] {
+	border-bottom: 2px solid rgb(from var(--ace-selection-bg) r g b / 50%);
+	height: 16px;
+	margin: 0 4px 8px 4px;
+	padding: 8px 0 0 0;
+	pointer-events: none;
+	height: 1px;
+}
+
+.lm-Menu-item[data-type="separator"]:hover {
+	background: none;
+}
+
+
+#left-toolbar.collapsed .bx-arrow-in-left-square-half:before {
+	content: "\f16e";
+}
