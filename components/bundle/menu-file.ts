@@ -295,7 +295,7 @@ const HELP_MENU: MenuConfig = {
 		iconClass: "bx bx-keyboard"
 	}, {
 		name: "Report Issues",
-		href: "https://github.com/briancullinan2/mediaserver-ts/issues",
+		href: "https://github.com/briancullinan2/parrotpi/issues",
 		iconClass: "bx bx-bug"
 	}, {
 		divider: true
@@ -316,7 +316,7 @@ const HELP_MENU: MenuConfig = {
 		iconClass: "bx bx-smile"
 	}, {
 		name: "SourceCode on Github",
-		href: "https://github.com/briancullinan2/nediaserver-ts",
+		href: "https://github.com/briancullinan2/parrotpi",
 		iconClass: "bxl bx-github"
 	}]
 };

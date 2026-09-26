@@ -46,31 +46,22 @@ export interface ComponentRoute
 // 1. Unified metadata tree tracking every panel type and icon token
 export const MODULE_REGISTRY: Record<string, ComponentRoute> = {
 	'collapse': { label: 'Collapse', iconClass: 'bx bx-arrow-in-left-square-half' },
+	'editor': { label: 'Code Editor', url: './components/editor/widget.ts', className: 'AceEditorWidget', iconClass: 'bx bx-code' },
+	'status': { label: 'System Status', url: './components/status/widget.ts', className: 'StatusWidget', iconClass: 'bx bx-chip' },
+	'gps': { label: 'GPS Location', url: './components/gps/widget.ts', className: 'GPSWidget', iconClass: 'bx bx-location' },
+	'wifi': { label: 'Wifi Status', url: './components/wifi/widget.ts', className: 'WifiWidget', iconClass: 'bx bx-wifi' },
+	'camera': { label: 'Camera', url: './components/camera/widget.ts', className: 'CameraWidget', iconClass: 'bx bx-camera' },
+	'remote': { label: 'Remote', url: './components/remote/widget.ts', className: 'RemoteWidget', iconClass: 'bx bx-joystick' },
+	'sdr': { label: 'Signals Intelligence', url: './components/sdr/widget.ts', className: 'SDRWidget', iconClass: 'bx bx-radio' },
+	// TODO: combined with sdr
+	//'cellular': { label: 'Cellular & Telemetry', url: './components/cellular/widget.ts', className: 'CellularWidget', iconClass: 'bx bx-broadcast' },
+	// TODO: street view on GPS Location page
+	//'ble': { label: 'Proximity Radar', url: './components/ble/widget.ts', className: 'BLERadarWidget', iconClass: 'bx bx-radar' },
+	// TODO: audiomass widget with always on listening
+	'audio': { label: 'Acoustic Spectrum', url: './components/audio/widget.ts', className: 'AudioSpectrumWidget', iconClass: 'bx bx-pulse' },
 	'searchlist': { label: 'Search Files', url: './components/filelist/widget-search.ts', className: 'SearchListWidget', iconClass: 'bx bx-search' },
-	'filelist': { label: 'Engine Files', url: './components/filelist/widget-assets.ts', className: 'AssetListWidget', iconClass: 'bx bx-folder-code' },
-
-	'music': { label: 'Music', url: './components/music/widget.ts', className: 'MusicWidget', iconClass: 'bx bx-music' },
-	'photos': { label: 'Photos', url: './components/photo/widget.ts', className: 'PhotoWidget', iconClass: 'bx bx-camera-alt' },
-	'images': { label: 'Images', url: './components/image/widget.ts', className: 'ImageWidget', iconClass: 'bx bx-image' },
-	'videos': { label: 'Videos', url: './components/video/widget.ts', className: 'VideoWidget', iconClass: 'bx bx-video' },
-	'movies': { label: 'Movies', url: './components/movie/widget.ts', className: 'MovieWidget', iconClass: 'bx bx-movie' },
-	'games': { label: 'Games', url: './components/game/widget.ts', className: 'GameWidget', iconClass: 'bx bx-joystick' },
-
-	'database': { label: 'Local Database', url: './components/filelist/widget-database.ts', className: 'DatabaseListWidget', iconClass: 'bx bx-database' },
-	'tools': { label: 'Tools', url: './components/tools/widget.ts', className: 'ToolsWidget', iconClass: 'bx bx-rename' },
+	'filelist': { label: 'Engine Files', url: './components/filelist/widget.ts', className: 'FileListWidget', iconClass: 'bx bx-folder-code' },
 	'settings': { label: 'Edit Settings', url: './components/editor/widget-settings.ts', className: 'SettingsWidget', iconClass: 'bx bx-gear' },
-};
-
-export const TOOLS_REGISTRY: Record<string, ComponentRoute> = {
-	'torrent': { label: 'Torrent Procurement', url: './components/tools/widget-torrent.ts', className: 'TorrentWidget', iconClass: 'bx bx-cloud-download' },
-	'nzb': { label: 'NZB & Usenet Engine', url: './components/tools/widget-nzb.ts', className: 'NzbWidget', iconClass: 'bx bx-news' },
-	'movies': { label: 'Movie Procurement & Matching', url: './components/tools/widget-movies.ts', className: 'MoviesWidget', iconClass: 'bx bx-film' },
-	'tv': { label: 'TV Shows & MyEpisodes Sync', url: './components/tools/widget-tv.ts', className: 'TvWidget', iconClass: 'bx bx-tv' },
-	'renamer': { label: 'Batch File & Path Renamer', url: './components/tools/widget-renamer.ts', className: 'RenamerWidget', iconClass: 'bx bx-rename' },
-	'tagger': { label: 'Metadata & ID3 Tag Editor', url: './components/tools/widget-tagger.ts', className: 'TaggerWidget', iconClass: 'bx bx-purchase-tag-alt' },
-	'status': { label: 'Transcode & Worker Queue', url: './components/status/widget.ts', className: 'WorkerStatusWidget', iconClass: 'bx bx-cog' },
-
-	'github': { label: 'Github Commit', url: './components/filelist/widget-github.ts', className: 'GithubListWidget', iconClass: 'bx bx-git-repo-forked' },
 	'terminal-container': { label: 'Show Console', url: './components/terminal/widget.ts', className: 'TerminalWidget', iconClass: 'bx bx-terminal' },
 	'graph': { label: 'Workflow Graph', url: './components/graph/widget.ts', className: 'LightGraphWidget', iconClass: 'bx bx-chart-stacked-rows' },
 };

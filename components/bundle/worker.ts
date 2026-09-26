@@ -19,7 +19,7 @@ const workerSelf: FileSystemWindow = self as unknown as any;
 export class ServiceWorkerManager
 {
 	private readonly defaultOwner = 'briancullinan2';
-	private readonly defaultRepo = 'mediaserver-ts';
+	private readonly defaultRepo = 'parrotpi';
 	private readonly defaultBranch = 'main';
 	private readonly settingsFilePath = '/base/settings.json';
 
