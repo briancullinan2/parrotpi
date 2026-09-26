@@ -107,7 +107,7 @@ export class StatusWidget extends Widget
 		this.node.style.fontFamily = 'Consolas, "Courier New", monospace';
 
 		this.title.label = 'System Status';
-		this.title.iconClass = 'fa fa-server';
+		this.title.iconClass = 'bx bx-server';
 		this.title.closable = true;
 
 		if(endpoint && endpoint !== 'System Status')
@@ -400,8 +400,8 @@ export class StatusWidget extends Widget
 		rightContainer.appendChild(this._uptimeEl);
 		rightContainer.appendChild(this._osBadgeEl);
 
-		header.appendChild(titleEl);
-		header.appendChild(rightContainer);
+		//header.appendChild(titleEl);
+		//header.appendChild(rightContainer);
 
 		// Main Accordion Layout Shell
 		this._accordionContainer = document.createElement('div');
@@ -612,7 +612,9 @@ export class StatusWidget extends Widget
 		portsContentWrapper.appendChild(portsTable);
 
 		// Mount Accordion Sections
-		this._accordionContainer.appendChild(this._createAccordionSection('Performance Metrics (Sustained 30s Window)', perfContent, true));
+		const perfGraph = this._createAccordionSection('Performance Metrics (Sustained 30s Window)', perfContent, true);
+		perfGraph.children[0].appendChild(rightContainer);
+		this._accordionContainer.appendChild(perfGraph);
 		this._accordionContainer.appendChild(this._createAccordionSection('Active Processes (Task Manager View)', procContainerWrapper, true));
 		this._accordionContainer.appendChild(this._createAccordionSection('System Services', svcContent, false));
 		this._accordionContainer.appendChild(this._createAccordionSection('User Accounts', userGrid, false));
@@ -621,7 +623,7 @@ export class StatusWidget extends Widget
 		this._accordionContainer.appendChild(this._createAccordionSection('Open Handles & File Locks', filesContentWrapper, false));
 		this._accordionContainer.appendChild(this._createAccordionSection('Listening Network Ports', portsContentWrapper, false));
 
-		this.node.appendChild(header);
+		//this.node.appendChild(header);
 		this.node.appendChild(this._accordionContainer);
 
 		// Attach Lumino DataGrid Widget to trigger layout lifecycle messages

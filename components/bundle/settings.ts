@@ -231,7 +231,13 @@ export class Settings
 
 		if(typeof targetConfig.set === 'function')
 		{
-			targetConfig.set(finalValue, targetConfig);
+			try
+			{
+				targetConfig.set(finalValue, targetConfig);
+			} catch(e)
+			{
+				console.log('Setting property failed:', targetConfig, e);
+			}
 		}
 		else if(targetConfig.elementId)
 		{

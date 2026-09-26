@@ -61,3 +61,21 @@ export interface CommitWorkerWindow extends ApiWindow, GithubWindow, WorkerWindo
 
 }
 
+
+export interface WidgetErrorEventArgs
+{
+	source: Widget;
+	error: Error | string;
+	fallbackType?: string;
+}
+
+
+interface DriveFile
+{
+	id: string;
+	name: string;
+	mimeType: string;
+	thumbnailLink?: string;
+	webContentLink?: string;
+}
+

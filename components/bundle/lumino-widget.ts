@@ -78,12 +78,15 @@ export function updateHashFromWidget(shownWidget: Widget)
 		const title = `${(terminal?.label ?? 'Terminal')} · ${SHORT_NAME}`;
 		document.title = title;
 		history.pushState({ location: '/#' + filterId, title: title }, title, '#' + filterId);
-	} else if(OUTLINE_WIDGET_TYPES.includes(widgetTypeName))
+	} else // if(OUTLINE_WIDGET_TYPES.includes(widgetTypeName))
 	{
 		const widgetKey = Object.keys(MODULE_REGISTRY).find(key => MODULE_REGISTRY[key].className === widgetTypeName);
-		const title = `${widgetKey} · ${SHORT_NAME}`;
-		document.title = title;
-		history.pushState({ location: '/#' + widgetKey, title: title }, title, '#' + widgetKey);
+		if(widgetKey)
+		{
+			const title = `${widgetKey ? MODULE_REGISTRY[widgetKey].label : shownWidget.title.label} · ${SHORT_NAME}`;
+			document.title = title;
+			history.pushState({ location: '/#' + widgetKey, title: title }, title, '#' + widgetKey);
+		}
 	}
 }
 

@@ -1,9 +1,10 @@
 // @ts-check
+/// <reference types="node" />
 
-import { IncomingMessage, ServerResponse } from 'http';
-import * as fs from 'fs';
-import * as path from 'path';
-import { StatusDataGenerator } from './generate';
+const { IncomingMessage, ServerResponse } = require('http');
+const fs = require('fs');
+const path = require('path');
+const { StatusDataGenerator } = require('./generate');
 
 const CACHE_TTL_MS = 30000;
 /** @type {string | null} */
@@ -16,7 +17,7 @@ let lastGeneratedAt = 0;
  * @param {ServerResponse} res
  * @returns {Promise<void>}
  */
-export async function handleStatusStreamMiddleware(req, res)
+async function handleStatusStreamMiddleware(req, res)
 {
 	const url = req.url || '';
 
@@ -75,3 +76,7 @@ export async function handleStatusStreamMiddleware(req, res)
 		clearInterval(streamInterval);
 	});
 }
+
+module.exports = {
+	handleStatusStreamMiddleware
+};

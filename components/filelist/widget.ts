@@ -33,17 +33,21 @@ export class FileListWidget extends Widget
 	handleKey?: string;
 	protected treeLoading: boolean = false;
 	protected refreshTreeTimer: ReturnType<typeof setTimeout> | undefined;
+	protected _source?: string;
 
 	protected get selector()
 	{
 		return '#' + this.treeContainerId;
 	}
 
-	constructor(titleStr: string)
+	constructor(titleStr?: string, source?: string)
 	{
 		super();
 		this.id = `filelist-panel-${filelistSelf.nextTemp?.()}`;
-		this.title.label = titleStr;
+		if(titleStr)
+		{
+			this.title.label = titleStr;
+		}
 		if(filelistSelf.fileListWidgets)
 		{
 			filelistSelf.fileListWidgets[filelistSelf.fileListWidgets.length] = this;
@@ -51,7 +55,10 @@ export class FileListWidget extends Widget
 		this.title.closable = true;
 		this.node.style.minWidth = '200px';
 		this.addClass('ide-file-tree-widget');
-
+		if(source)
+		{
+			this._source = source;
+		}
 		this.treeContainerId = `tree-${Date.now()}`;
 	}
 
@@ -60,16 +67,9 @@ export class FileListWidget extends Widget
 		if(msg.type === 'close-request')
 		{
 			console.log('Intercepted close request, hiding instead: ' + this.title.label);
-			// Hijack the close! Instead of destroying, hide the panel
-			this.hide();
-			this.parent = null;
 
-			// Notify the parent DockPanel to recalculate layout paths immediately
-			if(this.parent)
-			{
-				// Forcing an internal update pass so layout sizes collapse seamlessly
-				MessageLoop.sendMessage(this.parent, new Message('layout-request'));
-			}
+			this.hide();
+			filelistSelf.mainDock?.layout?.removeWidget(this);
 			return; // BAIL OUT: Avoid calling super.processMessage() to prevent disposal
 		}
 

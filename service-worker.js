@@ -217,6 +217,29 @@ async function getHeaders(response, localCSP = void 0)
 
 /**
  *
+ * @param {string | undefined} selected
+ */
+async function checkDatabaseInstall(selected)
+{
+	if(!selected || !serviceSelf.DB_SCHEME)
+	{
+		return;
+	}
+
+	const databases = await serviceSelf.getDatabaseMetadata?.() ?? [];
+	console.log('⚙️ [SW-INSTALL] Extracted internal IndexedDB metadata dictionaries:', databases);
+	const shouldInstall = (await serviceSelf.needsInstall?.(selected, serviceSelf.DB_SCHEME))?.item3;
+	if(databases.filter(d => d.key == selected).length == 0
+		|| shouldInstall)
+	{
+		await serviceSelf.deleteOldDatabase?.(selected);
+		await serviceSelf.setupDatabase?.(selected, serviceSelf.DB_SCHEME);
+	}
+}
+
+
+/**
+ *
  * @param {string | Request} urlInput
  * @param {string} key
  * @param {string | undefined} selected
@@ -340,7 +363,7 @@ async function fetchAsset(urlInput, key, selected)
 					}
 				}
 
-				if(markerIndex !== -1 && fileContent)
+				if(markerIndex !== -1 && fileContent && selected && serviceSelf.DB_SCHEME)
 				{
 					// Extract everything following '/contents/'
 					// e.g., "/repos/owner/repo/contents/scripts/base.shader" -> "scripts/base.shader"
@@ -348,6 +371,8 @@ async function fetchAsset(urlInput, key, selected)
 
 					// Normalize leading slashes so keys are uniform across variants
 					repoRelativePath = '/' + repoRelativePath.replace(/^\//, '');
+
+					await checkDatabaseInstall(selected);
 
 					// 3. Write it into your target database matching the exact repository architecture
 					await serviceSelf.putRecord?.(serviceSelf.DB_STORE_NAME ?? '', {
@@ -378,6 +403,7 @@ async function fetchAsset(urlInput, key, selected)
 				console.error("WHAT THE FUCK IS WRONG WITH YOU? " + key);
 			}
 
+			await checkDatabaseInstall(selected);
 
 			// Standard baseline VFS handling for local framework queries
 			await serviceSelf.putRecord?.(serviceSelf.DB_STORE_NAME ?? '', {

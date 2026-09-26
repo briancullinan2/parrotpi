@@ -63,6 +63,9 @@ export function collectDependencies(rawCode: string, baseRoute: string, dependen
 			} else if(moduleName === 'd3')
 			{
 				newDependency = '/components/status/d3.min.js';
+			} else if(moduleName === 'd3-cloud')
+			{
+				newDependency = '/components/blog/d3.layout.cloud.js';
 			} else if(moduleName === './tree.js' && baseRoute)
 			{
 				newDependency = path.resolve(baseRoute.substring(0, baseRoute.lastIndexOf('/')), moduleName);
@@ -428,6 +431,9 @@ export function transpileTypescriptWidget(rawCode: string, baseRoute: string): a
 								} else if(moduleName === '@lumino/messaging')
 								{
 									path.replaceWithSourceString('window.Lumino.messaging');
+								} else if(moduleName === '@lumino/signaling')
+								{
+									path.replaceWithSourceString('window.Lumino.signaling');
 								} else if(moduleName === '@lumino/commands')
 								{
 									path.replaceWithSourceString('window.Lumino.commands');
@@ -472,6 +478,12 @@ export function transpileTypescriptWidget(rawCode: string, baseRoute: string): a
 									t.memberExpression(t.identifier('window'), t.identifier('Lumino')),
 									t.identifier('datagrid')
 								);
+							} else if(moduleName === '@lumino/signaling')
+							{
+								globalExpression = t.memberExpression(
+									t.memberExpression(t.identifier('window'), t.identifier('Lumino')),
+									t.identifier('signaling')
+								);
 							} else if(moduleName === 'ace-builds')
 							{
 								globalExpression = t.memberExpression(
@@ -485,6 +497,12 @@ export function transpileTypescriptWidget(rawCode: string, baseRoute: string): a
 									t.identifier('Tree')
 								);
 							} else if(moduleName === 'd3')
+							{
+								globalExpression = t.memberExpression(
+									t.identifier('window'),
+									t.identifier('d3')
+								);
+							} else if(moduleName === 'd3-cloud')
 							{
 								globalExpression = t.memberExpression(
 									t.identifier('window'),

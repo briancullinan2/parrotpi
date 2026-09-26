@@ -26,6 +26,7 @@ export interface LuminoLayoutWindow
 		messaging: any;
 		commands: any;
 		datagrid: any;
+		signaling: any;
 	};
 	JSZip?: typeof JSZip;
 

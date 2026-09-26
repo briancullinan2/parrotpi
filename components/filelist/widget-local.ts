@@ -133,6 +133,10 @@ export function getRegistryIdFromWidget(widget: string | HTMLElement | FileListW
 		{
 			return 'assetlist';
 		}
+		else if(widget.constructor.name === 'GoogleDriveWidget')
+		{
+			return 'googledrive';
+		}
 		else if(widget.constructor.name === 'FileListWidget')
 		{
 			return 'filelist';
